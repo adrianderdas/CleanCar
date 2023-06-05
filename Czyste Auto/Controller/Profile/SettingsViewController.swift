@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
        
         title = "Ustawienia"
-//        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let layer = CAGradientLayer()
         layer.frame = CGRect(x: 0, y: 0, width: view.frame.width   , height: view.frame.height)
@@ -24,7 +24,5 @@ class SettingsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor.label
         
     }
-    
-    
-
+       
 }

@@ -46,10 +46,25 @@
                     <view key="view" contentMode="scaleToFill" id="ESj-Ar-nQa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1Hl-TT-4YM">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="1RB-6X-wa8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1Hl-TT-4YM" firstAttribute="leading" secondItem="1RB-6X-wa8" secondAttribute="leading" id="47U-K5-0zA"/>
+                            <constraint firstItem="1RB-6X-wa8" firstAttribute="bottom" secondItem="1Hl-TT-4YM" secondAttribute="bottom" id="7Wm-ko-7Ug"/>
+                            <constraint firstItem="1Hl-TT-4YM" firstAttribute="top" secondItem="1RB-6X-wa8" secondAttribute="top" id="Nmp-Kl-AKQ"/>
+                            <constraint firstItem="1RB-6X-wa8" firstAttribute="trailing" secondItem="1Hl-TT-4YM" secondAttribute="trailing" id="w8t-QJ-kNz"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZCT-dZ-VNF"/>
+                    <connections>
+                        <outlet property="tableView" destination="1Hl-TT-4YM" id="g25-KA-1Tx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxt-7H-eZF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

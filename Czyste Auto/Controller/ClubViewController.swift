@@ -16,12 +16,8 @@ class ClubViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
  
-        
     }
-    
- 
-   
-        
+  
 }
 
 
