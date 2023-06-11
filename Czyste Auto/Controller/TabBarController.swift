@@ -7,32 +7,34 @@
 
 import UIKit
 
-class TabBarController: UITabBarController, CleanCarViewControllerDelegate {
+class TabBarController: UITabBarController, CleanCarViewControllerDelegate, OrdersViewControllerDelegate {
 
     let defaults = UserDefaults.standard
     
     let cleanCarViewController = CleanCarViewController()
 
-    var selectedServices: Set<Service> = []
+    var cartValue: Int = 0
     
-    func didAddServices(_ services: Set<Service>) {
-        selectedServices = services
+    func didChangeServices(_ count: Int) {
+        print("Func Did change services activated")
+        cartValue = count
         updateBadgeValue()
+        print("Func Did change services activated")
     }
     
     func updateBadgeValue() {
-        let cartCount = String(selectedServices.count)
+        
         if let tabBarItems = tabBar.items {
             let thirdBarItem = tabBarItems[2]
-            print("cartCount: \(cartCount)")
-            thirdBarItem.badgeValue = cartCount
+            print("cartCount: \(cartValue)")
+            thirdBarItem.badgeValue = "\(cartValue)"
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selectedServices = cleanCarViewController.loadServices() ?? []
+        cartValue = cleanCarViewController.loadServices()?.count ?? 0
         updateBadgeValue()
         selectedIndex = 1
         view.backgroundColor = .systemBackground

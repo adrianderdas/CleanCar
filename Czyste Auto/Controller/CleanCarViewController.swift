@@ -113,10 +113,6 @@ class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableView
         searchBar.delegate = self
         
         view.addSubview(searchBar)
-      //  view.addSubview(tableView)
-        
-        //scrollView.addSubview(searchBar)
-        
         view.addSubview(tableView)
         scrollView.isUserInteractionEnabled = false
         
@@ -144,7 +140,7 @@ class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableView
         super.viewDidAppear(animated)
         
         updateCancelButtonTitleAndColor()
-        
+        selectedServices = loadServices() ?? []
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showCancelButton))
         searchBar.addGestureRecognizer(tapGesture)
     }
@@ -210,6 +206,8 @@ class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableView
 }
 
 
+
+
 struct Service: Hashable, Codable {
     var name: String
     var image: String
@@ -260,7 +258,7 @@ class CustomCell: UITableViewCell {
             alert.addAction(UIAlertAction(title: "Rozumiem", style: .default, handler: nil))
             viewController.present(alert, animated: true)
         } else {
-            viewController.delegate?.didAddServices(viewController.selectedServices)
+            viewController.delegate?.didChangeServices(viewController.selectedServices.count)
         }
         //viewController.selectedServices.insert(service)
         
@@ -274,10 +272,7 @@ class CustomCell: UITableViewCell {
 }
 
 protocol CleanCarViewControllerDelegate: AnyObject {
-    func didAddServices(_ services: Set<Service>)
+    func didChangeServices(_ count: Int)
 }
 
 
-//extension CleanCarViewController: UITableView, UITableViewDelegate, UITableViewDataSource {
-//    
-//}
