@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -18,6 +19,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.setUp(with: viewModel)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let viewModel = data[indexPath.row]
+        viewModel.handler?()
+    }
+
     
     //@IBOutlet var asdasdsad: UITableView!
     
@@ -46,7 +54,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                      handler: nil))
         data.append(ProfileViewModel(viewModelType: .logout,
                                      title: "Wyloguj się",
-                                     handler: nil))
+                                     handler: { [weak self] in
+            
+            guard let strongSelf = self else {
+                return
+            }
+            
+            do {
+                try FirebaseAuth.Auth.auth().signOut()
+                let vc = ZeroViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                strongSelf.present(nav, animated: true)
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+        }))
         
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         tableView.register(UITableViewCell.self,
