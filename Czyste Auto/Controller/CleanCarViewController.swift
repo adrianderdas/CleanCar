@@ -1,52 +1,17 @@
 import UIKit
 
-class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class CleanCarViewController: UIViewController {
     
-    
-   
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? filteredServices.count : services.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
-        
-        let service = isSearching ? filteredServices[indexPath.row] : services[indexPath.row]
-        
-        cell.serviceImage.image = UIImage(named: service.image)
-        cell.serviceName.text = service.name
-        cell.servicePrice.text = "\(service.price) PLN"
-        return cell
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = isSearching ? filteredServices[indexPath.row] : services[indexPath.row]
-        print("model: \(model)")
- 
-        openServiceDescribtion(model)
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func openServiceDescribtion(_ model: Service) {
-        let vc = ServicesViewController(serviceName: model.name)
-        //vc.title = model.name
-        print("openServiceDescribtion")
-        vc.modalPresentationStyle = .formSheet
-        self.present(vc, animated: true)
-        
-    }
+    weak var delegate: (CleanCarViewControllerDelegate)?
 
     let services = [
-        Service(name:"Mycie silnika", image: "auto", price: "5"),
-        Service(name:"Mycie standardowe", image: "auto", price: "15"),
-        Service(name:"Mycie podlogi", image: "auto", price: "55"),
-        Service(name:"Mycie felg", image: "auto", price: "5551"),
-        Service(name:"Mycie premiume", image: "auto", price: "15"),
-        Service(name:"odkurzaniei", image: "auto", price: "55"),
-        Service(name:"Mycie sufitki", image: "auto", price: "5551")
+        Service(name:"Mycie silnika", image: "auto", price: 5),
+        Service(name:"Mycie standardowe", image: "auto", price: 15),
+        Service(name:"Mycie podlogi", image: "auto", price: 55),
+        Service(name:"Mycie felg", image: "auto", price: 5551),
+        Service(name:"Mycie premiume", image: "auto", price: 15),
+        Service(name:"odkurzaniei", image: "auto", price: 55),
+        Service(name:"Mycie sufitki", image: "auto", price: 5551)
     ]
     
     var selectedServices: Set<Service> = [] {
@@ -76,7 +41,6 @@ class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableView
     }
     
     
-    
     var searchServices = [String]()
     var isSearching = false
     var filteredServices: [Service] = []
@@ -89,14 +53,13 @@ class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableView
         return searchBar
     }()
     
-
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
         return scrollView
     }()
     
-    weak var delegate: (CleanCarViewControllerDelegate)?
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +79,6 @@ class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableView
         view.addSubview(tableView)
         scrollView.isUserInteractionEnabled = false
         
-        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
@@ -126,7 +88,6 @@ class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableView
     }
     
 
-    
     override func viewDidLayoutSubviews() {
         print("viewDidLayoutSubviews")
         super.viewDidLayoutSubviews()
@@ -145,10 +106,10 @@ class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableView
         searchBar.addGestureRecognizer(tapGesture)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
     
+}
+
+extension CleanCarViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
         searchBar.resignFirstResponder()
@@ -201,18 +162,51 @@ class CleanCarViewController: UIViewController, UISearchBarDelegate, UITableView
         print("\(String(describing: searchBar.text))")
         searchBar.resignFirstResponder()
     }
-    
-    
 }
 
-
+extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return isSearching ? filteredServices.count : services.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
+        
+        let service = isSearching ? filteredServices[indexPath.row] : services[indexPath.row]
+        
+        cell.serviceImage.image = UIImage(named: service.image)
+        cell.serviceName.text = service.name
+        cell.servicePrice.text = "\(service.price) PLN"
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = isSearching ? filteredServices[indexPath.row] : services[indexPath.row]
+        print("model: \(model)")
+ 
+        openServiceDescribtion(model)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func openServiceDescribtion(_ model: Service) {
+        let vc = ServicesViewController(serviceName: model.name)
+        //vc.title = model.name
+        print("openServiceDescribtion")
+        vc.modalPresentationStyle = .formSheet
+        self.present(vc, animated: true)
+        
+    }
+}
 
 
 struct Service: Hashable, Codable {
     var name: String
     var image: String
-    var price: String
+    var price: Int
 }
+
 
 class CustomCell: UITableViewCell {
     let serviceImage = UIImageView()

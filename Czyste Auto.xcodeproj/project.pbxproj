@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20266A82A2BF84C00445C87 /* ServicesViewController.swift */; };
+		A21055082A40D75D00B69BD9 /* SummaryOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */; };
+		A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055092A40DC6500B69BD9 /* ZeroViewController.swift */; };
+		A210550C2A40DCA100B69BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A210550B2A40DCA100B69BD9 /* GoogleService-Info.plist */; };
+		A210550F2A40DFFD00B69BD9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A210550E2A40DFFD00B69BD9 /* FirebaseAuth */; };
+		A21055112A40DFFD00B69BD9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A21055102A40DFFD00B69BD9 /* FirebaseFirestore */; };
+		A21055132A40DFFD00B69BD9 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A21055122A40DFFD00B69BD9 /* FirebaseFirestoreSwift */; };
+		A21055162A40F73F00B69BD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055152A40F73F00B69BD9 /* LoginViewController.swift */; };
+		A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055172A40F75700B69BD9 /* RegisterViewController.swift */; };
 		A2D7952A2A1AD5600013FA3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795292A1AD5600013FA3B /* AppDelegate.swift */; };
 		A2D7952C2A1AD5600013FA3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7952B2A1AD5600013FA3B /* SceneDelegate.swift */; };
 		A2D795312A1AD5600013FA3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D7952F2A1AD5600013FA3B /* Main.storyboard */; };
@@ -24,6 +32,11 @@
 
 /* Begin PBXFileReference section */
 		A20266A82A2BF84C00445C87 /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOrderViewController.swift; sourceTree = "<group>"; };
+		A21055092A40DC6500B69BD9 /* ZeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroViewController.swift; sourceTree = "<group>"; };
+		A210550B2A40DCA100B69BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A21055152A40F73F00B69BD9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A21055172A40F75700B69BD9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A2D795262A1AD5600013FA3B /* Czyste Auto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Czyste Auto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D795292A1AD5600013FA3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2D7952B2A1AD5600013FA3B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,12 +58,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A210550F2A40DFFD00B69BD9 /* FirebaseAuth in Frameworks */,
+				A21055112A40DFFD00B69BD9 /* FirebaseFirestore in Frameworks */,
+				A21055132A40DFFD00B69BD9 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A21055142A40F72000B69BD9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A21055152A40F73F00B69BD9 /* LoginViewController.swift */,
+				A21055172A40F75700B69BD9 /* RegisterViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		A2428DEE2A2A13E200E6D000 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,12 +103,15 @@
 		A2431B7E2A201A1600FF807E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A21055142A40F72000B69BD9 /* Login */,
 				A2D7953D2A1AD9220013FA3B /* TabBarController.swift */,
 				A2D795412A1AF99D0013FA3B /* ClubViewController.swift */,
 				A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */,
 				A2D795492A1B01860013FA3B /* OrdersViewController.swift */,
 				A2428DEE2A2A13E200E6D000 /* Profile */,
 				A20266A82A2BF84C00445C87 /* ServicesViewController.swift */,
+				A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */,
+				A21055092A40DC6500B69BD9 /* ZeroViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -127,11 +155,12 @@
 		A2D795282A1AD5600013FA3B /* Czyste Auto */ = {
 			isa = PBXGroup;
 			children = (
+				A2D795372A1AD5630013FA3B /* Info.plist */,
+				A210550B2A40DCA100B69BD9 /* GoogleService-Info.plist */,
 				A2431B7F2A201A9500FF807E /* Resources */,
 				A2431B7E2A201A1600FF807E /* Controller */,
 				A2431B7D2A201A1000FF807E /* View */,
 				A2431B7C2A201A0600FF807E /* Model */,
-				A2D795372A1AD5630013FA3B /* Info.plist */,
 			);
 			path = "Czyste Auto";
 			sourceTree = "<group>";
@@ -152,6 +181,11 @@
 			dependencies = (
 			);
 			name = "Czyste Auto";
+			packageProductDependencies = (
+				A210550E2A40DFFD00B69BD9 /* FirebaseAuth */,
+				A21055102A40DFFD00B69BD9 /* FirebaseFirestore */,
+				A21055122A40DFFD00B69BD9 /* FirebaseFirestoreSwift */,
+			);
 			productName = "Czyste Auto";
 			productReference = A2D795262A1AD5600013FA3B /* Czyste Auto.app */;
 			productType = "com.apple.product-type.application";
@@ -180,6 +214,9 @@
 				Base,
 			);
 			mainGroup = A2D7951D2A1AD5600013FA3B;
+			packageReferences = (
+				A210550D2A40DFFC00B69BD9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = A2D795272A1AD5600013FA3B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -195,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2D795362A1AD5630013FA3B /* LaunchScreen.storyboard in Resources */,
+				A210550C2A40DCA100B69BD9 /* GoogleService-Info.plist in Resources */,
 				A2D795332A1AD5630013FA3B /* Assets.xcassets in Resources */,
 				A2D795312A1AD5600013FA3B /* Main.storyboard in Resources */,
 			);
@@ -211,11 +249,15 @@
 				A2D7953E2A1AD9220013FA3B /* TabBarController.swift in Sources */,
 				A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */,
 				A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */,
+				A21055082A40D75D00B69BD9 /* SummaryOrderViewController.swift in Sources */,
 				A2D795422A1AF99D0013FA3B /* ClubViewController.swift in Sources */,
 				A2D7952A2A1AD5600013FA3B /* AppDelegate.swift in Sources */,
 				A2D795402A1AED650013FA3B /* SettingsViewController.swift in Sources */,
 				A2F88A162A1BF030008674AD /* Extensions.swift in Sources */,
+				A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */,
 				A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */,
+				A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */,
+				A21055162A40F73F00B69BD9 /* LoginViewController.swift in Sources */,
 				A2D7952C2A1AD5600013FA3B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,11 +408,13 @@
 				DEVELOPMENT_TEAM = 323SMA9H24;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Czyste Auto/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Czyste Auto";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -394,11 +438,13 @@
 				DEVELOPMENT_TEAM = 323SMA9H24;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Czyste Auto/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Czyste Auto";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -434,6 +480,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A210550D2A40DFFC00B69BD9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A210550E2A40DFFD00B69BD9 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A210550D2A40DFFC00B69BD9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		A21055102A40DFFD00B69BD9 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A210550D2A40DFFC00B69BD9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		A21055122A40DFFD00B69BD9 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A210550D2A40DFFC00B69BD9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A2D7951E2A1AD5600013FA3B /* Project object */;
 }

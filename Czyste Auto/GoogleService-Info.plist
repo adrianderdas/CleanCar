@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>519956479038-v579a5g4bbp1k67etrvpeoeun6efoe7o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.519956479038-v579a5g4bbp1k67etrvpeoeun6efoe7o</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDUHpe5l2Dj3EWKBtB6MdGkKUjIxadjtSQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>519956479038</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>adrianderdas.Czyste-Auto</string>
+	<key>PROJECT_ID</key>
+	<string>czysteauto-3a06d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>czysteauto-3a06d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:519956479038:ios:2bf50626ef2691ffe4256f</string>
+</dict>
+</plist>

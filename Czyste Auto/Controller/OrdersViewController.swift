@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrdersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class OrdersViewController: UIViewController {
     
     //let cleanCarViewController = CleanCarViewController()
     
@@ -19,12 +19,120 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
             print("selectedServices in OrdersViewController: \(selectedServices)")
             print("removed position")
             delegate?.didChangeServices(selectedServices.count)
+            
+            let totalPrice = selectedServices.reduce(0) { $0 + $1.price}
+            
+            summaryLabel.text = "Suma: \(totalPrice) PLN"
         }
         
     }
     
+    private var tableView: UITableView = {
+        let table = UITableView()
+        table.allowsSelection = false
+        return table
+    }()
     
+    private let summaryLabel: UILabel = {
+        let label = UILabel()
+
+        return label
+    }()
+
     
+    private let orderButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Zamów", for: .normal)
+        button.backgroundColor = .link
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        return button
+    }()
+    
+    @objc private func orderButtonTapped() {
+        let vc = SummaryOrderViewController()
+        //vc.title = model.name
+        print("opemSummaryOrderViewController")
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.clipsToBounds = true
+        view.backgroundColor = .systemBackground
+        
+        orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
+        
+        if let tabBarController = tabBarController as? TabBarController {
+            delegate = tabBarController
+        }
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "Koszyk"
+        //title = "Koszyk"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.topItem?.titleView = titleLabel
+        
+        //orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        //scrollView.frame = view.bounds
+        //let size = scrollView/3
+        
+     
+        
+        let buttonHeight: CGFloat = 100
+        let summaryLabelHeight: CGFloat = 50
+        
+        
+        
+        summaryLabel.frame = CGRect(x: 0, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
+        orderButton.frame = CGRect(x: 0, y: view.height-buttonHeight, width: view.width, height: buttonHeight)
+        tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height-summaryLabelHeight-buttonHeight)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("checking userfefaults")
+        if let data = UserDefaults.standard.data(forKey: "SavedServices") {
+            print("Data retrieved from UserDefaults: \(data)")
+            do {
+                selectedServices = try JSONDecoder().decode([Service].self, from: data)
+                print("userdefaults import in orders: \(selectedServices)")
+            } catch {
+                print("error decoding selectedServices: \(error)")
+            }
+        }
+        
+        print("orderscontroller: \(selectedServices)")
+        
+        view.addSubview(tableView)
+        view.addSubview(summaryLabel)
+        view.addSubview(orderButton)
+        
+        tableView.frame = view.bounds
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
+        tableView.rowHeight = 120
+        
+        tableView.reloadData()
+    }
+    
+
+    
+}
+
+extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedServices.count
     }
@@ -65,6 +173,7 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    
     class CustomCell: UITableViewCell {
         let serviceImage = UIImageView()
         let serviceName = UILabel()
@@ -80,7 +189,7 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
             
             serviceImage.frame = CGRect(x: 10, y: serviceImage.frame.height/2, width: 100, height: 100)
             serviceName.frame = CGRect(x: serviceImage.width+20, y: 40, width: 120, height: 30)
-            servicePrice.frame = CGRect(x: serviceImage.width+230, y: serviceName.height+20, width: 80, height: 30)
+            servicePrice.frame = CGRect(x: serviceImage.width+220, y: serviceName.height+20, width: 80, height: 30)
 
         }
         
@@ -90,62 +199,6 @@ class OrdersViewController: UIViewController, UITableViewDataSource, UITableView
         
         }
         
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.allowsSelection = false
-        return table
-    }()
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.clipsToBounds = true
-        view.backgroundColor = .systemBackground
-        
-        if let tabBarController = tabBarController as? TabBarController {
-            delegate = tabBarController
-        }
-        
-        let titleLabel = UILabel()
-        titleLabel.text = "Koszyk"
-        //title = "Koszyk"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.topItem?.titleView = titleLabel
-        
-       
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-        
-        print("checking userfefaults")
-        if let data = UserDefaults.standard.data(forKey: "SavedServices") {
-            print("Data retrieved from UserDefaults: \(data)")
-            do {
-                selectedServices = try JSONDecoder().decode([Service].self, from: data)
-                print("userdefaults import in orders: \(selectedServices)")
-            } catch {
-                print("error decoding selectedServices: \(error)")
-            }
-        }
-        
-        print("orderscontroller: \(selectedServices)")
-        
-        view.addSubview(tableView)
-        tableView.frame = view.bounds
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = 120
-        
-        tableView.reloadData()
-    }
-    
-
 }
 
 

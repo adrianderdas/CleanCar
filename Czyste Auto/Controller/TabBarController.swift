@@ -33,6 +33,7 @@ class TabBarController: UITabBarController, CleanCarViewControllerDelegate, Orde
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.isTranslucent = false
         
         cartValue = cleanCarViewController.loadServices()?.count ?? 0
         updateBadgeValue()
