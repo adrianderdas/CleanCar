@@ -55,20 +55,30 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         data.append(ProfileViewModel(viewModelType: .logout,
                                      title: "Wyloguj się",
                                      handler: { [weak self] in
-            
             guard let strongSelf = self else {
                 return
             }
             
-            do {
-                try FirebaseAuth.Auth.auth().signOut()
-                let vc = ZeroViewController()
-                let nav = UINavigationController(rootViewController: vc)
-                nav.modalPresentationStyle = .fullScreen
-                strongSelf.present(nav, animated: true)
-            } catch let signOutError as NSError {
-                print ("Error signing out: %@", signOutError)
-            }
+            
+            let actionSheet = UIAlertController(title: "Wylogowywanie", message: "Czy na pewno chcesz się wylogować?", preferredStyle: .actionSheet)
+            actionSheet.addAction(UIAlertAction(title: "Wyloguj się", style: .destructive, handler: { [weak self] _ in
+                guard let strongSelf = self else {
+                    return
+                }
+                do {
+                    try FirebaseAuth.Auth.auth().signOut()
+                    let vc = LoginViewController()
+                    let nav = UINavigationController(rootViewController: vc)
+                    nav.modalPresentationStyle = .fullScreen
+                    strongSelf.present(nav, animated: false)
+                } catch  {
+                    print ("Error signing out")
+                }
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "Anuluj", style: .cancel, handler: nil))
+            
+            strongSelf.present(actionSheet, animated: true)
         }))
         
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)

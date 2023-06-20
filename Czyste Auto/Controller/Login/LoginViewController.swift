@@ -80,6 +80,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    @objc private func didTapRegister() {
+        let vc = RegisterViewController()
+        vc.title = "Utwórz konto"
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
 
     override func viewDidLoad() {
@@ -87,6 +94,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         view.backgroundColor = .red
         title = "Logowanie"
+        view.backgroundColor = .systemBackground
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Rejestracja", style: .done, target: self, action: #selector(didTapRegister))
         
         loginButton.addTarget(self, action: #selector(loginButonTapped), for: .touchUpInside)
         
