@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
@@ -120,6 +121,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             alertUserLoginError()
             return
         }
+        
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
+            //guard AuthDataResult
+        })
             
     }
 
