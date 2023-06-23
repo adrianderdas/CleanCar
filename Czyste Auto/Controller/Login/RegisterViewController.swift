@@ -216,15 +216,26 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             
             let db = Firestore.firestore()
             
-            var ref: DocumentReference? = nil
-            ref = db.collection("users").addDocument(data: [
-                "firstName": firstName
+            guard let userID = Auth.auth().currentUser?.uid else {
+                print("User ID is not available")
+                return
+            }
+            
+            //var ref: DocumentReference? = nil
+            db.collection("users").document(userID).setData([
+                "firstName": firstName,
+                "lastName": lastName,
+                "email": email,
+                "city": city,
+                "postalCode": postalCode,
+                "houseNumber": houseNumber,
+                "phone": phone
                 
             ]) { err in
                 if let err = err {
                     print("Error adding user data: \(err)")
                 } else {
-                    print("User added with ID: \(ref!.documentID)")
+                    print("User added with ID: \(userID)")
                 }
             }
 

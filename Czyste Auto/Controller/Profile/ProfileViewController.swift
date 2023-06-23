@@ -60,6 +60,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 do {
                     try FirebaseAuth.Auth.auth().signOut()
+                    UserDefaults.standard.removeObject(forKey: "SavedServices")
                     let vc = LoginViewController()
                     let nav = UINavigationController(rootViewController: vc)
                     nav.modalPresentationStyle = .fullScreen

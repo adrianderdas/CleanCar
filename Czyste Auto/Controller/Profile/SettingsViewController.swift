@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class SettingsViewController: UIViewController {
     
@@ -22,6 +24,12 @@ class SettingsViewController: UIViewController {
         layer.colors = [UIColor.lightGray.cgColor, UIColor.blue.cgColor]
         view.layer.addSublayer(layer)
         navigationController?.navigationBar.tintColor = UIColor.label
+        
+        
+        let db = Firestore.firestore()
+        
+        let userID = Auth.auth().currentUser?.uid
+        print(userID)
         
     }
        
