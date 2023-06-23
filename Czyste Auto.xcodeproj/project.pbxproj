@@ -28,6 +28,8 @@
 		A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795492A1B01860013FA3B /* OrdersViewController.swift */; };
 		A2E050ED2A45C46D00462A81 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EC2A45C46D00462A81 /* BaseCell.swift */; };
 		A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */; };
+		A2E050F12A46156100462A81 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F02A46156100462A81 /* UserData.swift */; };
+		A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F22A46162000462A81 /* FirebaseService.swift */; };
 		A2F88A142A1BC9A5008674AD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */; };
 		A2F88A162A1BF030008674AD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A152A1BF030008674AD /* Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +55,8 @@
 		A2D795492A1B01860013FA3B /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		A2E050EC2A45C46D00462A81 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryViewController.swift; sourceTree = "<group>"; };
+		A2E050F02A46156100462A81 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		A2E050F22A46162000462A81 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A2F88A152A1BF030008674AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +131,8 @@
 				A2D795292A1AD5600013FA3B /* AppDelegate.swift */,
 				A2D795322A1AD5630013FA3B /* Assets.xcassets */,
 				A2F88A152A1BF030008674AD /* Extensions.swift */,
+				A2E050F02A46156100462A81 /* UserData.swift */,
+				A2E050F22A46162000462A81 /* FirebaseService.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 				A2D7953E2A1AD9220013FA3B /* TabBarController.swift in Sources */,
 				A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */,
 				A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */,
+				A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */,
 				A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */,
 				A21055082A40D75D00B69BD9 /* SummaryOrderViewController.swift in Sources */,
 				A2D795422A1AF99D0013FA3B /* ClubViewController.swift in Sources */,
@@ -272,6 +279,7 @@
 				A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */,
 				A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */,
 				A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */,
+				A2E050F12A46156100462A81 /* UserData.swift in Sources */,
 				A21055162A40F73F00B69BD9 /* LoginViewController.swift in Sources */,
 				A2E050ED2A45C46D00462A81 /* BaseCell.swift in Sources */,
 				A2D7952C2A1AD5600013FA3B /* SceneDelegate.swift in Sources */,

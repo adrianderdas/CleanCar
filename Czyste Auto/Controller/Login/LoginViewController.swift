@@ -150,7 +150,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let user = result.user
             print("user: \(user)")
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-
+ 
              
         })
     }

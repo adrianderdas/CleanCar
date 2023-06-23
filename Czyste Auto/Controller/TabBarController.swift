@@ -45,6 +45,9 @@ class TabBarController: UITabBarController, CleanCarViewControllerDelegate, Orde
         selectedIndex = 1
         view.backgroundColor = .systemBackground
         
+        FirebaseService.shared.getData()
+        
+        
     }
 }
 
