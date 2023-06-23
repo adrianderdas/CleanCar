@@ -33,12 +33,18 @@ class TabBarController: UITabBarController, CleanCarViewControllerDelegate, Orde
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tabBar.isTranslucent = false
         
         cartValue = cleanCarViewController.loadServices()?.count ?? 0
         updateBadgeValue()
         selectedIndex = 1
         view.backgroundColor = .systemBackground
+        
     }
 }
 
