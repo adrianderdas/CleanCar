@@ -26,6 +26,7 @@
 		A2D795422A1AF99D0013FA3B /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795412A1AF99D0013FA3B /* ClubViewController.swift */; };
 		A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */; };
 		A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795492A1B01860013FA3B /* OrdersViewController.swift */; };
+		A2E050ED2A45C46D00462A81 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EC2A45C46D00462A81 /* BaseCell.swift */; };
 		A2F88A142A1BC9A5008674AD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */; };
 		A2F88A162A1BF030008674AD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A152A1BF030008674AD /* Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		A2D795412A1AF99D0013FA3B /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
 		A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanCarViewController.swift; sourceTree = "<group>"; };
 		A2D795492A1B01860013FA3B /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		A2E050EC2A45C46D00462A81 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A2F88A152A1BF030008674AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,11 +109,11 @@
 				A2D7953D2A1AD9220013FA3B /* TabBarController.swift */,
 				A2D795412A1AF99D0013FA3B /* ClubViewController.swift */,
 				A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */,
-				A2D795492A1B01860013FA3B /* OrdersViewController.swift */,
+				A2AFFD372A45B553009A0811 /* Summary */,
 				A2428DEE2A2A13E200E6D000 /* Profile */,
 				A20266A82A2BF84C00445C87 /* ServicesViewController.swift */,
-				A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */,
 				A21055092A40DC6500B69BD9 /* ZeroViewController.swift */,
+				A2E050EC2A45C46D00462A81 /* BaseCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -134,6 +136,15 @@
 				A2D7952F2A1AD5600013FA3B /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A2AFFD372A45B553009A0811 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				A2D795492A1B01860013FA3B /* OrdersViewController.swift */,
+				A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */,
+			);
+			path = Summary;
 			sourceTree = "<group>";
 		};
 		A2D7951D2A1AD5600013FA3B = {
@@ -258,6 +269,7 @@
 				A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */,
 				A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */,
 				A21055162A40F73F00B69BD9 /* LoginViewController.swift in Sources */,
+				A2E050ED2A45C46D00462A81 /* BaseCell.swift in Sources */,
 				A2D7952C2A1AD5600013FA3B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

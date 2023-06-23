@@ -32,25 +32,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
    @IBOutlet var tableView: UITableView!
     var data = [ProfileViewModel]()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-       
-        title = "Profil"
-        navigationController?.navigationBar.prefersLargeTitles = true
-
-        if let customImage = UIImage(systemName: "gearshape") {
-            let customButton = UIBarButtonItem(image: customImage, style: .plain, target: self, action: #selector(didTapSettings))
-            navigationItem.rightBarButtonItem = customButton
-            navigationItem.rightBarButtonItem?.tintColor = UIColor.label
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        data = []
+        
+    
         
         data.append(ProfileViewModel(viewModelType: .info,
-                                     title: "Imię i nazwisko :",
+                                     title: "Imię i nazwisko: \(UserDefaults.standard.value(forKey: "name") as? String ?? "No name")",
                                      handler: nil))
         data.append(ProfileViewModel(viewModelType: .info,
-                                     title: "Email :",
+                                     title: "Email :\(UserDefaults.standard.value(forKey: "email") as? String ?? "No email")",
                                      handler: nil))
         data.append(ProfileViewModel(viewModelType: .logout,
                                      title: "Wyloguj się",
@@ -81,6 +74,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             strongSelf.present(actionSheet, animated: true)
         }))
         
+        tableView.reloadData()
+    }
+    
+    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+       
+        title = "Profil"
+        navigationController?.navigationBar.prefersLargeTitles = true
+
+        if let customImage = UIImage(systemName: "gearshape") {
+            let customButton = UIBarButtonItem(image: customImage, style: .plain, target: self, action: #selector(didTapSettings))
+            navigationItem.rightBarButtonItem = customButton
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.label
+        }
+        
+      
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         tableView.register(UITableViewCell.self,
                            forCellReuseIdentifier: "cell")
@@ -110,6 +122,7 @@ class ProfileTableViewCell: UITableViewCell {
             
         case .info:
             textLabel?.textAlignment = .left
+            textLabel?.textColor = .black
             selectionStyle = .none
             
         case .logout:

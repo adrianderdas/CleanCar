@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
@@ -84,6 +85,74 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         field.isSecureTextEntry = true
         return field
     }()
+    
+    private let cityField: UITextField = {
+       let field = UITextField()
+        
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 12
+        field.layer.borderWidth = 1
+        field.layer.borderColor = UIColor.lightGray.cgColor
+        field.placeholder = "Miejscowość"
+        
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .secondarySystemBackground
+        return field
+    }()
+    
+    private let postalCodeField: UITextField = {
+       let field = UITextField()
+        
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 12
+        field.layer.borderWidth = 1
+        field.layer.borderColor = UIColor.lightGray.cgColor
+        field.placeholder = "Kod pocztowy"
+        
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .secondarySystemBackground
+        return field
+    }()
+    
+    private let houseNumberField: UITextField = {
+       let field = UITextField()
+        
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 12
+        field.layer.borderWidth = 1
+        field.layer.borderColor = UIColor.lightGray.cgColor
+        field.placeholder = "Numer domu"
+        
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .secondarySystemBackground
+        return field
+    }()
+    
+    private let phoneField: UITextField = {
+       let field = UITextField()
+        
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 12
+        field.layer.borderWidth = 1
+        field.layer.borderColor = UIColor.lightGray.cgColor
+        field.placeholder = "Numer telefonu"
+        
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .secondarySystemBackground
+        return field
+    }()
          
     
     private let registerButton: UIButton = {
@@ -104,18 +173,32 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func registerButtonTapped() {
-        emailField.resignFirstResponder()
-        passwordField.resignFirstResponder()
         firstNameField.resignFirstResponder()
         lastNameField.resignFirstResponder()
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        cityField.resignFirstResponder()
+        postalCodeField.resignFirstResponder()
+        houseNumberField.resignFirstResponder()
+        phoneField.resignFirstResponder()
         
         guard let firstName = firstNameField.text,
               let lastName = lastNameField.text,
               let email = emailField.text,
               let password = passwordField.text,
+              let city = cityField.text,
+              let postalCode = postalCodeField.text,
+              let houseNumber = houseNumberField.text,
+              let phone = phoneField.text,
+
               !email.isEmpty,
               !password.isEmpty,
               !firstName.isEmpty,
+              !city.isEmpty,
+              !postalCode.isEmpty,
+              !houseNumber.isEmpty,
+              !phone.isEmpty,
+              phone.count == 9,
               password.count>6,
               !lastName.isEmpty else {
             alertUserLoginError()
@@ -123,8 +206,32 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
-            //guard AuthDataResult
+            guard authResult != nil, error == nil else {
+                print("Error creating user")
+                return
+            }
+            
+            UserDefaults.standard.setValue(email, forKey: "email")
+            UserDefaults.standard.setValue("\(firstName) and \(lastName)", forKey: "name")
+            
+            let db = Firestore.firestore()
+            
+            var ref: DocumentReference? = nil
+            ref = db.collection("users").addDocument(data: [
+                "firstName": firstName
+                
+            ]) { err in
+                if let err = err {
+                    print("Error adding user data: \(err)")
+                } else {
+                    print("User added with ID: \(ref!.documentID)")
+                }
+            }
+
+            self.navigationController?.dismiss(animated: true, completion: nil)
         })
+        
+        
             
     }
 
@@ -145,6 +252,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(lastNameField)
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
+        scrollView.addSubview(cityField)
+        scrollView.addSubview(postalCodeField)
+        scrollView.addSubview(houseNumberField)
+        scrollView.addSubview(phoneField)
+        
         scrollView.addSubview(registerButton)
         
         scrollView.isUserInteractionEnabled = true
@@ -173,8 +285,25 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                   y: emailField.bottom + 10,
                                   width: scrollView.width-60,
                                  height: 52)
+        cityField.frame = CGRect(x: 30,
+                                  y: passwordField.bottom + 10,
+                                  width: scrollView.width-60,
+                                 height: 52)
+        postalCodeField.frame = CGRect(x: 30,
+                                  y: cityField.bottom + 10,
+                                  width: scrollView.width-60,
+                                 height: 52)
+        houseNumberField.frame = CGRect(x: 30,
+                                  y: postalCodeField.bottom + 10,
+                                  width: scrollView.width-60,
+                                 height: 52)
+        phoneField.frame = CGRect(x: 30,
+                                  y: houseNumberField.bottom + 10,
+                                  width: scrollView.width-60,
+                                 height: 52)
+        
         registerButton.frame = CGRect(x: 30,
-                                   y: passwordField.bottom + 10,
+                                   y: phoneField.bottom + 10,
                                    width: scrollView.width-60,
                                    height: 52)
     }

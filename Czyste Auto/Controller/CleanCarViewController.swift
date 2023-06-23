@@ -243,9 +243,13 @@ class CustomCell: UITableViewCell {
             return
         }
         
-        let service = viewController.services[indexPath.row]
+        // Dzieki temu podczas korzystania z searchBar nie jest gubiony indexPath
+        let selectedService = viewController.isSearching ? viewController.filteredServices[indexPath.row] : viewController.services[indexPath.row]
+        let service = viewController.services.first { $0.name == selectedService.name}
         
-        let result = viewController.selectedServices.insert(service)
+        guard let serviceToInsert = service else {return}
+        
+        let result = viewController.selectedServices.insert(serviceToInsert)
         
         if result.inserted == false {
             let alert = UIAlertController(title: "Uuupss", message: "Nie możesz dwukrotnie dodać tego do koszyka", preferredStyle: .alert)

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
 
 class OrdersViewController: UIViewController {
     
@@ -14,7 +16,7 @@ class OrdersViewController: UIViewController {
 
     weak var delegate: OrdersViewControllerDelegate?
     
-    var selectedServices: [Service] = [] {
+    public var selectedServices: [Service] = [] {
         didSet {
             print("selectedServices in OrdersViewController: \(selectedServices)")
             print("removed position")
@@ -54,14 +56,31 @@ class OrdersViewController: UIViewController {
     
     @objc private func orderButtonTapped() {
         let vc = SummaryOrderViewController()
-        //vc.title = model.name
-        print("opemSummaryOrderViewController")
+        vc.hidesBottomBarWhenPushed = true
+        vc.selectedServices = self.selectedServices  //Przekazanie danych
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
+        
+        let db = Firestore.firestore()
+        
+        // Add a new document with a generated ID
+        var ref: DocumentReference? = nil
+        ref = db.collection("orders").addDocument(data: [
+            "first": "Ada",
+            "last": "Lovelace",
+            "born": 1815,
+            "is_realized": false
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         view.clipsToBounds = true
         view.backgroundColor = .systemBackground
@@ -74,8 +93,8 @@ class OrdersViewController: UIViewController {
         
         let titleLabel = UILabel()
         titleLabel.text = "Koszyk"
-        //title = "Koszyk"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Koszyk"
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.titleView = titleLabel
         
         //orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
@@ -83,15 +102,9 @@ class OrdersViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //scrollView.frame = view.bounds
-        //let size = scrollView/3
-        
-     
         
         let buttonHeight: CGFloat = 100
         let summaryLabelHeight: CGFloat = 50
-        
-        
         
         summaryLabel.frame = CGRect(x: 0, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
         orderButton.frame = CGRect(x: 0, y: view.height-buttonHeight, width: view.width, height: buttonHeight)
@@ -122,7 +135,7 @@ class OrdersViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CustomCellForOrders.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 120
         
         tableView.reloadData()
@@ -139,7 +152,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellForOrders
         
         let service = selectedServices[indexPath.row]
         
@@ -174,32 +187,34 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    class CustomCell: UITableViewCell {
-        let serviceImage = UIImageView()
-        let serviceName = UILabel()
-        let servicePrice = UILabel()
-    
-        
-        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
-            print("CustomCell initialised")
-            addSubview(serviceImage)
-            addSubview(serviceName)
-            addSubview(servicePrice)
-            
-            serviceImage.frame = CGRect(x: 10, y: serviceImage.frame.height/2, width: 100, height: 100)
-            serviceName.frame = CGRect(x: serviceImage.width+20, y: 40, width: 120, height: 30)
-            servicePrice.frame = CGRect(x: serviceImage.width+220, y: serviceName.height+20, width: 80, height: 30)
 
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        }
         
 }
+
+class CustomCellForOrders: UITableViewCell {
+    let serviceImage = UIImageView()
+    let serviceName = UILabel()
+    let servicePrice = UILabel()
+
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        print("CustomCellForOrders initialised")
+        addSubview(serviceImage)
+        addSubview(serviceName)
+        addSubview(servicePrice)
+        
+        serviceImage.frame = CGRect(x: 10, y: serviceImage.frame.height/2, width: 100, height: 100)
+        serviceName.frame = CGRect(x: serviceImage.width+20, y: 40, width: 120, height: 30)
+        servicePrice.frame = CGRect(x: serviceImage.width+220, y: serviceName.height+20, width: 80, height: 30)
+
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    }
 
 
 protocol OrdersViewControllerDelegate: AnyObject {
