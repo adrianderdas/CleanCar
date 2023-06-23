@@ -27,6 +27,7 @@
 		A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */; };
 		A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795492A1B01860013FA3B /* OrdersViewController.swift */; };
 		A2E050ED2A45C46D00462A81 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EC2A45C46D00462A81 /* BaseCell.swift */; };
+		A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */; };
 		A2F88A142A1BC9A5008674AD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */; };
 		A2F88A162A1BF030008674AD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A152A1BF030008674AD /* Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,7 @@
 		A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanCarViewController.swift; sourceTree = "<group>"; };
 		A2D795492A1B01860013FA3B /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		A2E050EC2A45C46D00462A81 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryViewController.swift; sourceTree = "<group>"; };
 		A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A2F88A152A1BF030008674AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 			children = (
 				A2D795492A1B01860013FA3B /* OrdersViewController.swift */,
 				A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */,
+				A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				A2D7953E2A1AD9220013FA3B /* TabBarController.swift in Sources */,
 				A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */,
 				A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */,
+				A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */,
 				A21055082A40D75D00B69BD9 /* SummaryOrderViewController.swift in Sources */,
 				A2D795422A1AF99D0013FA3B /* ClubViewController.swift in Sources */,
 				A2D7952A2A1AD5600013FA3B /* AppDelegate.swift in Sources */,

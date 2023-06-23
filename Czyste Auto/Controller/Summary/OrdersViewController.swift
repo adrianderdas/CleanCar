@@ -44,7 +44,7 @@ class OrdersViewController: UIViewController {
     
     private let orderButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Zamów", for: .normal)
+        button.setTitle("Podsumowanie", for: .normal)
         button.backgroundColor = .link
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12
@@ -61,22 +61,7 @@ class OrdersViewController: UIViewController {
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
         
-        let db = Firestore.firestore()
-        
-        // Add a new document with a generated ID
-        var ref: DocumentReference? = nil
-        ref = db.collection("orders").addDocument(data: [
-            "first": "Ada",
-            "last": "Lovelace",
-            "born": 1815,
-            "is_realized": false
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,7 +88,7 @@ class OrdersViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let buttonHeight: CGFloat = 100
+        let buttonHeight: CGFloat = 50
         let summaryLabelHeight: CGFloat = 50
         
         summaryLabel.frame = CGRect(x: 0, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
