@@ -18,8 +18,23 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     var phone: String = ""
     
 
-
-
+    private let summaryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "suma"
+        return label
+    }()
+    
+    private let orderButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Zamów z obowiązkiem zapłaty", for: .normal)
+        button.backgroundColor = .link
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        return button
+    }()
     
     private var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -35,7 +50,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        //view.backgroundColor = .systemBackground
         
         title = "Adres odbioru"
         
@@ -47,7 +62,14 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLayoutSubviews()
         
         
-        tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height/2)
+        let buttonHeight: CGFloat = 50
+        let summaryLabelHeight: CGFloat = 50
+        
+       
+        
+        tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height-buttonHeight-summaryLabelHeight)
+        orderButton.frame = CGRect(x: 10, y: view.height-buttonHeight-10, width: view.width-20, height: buttonHeight)
+        summaryLabel.frame = CGRect(x: 0, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
     }
     
     
@@ -56,8 +78,10 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         super.viewWillAppear(animated)
         
         view.addSubview(tableView)
+        view.addSubview(orderButton)
+        view.addSubview(summaryLabel)
         
-        tableView.frame = view.bounds
+        //tableView.frame = view.bounds
         tableView.dataSource = self
        
         tableView.rowHeight = 80

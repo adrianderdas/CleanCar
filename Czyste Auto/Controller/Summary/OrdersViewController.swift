@@ -13,7 +13,8 @@ class OrdersViewController: UIViewController {
     
     //let cleanCarViewController = CleanCarViewController()
     
-
+    static let shared = OrdersViewController()
+    
     weak var delegate: OrdersViewControllerDelegate?
     
     public var selectedServices: [Service] = [] {
@@ -94,6 +95,7 @@ class OrdersViewController: UIViewController {
         summaryLabel.frame = CGRect(x: 0, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
         orderButton.frame = CGRect(x: 0, y: view.height-buttonHeight, width: view.width, height: buttonHeight)
         tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height-summaryLabelHeight-buttonHeight)
+        
         
     }
     
