@@ -34,6 +34,11 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
 
  
+    private let cityTextField: UILabel = {
+        let label = UILabel()
+        label.text = "Miejscowość"
+        return label
+    }()
 
     private let cityField: UITextField = {
        let field = UITextField()
@@ -53,6 +58,13 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         
         return field
     }()
+    
+    
+    private let postalCodeTextField: UILabel = {
+        let label = UILabel()
+        label.text = "Kod pocztowy"
+        return label
+    }()
 
     private let postalCodeField: UITextField = {
        let field = UITextField()
@@ -71,6 +83,13 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         return field
     }()
     
+    
+    private let houseNumberTextField: UILabel = {
+        let label = UILabel()
+        label.text = "Numer domu"
+        return label
+    }()
+    
     private let houseNumberField: UITextField = {
        let field = UITextField()
         
@@ -86,6 +105,12 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         field.leftViewMode = .always
         field.backgroundColor = .secondarySystemBackground
         return field
+    }()
+    
+    private let phoneTextField: UILabel = {
+        let label = UILabel()
+        label.text = "Numer telefonu"
+        return label
     }()
     
     private let phoneField: UITextField = {
@@ -119,9 +144,16 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(scrollView)
         view.addSubview(orderButton)
        // scrollView.addSubview(switchEditing)
+        scrollView.addSubview(cityTextField)
         scrollView.addSubview(cityField)
+        
+        scrollView.addSubview(postalCodeTextField)
         scrollView.addSubview(postalCodeField)
+        
+        scrollView.addSubview(houseNumberTextField)
         scrollView.addSubview(houseNumberField)
+        
+        scrollView.addSubview(phoneTextField)
         scrollView.addSubview(phoneField)
         
         scrollView.isUserInteractionEnabled = true
@@ -155,24 +187,47 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLayoutSubviews()
         
         let buttonHeight: CGFloat = 50
+        let labelHeight: CGFloat = 20
 
         scrollView.frame = view.bounds
 
         
+        cityTextField.frame = CGRect(x: 30, y: 20, width: scrollView.width-60, height: labelHeight)
+        
         cityField.frame = CGRect(x: 30,
-                                 y: 20,
+                                 y: cityTextField.bottom+5,
                                   width: scrollView.width-60,
                                  height: 52)
-        postalCodeField.frame = CGRect(x: 30,
+        
+        
+        postalCodeTextField.frame = CGRect(x: 30,
                                   y: cityField.bottom + 10,
                                   width: scrollView.width-60,
-                                 height: 52)
-        houseNumberField.frame = CGRect(x: 30,
-                                        y: postalCodeField.bottom + 10,
+                                 height: labelHeight)
+        
+        postalCodeField.frame = CGRect(x: 30,
+                                  y: postalCodeTextField.bottom + 5,
                                   width: scrollView.width-60,
                                  height: 52)
-        phoneField.frame = CGRect(x: 30,
+        
+        houseNumberTextField.frame = CGRect(x: 30,
+                                        y: postalCodeField.bottom + 10,
+                                  width: scrollView.width-60,
+                                 height: labelHeight)
+        
+        houseNumberField.frame = CGRect(x: 30,
+                                        y: houseNumberTextField.bottom + 5,
+                                  width: scrollView.width-60,
+                                 height: 52)
+        
+        
+        phoneTextField.frame = CGRect(x: 30,
                                   y: houseNumberField.bottom + 10,
+                                  width: scrollView.width-60,
+                                 height: labelHeight)
+        
+        phoneField.frame = CGRect(x: 30,
+                                  y: phoneTextField.bottom + 5,
                                   width: scrollView.width-60,
                                  height: 52)
         

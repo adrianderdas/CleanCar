@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -20,7 +21,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
 
     private let summaryLabel: UILabel = {
         let label = UILabel()
-        label.text = "suma"
+        
         return label
     }()
     
@@ -52,8 +53,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
 
         //view.backgroundColor = .systemBackground
         
-        title = "Adres odbioru"
-        
+        title = "Sprawdź dane"
+        orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         print("selected Services in SummaryOrderViewController: \(selectedServices)")
         
     }
@@ -69,7 +70,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         
         tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height-buttonHeight-summaryLabelHeight)
         orderButton.frame = CGRect(x: 10, y: view.height-buttonHeight-10, width: view.width-20, height: buttonHeight)
-        summaryLabel.frame = CGRect(x: 0, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
+        summaryLabel.frame = CGRect(x: view.width*2/3, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
+        
     }
     
     
@@ -86,6 +88,10 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
        
         tableView.rowHeight = 80
         tableView.delegate = self
+        
+        let totalPrice = selectedServices.reduce(0) { $0 + $1.price }
+           summaryLabel.text = "Suma: \(totalPrice) PLN"
+
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -180,7 +186,51 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
             return cell
         }
     }
+    
+    @objc private func orderButtonTapped() {
+        
+                
+        let db = Firestore.firestore()
+        
+        // Add a new document with a generated ID
+        var ref: DocumentReference? = nil
+        ref = db.collection("orders").addDocument(data: [
+            "first": "Ada",
+            "last": "Lovelace",
+            "born": 1815,
+            "is_realized": false
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                
+                
+                print("Document added with ID: \(ref!.documentID)")
+                
+                let alertController = UIAlertController(title: "Twoje zamówienie zostało przyjęte do realizacji", message: nil, preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Wróc do strony głównej", style: .default) { (action:UIAlertAction!) in
+                    self.navigationController?.popToRootViewController(animated: true)
+                    //self.navigationController?.popToRootViewController(animated: true)
+                    
+                    //kasowanie koszyka
+                    CleanCarViewController().selectedServices = []
 
+
+                }
+                alertController.addAction(okAction)
+                          
+                          DispatchQueue.main.async {
+                              self.present(alertController, animated: true, completion:nil)
+                          }
+                
+                
+            }
+        }
+        
+        
+
+    }
     
 }
 
@@ -189,20 +239,5 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
 
 
 
-//let db = Firestore.firestore()
-//
-//// Add a new document with a generated ID
-//var ref: DocumentReference? = nil
-//ref = db.collection("orders").addDocument(data: [
-//    "first": "Ada",
-//    "last": "Lovelace",
-//    "born": 1815,
-//    "is_realized": false
-//]) { err in
-//    if let err = err {
-//        print("Error adding document: \(err)")
-//    } else {
-//        print("Document added with ID: \(ref!.documentID)")
-//    }
-//}
+
 

@@ -1,0 +1,16 @@
+PODS:
+  - JGProgressHUD (2.2)
+
+DEPENDENCIES:
+  - JGProgressHUD
+
+SPEC REPOS:
+  trunk:
+    - JGProgressHUD
+
+SPEC CHECKSUMS:
+  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
+
+PODFILE CHECKSUM: 84ba42f1df0388d0bee0d888b8c76fd9cabb1b57
+
+COCOAPODS: 1.12.0

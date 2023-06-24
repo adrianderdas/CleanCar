@@ -59,6 +59,7 @@ class OrdersViewController: UIViewController {
         let vc = SummaryOrderViewController()
         vc.hidesBottomBarWhenPushed = true
         vc.selectedServices = self.selectedServices  //Przekazanie danych
+        
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
         
@@ -92,7 +93,7 @@ class OrdersViewController: UIViewController {
         let buttonHeight: CGFloat = 50
         let summaryLabelHeight: CGFloat = 50
         
-        summaryLabel.frame = CGRect(x: 0, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
+        summaryLabel.frame = CGRect(x: view.width*2/3, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
         orderButton.frame = CGRect(x: 0, y: view.height-buttonHeight, width: view.width, height: buttonHeight)
         tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height-summaryLabelHeight-buttonHeight)
         
@@ -194,6 +195,8 @@ class CustomCellForOrders: UITableViewCell {
         serviceImage.frame = CGRect(x: 10, y: serviceImage.frame.height/2, width: 100, height: 100)
         serviceName.frame = CGRect(x: serviceImage.width+20, y: 40, width: 120, height: 30)
         servicePrice.frame = CGRect(x: serviceImage.width+220, y: serviceName.height+20, width: 80, height: 30)
+        
+        serviceImage.contentMode = .scaleAspectFit
 
     }
     

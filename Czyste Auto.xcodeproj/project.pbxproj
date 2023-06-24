@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		032F6076A87828FC3C6DBA17 /* Pods_Czyste_Auto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3748AAF95708EE189B2137EB /* Pods_Czyste_Auto.framework */; };
 		A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20266A82A2BF84C00445C87 /* ServicesViewController.swift */; };
 		A21055082A40D75D00B69BD9 /* SummaryOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */; };
 		A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055092A40DC6500B69BD9 /* ZeroViewController.swift */; };
@@ -35,6 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A5FC58EF54F100BA98F989F /* Pods-Czyste Auto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Czyste Auto.release.xcconfig"; path = "Target Support Files/Pods-Czyste Auto/Pods-Czyste Auto.release.xcconfig"; sourceTree = "<group>"; };
+		3748AAF95708EE189B2137EB /* Pods_Czyste_Auto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Czyste_Auto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C1A2F8F51CE3E39F9A14C11 /* Pods-Czyste Auto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Czyste Auto.debug.xcconfig"; path = "Target Support Files/Pods-Czyste Auto/Pods-Czyste Auto.debug.xcconfig"; sourceTree = "<group>"; };
 		A20266A82A2BF84C00445C87 /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOrderViewController.swift; sourceTree = "<group>"; };
 		A21055092A40DC6500B69BD9 /* ZeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroViewController.swift; sourceTree = "<group>"; };
@@ -69,12 +73,23 @@
 				A210550F2A40DFFD00B69BD9 /* FirebaseAuth in Frameworks */,
 				A21055112A40DFFD00B69BD9 /* FirebaseFirestore in Frameworks */,
 				A21055132A40DFFD00B69BD9 /* FirebaseFirestoreSwift in Frameworks */,
+				032F6076A87828FC3C6DBA17 /* Pods_Czyste_Auto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00BE9CA0A0BE7FEFE5EF562E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C1A2F8F51CE3E39F9A14C11 /* Pods-Czyste Auto.debug.xcconfig */,
+				2A5FC58EF54F100BA98F989F /* Pods-Czyste Auto.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A21055142A40F72000B69BD9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +176,8 @@
 			children = (
 				A2D795282A1AD5600013FA3B /* Czyste Auto */,
 				A2D795272A1AD5600013FA3B /* Products */,
+				00BE9CA0A0BE7FEFE5EF562E /* Pods */,
+				AE5147E919C033A8B05B662A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,6 +202,14 @@
 			path = "Czyste Auto";
 			sourceTree = "<group>";
 		};
+		AE5147E919C033A8B05B662A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3748AAF95708EE189B2137EB /* Pods_Czyste_Auto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -192,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A2D7953A2A1AD5630013FA3B /* Build configuration list for PBXNativeTarget "Czyste Auto" */;
 			buildPhases = (
+				30836F8FCEEB1B4D9B58466B /* [CP] Check Pods Manifest.lock */,
 				A2D795222A1AD5600013FA3B /* Sources */,
 				A2D795232A1AD5600013FA3B /* Frameworks */,
 				A2D795242A1AD5600013FA3B /* Resources */,
+				7890B7372A21104C0A3C716A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -259,6 +286,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30836F8FCEEB1B4D9B58466B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Czyste Auto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7890B7372A21104C0A3C716A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Czyste Auto/Pods-Czyste Auto-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Czyste Auto/Pods-Czyste Auto-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Czyste Auto/Pods-Czyste Auto-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A2D795222A1AD5600013FA3B /* Sources */ = {
@@ -424,6 +493,7 @@
 		};
 		A2D7953B2A1AD5630013FA3B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C1A2F8F51CE3E39F9A14C11 /* Pods-Czyste Auto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -454,6 +524,7 @@
 		};
 		A2D7953C2A1AD5630013FA3B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A5FC58EF54F100BA98F989F /* Pods-Czyste Auto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
