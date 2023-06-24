@@ -26,6 +26,16 @@ class FirebaseService {
     public var firebasePostalCode: String?
     
     
+    
+    func getuserId() -> String? {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("Failed to fetch userID from FirebaseAuth")
+            return nil
+        }
+        return userID
+    }
+    
+    
     func getData() {
         
         guard let userID = Auth.auth().currentUser?.uid else {

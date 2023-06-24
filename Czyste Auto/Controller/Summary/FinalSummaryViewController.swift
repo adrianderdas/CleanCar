@@ -7,9 +7,11 @@
 
 import UIKit
 import FirebaseFirestore
+import JGProgressHUD
 
 class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    private let spinner = JGProgressHUD(style: .dark)
     
     public var selectedServices: [Service] = []
 
@@ -18,6 +20,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     var houseNumber: String = ""
     var phone: String = ""
     
+    var userID = FirebaseService.shared.getuserId()
 
     private let summaryLabel: UILabel = {
         let label = UILabel()
@@ -192,10 +195,16 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                 
         let db = Firestore.firestore()
         
+        spinner.show(in: view)
+        let servicesData = selectedServices.map {
+            ["name": $0.name, "price": $0.price] // ... i inne właściwości, które chcesz zapisać
+        }
+
         // Add a new document with a generated ID
         var ref: DocumentReference? = nil
         ref = db.collection("orders").addDocument(data: [
-            "first": "Ada",
+            "user": userID,
+            "first": servicesData,
             "last": "Lovelace",
             "born": 1815,
             "is_realized": false
@@ -204,6 +213,11 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                 print("Error adding document: \(err)")
             } else {
                 
+                                
+//                DispatchQueue.main.async {
+//                    self.spinner.dismiss()
+//
+//                }
                 
                 print("Document added with ID: \(ref!.documentID)")
                 
