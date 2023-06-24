@@ -7,34 +7,28 @@
 
 import UIKit
 
-class FinalSummaryViewController: UIViewController, UITableViewDataSource {
+class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     public var selectedServices: [Service] = []
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedServices.count
-    }
+    var city: String = ""
+    var postalCode: String = ""
+    var houseNumber: String = ""
+    var phone: String = ""
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellForOrders
-        
-        let service = selectedServices[indexPath.row]
-        
-        cell.serviceImage.image = UIImage(named: service.image)
-        cell.serviceName.text = service.name
-        cell.servicePrice.text = "\(service.price) PLN"
-        
-        return cell
-    }
-    
+
+
+
     
     private var tableView: UITableView = {
-        let table = UITableView()
+        let table = UITableView(frame: .zero, style: .grouped)
         table.allowsSelection = false
+        table.register(CustomCellForOrders.self, forCellReuseIdentifier: "cell")
         return table
     }()
-
+    
+  
     
     
 
@@ -52,8 +46,11 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        
         tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height/2)
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,9 +59,104 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource {
         
         tableView.frame = view.bounds
         tableView.dataSource = self
-        tableView.register(CustomCellForOrders.self, forCellReuseIdentifier: "cell")
+       
         tableView.rowHeight = 80
+        tableView.delegate = self
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: 100))
+        
+        
+        
+        
+        if section  == 0 {
+            // User selectedServices section
+            let imageView = UIImageView(image: UIImage(systemName: "house"))
+            imageView.tintColor = .systemBlue
+            imageView.contentMode = .scaleAspectFit
+            header.addSubview(imageView)
+            imageView.frame = CGRect(x: 5, y: 5, width: header.frame.size.height-10, height: header.frame.size.height-10)
+            let label = UILabel(frame: CGRect(x: 10+imageView.frame.size.width, y: 5,
+                                              width: header.frame.size.width - 15 - imageView.frame.size.width,
+                                              height: header.frame.size.height-10))
+            header.addSubview(label)
+            label.text = "Zamówienia"
+            return header
+            
+            
+        } else {
+            // User delivery data
+                let imageView = UIImageView(image: UIImage(systemName: "person"))
+                imageView.tintColor = .systemBlue
+                imageView.contentMode = .scaleAspectFit
+                header.addSubview(imageView)
+                imageView.frame = CGRect(x: 5, y: 5, width: header.frame.size.height-10, height: header.frame.size.height-10)
+                let label = UILabel(frame: CGRect(x: 10+imageView.frame.size.width, y: 5,
+                                                  width: header.frame.size.width - 15 - imageView.frame.size.width,
+                                                  height: header.frame.size.height-10))
+                header.addSubview(label)
+                label.text = "Twoje dane"
+                return header
+            
+
+        }
+
+      
+                
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return selectedServices.count
+        } else {
+            return 4
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellForOrders
+            
+            let service = selectedServices[indexPath.row]
+            
+            cell.serviceImage.image = UIImage(named: service.image)
+            cell.serviceName.text = service.name
+            cell.servicePrice.text = "\(service.price) PLN"
+            
+            return cell
+        } else {
+            let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+            
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "Miasto"
+                cell.detailTextLabel?.text = city
+            case 1:
+                cell.textLabel?.text = "Kod pocztowy"
+                cell.detailTextLabel?.text = postalCode
+            case 2:
+                cell.textLabel?.text = "Numer domu"
+                cell.detailTextLabel?.text = houseNumber
+            case 3:
+                cell.textLabel?.text = "Telefon"
+                cell.detailTextLabel?.text = phone
+            default:
+                break
+            }
+            
+            return cell
+        }
+    }
+
     
 }
 

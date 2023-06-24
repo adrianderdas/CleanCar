@@ -9,11 +9,22 @@ import UIKit
 
 
 
-class SummaryOrderViewController: UIViewController {
+class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
     
     public var selectedServices: [Service] = []
     
+    private let orderButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Podsumowanie", for: .normal)
+        button.backgroundColor = .link
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        return button
+    }()
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -38,6 +49,8 @@ class SummaryOrderViewController: UIViewController {
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .secondarySystemBackground
+        
+        
         return field
     }()
 
@@ -80,7 +93,7 @@ class SummaryOrderViewController: UIViewController {
         
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
-        field.returnKeyType = .continue
+        field.returnKeyType = .done
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
@@ -95,13 +108,16 @@ class SummaryOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Konieczne dla funkcji textFieldShouldReturn (zamkniecia klawiatury)
+        phoneField.delegate = self
         view.backgroundColor = .systemBackground
+        
+        orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         
         title = "Adres odbioru"
         
         view.addSubview(scrollView)
-        
+        view.addSubview(orderButton)
        // scrollView.addSubview(switchEditing)
         scrollView.addSubview(cityField)
         scrollView.addSubview(postalCodeField)
@@ -111,10 +127,35 @@ class SummaryOrderViewController: UIViewController {
         scrollView.isUserInteractionEnabled = true
         
     }
+    @objc private func orderButtonTapped() {
+        let vc = FinalSummaryViewController()
+        
+        //Przypisanie wartości z pól tekstowych
+        vc.city = cityField.text ?? ""
+        vc.postalCode = postalCodeField.text ?? ""
+        vc.houseNumber = houseNumberField.text ?? ""
+        vc.phone = phoneField.text ?? ""
+                
+        
+        vc.hidesBottomBarWhenPushed = true
+        vc.selectedServices = self.selectedServices  //Przekazanie danych
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+        
+
+    }
+    
+    //funka dzięki której klawiatura chowa się po naciśnięciu gotowe
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
+        }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        let buttonHeight: CGFloat = 50
+
         scrollView.frame = view.bounds
 
         
@@ -135,8 +176,13 @@ class SummaryOrderViewController: UIViewController {
                                   width: scrollView.width-60,
                                  height: 52)
         
-      
+        orderButton.frame = CGRect(x: 10, y: view.height-buttonHeight-10, width: view.width-20, height: buttonHeight)
+
         
+        self.cityField.text = FirebaseService.shared.firebaseCity
+        self.postalCodeField.text = FirebaseService.shared.firebasePostalCode
+        self.houseNumberField.text = FirebaseService.shared.firebaseHouseNumber
+        self.phoneField.text = FirebaseService.shared.firebasePhone
         
     }
     
