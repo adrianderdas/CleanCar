@@ -14,6 +14,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     private let spinner = JGProgressHUD(style: .dark)
     
     public var selectedServices: [Service] = []
+    
+    var totalPrice: Int = 0
 
     var city: String = ""
     var postalCode: String = ""
@@ -92,7 +94,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         tableView.rowHeight = 80
         tableView.delegate = self
         
-        let totalPrice = selectedServices.reduce(0) { $0 + $1.price }
+        totalPrice = selectedServices.reduce(0) { $0 + $1.price }
            summaryLabel.text = "Suma: \(totalPrice) PLN"
 
     }
@@ -195,29 +197,53 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                 
         let db = Firestore.firestore()
         
+       
+        
         spinner.show(in: view)
         let servicesData = selectedServices.map {
             ["name": $0.name, "price": $0.price] // ... i inne właściwości, które chcesz zapisać
         }
-
+        
+   
+        let adressData: [String: Any] = [
+            "city": city,
+            "postalCode": postalCode,
+            "houseNumber": houseNumber,
+            "phoneNumber": phone
+        ]
+        
+      
         // Add a new document with a generated ID
         var ref: DocumentReference? = nil
         ref = db.collection("orders").addDocument(data: [
             "user": userID,
-            "first": servicesData,
-            "last": "Lovelace",
-            "born": 1815,
+            "orders": servicesData,
+            "totalPrice": totalPrice,
+            "adress": adressData,
             "is_realized": false
         ]) { err in
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
+                var orderID = ref!.documentID
                 
+                db.collection("users").document(self.userID ?? "123").updateData([
+                    "orders": FieldValue.arrayUnion([orderID])
+                ]) { err in
+                    if let err = err {
+                        //sda
+                    } else {
+                        //asddsads
+                    }
+                }
+               
                                 
-//                DispatchQueue.main.async {
-//                    self.spinner.dismiss()
-//
-//                }
+                DispatchQueue.main.async {
+                    self.spinner.dismiss()
+
+                }
+                
+                
                 
                 print("Document added with ID: \(ref!.documentID)")
                 

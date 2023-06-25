@@ -14,6 +14,8 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
     public var selectedServices: [Service] = []
     
+  //  public var totalPrice: Int = 0
+    
     private let orderButton: UIButton = {
         let button = UIButton()
         button.setTitle("Podsumowanie", for: .normal)
