@@ -13,6 +13,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     var city: String = FirebaseService.shared.firebaseCity ?? "Brak danych"
     var postalCode: String = FirebaseService.shared.firebasePostalCode ?? "Brak danych"
     var houseNumber: String = FirebaseService.shared.firebaseHouseNumber ?? "Brak danych"
+    
+    
+    var firstName: String = FirebaseService.shared.firebaseFirstName ?? "Brak danych"
+    var lastName: String = FirebaseService.shared.firebaseLastName ?? "Brak danych"
     var phone: String = FirebaseService.shared.firebasePhone ?? "Brak danych"
     
     var userID = FirebaseService.shared.getuserId()
@@ -188,13 +192,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = "Imię"
-                cell.detailTextLabel?.text = city
+                cell.detailTextLabel?.text = firstName
             case 1:
                 cell.textLabel?.text = "Nazwisko"
-                cell.detailTextLabel?.text = postalCode
+                cell.detailTextLabel?.text = lastName
             case 2:
                 cell.textLabel?.text = "Numer telefonu"
-                cell.detailTextLabel?.text = houseNumber
+                cell.detailTextLabel?.text = phone
         
             default:
                 break

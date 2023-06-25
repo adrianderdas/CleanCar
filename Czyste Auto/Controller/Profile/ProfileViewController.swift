@@ -1,108 +1,77 @@
-//
-//  ProfileViewController.swift
-//  Czyste Auto
-//
-//  Created by Adrian Derdaś on 22/05/2023.
-//
-
 import UIKit
 import FirebaseAuth
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModel = data[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as! ProfileTableViewCell
-        cell.setUp(with: viewModel)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let viewModel = data[indexPath.row]
-        viewModel.handler?()
+ 
+    private var tableView: UITableView = {
+        let table = UITableView()
+        table.clipsToBounds = true
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "OrderCell")
+
+        return table
+    }()
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return FirebaseService.shared.firebaseOrders.count
     }
 
-    
-    //@IBOutlet var asdasdsad: UITableView!
-    
-   @IBOutlet var tableView: UITableView!
-    var data = [ProfileViewModel]()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return FirebaseService.shared.firebaseOrders[section].orders.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let order = FirebaseService.shared.firebaseOrders[section]
+            
+            if order.isRealized {
+                return "Zrealizowane"
+            } else {
+                return "Niezrealizowane"
+            }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderCell", for: indexPath)
+        
+        let order = FirebaseService.shared.firebaseOrders[indexPath.section]
+        let service = order.orders[indexPath.row]
+        
+        cell.textLabel?.text = service.name
+        cell.detailTextLabel?.text = "\(service.price)"
+        
+        return cell
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        data = []
-        
-    
-        
-        data.append(ProfileViewModel(viewModelType: .info,
-                                     title: "Imię i nazwisko: \(UserDefaults.standard.value(forKey: "name") as? String ?? "No name")",
-                                     handler: nil))
-        data.append(ProfileViewModel(viewModelType: .info,
-                                     title: "Email :\(UserDefaults.standard.value(forKey: "email") as? String ?? "No email")",
-                                     handler: nil))
-        data.append(ProfileViewModel(viewModelType: .logout,
-                                     title: "Wyloguj się",
-                                     handler: { [weak self] in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            
-            let actionSheet = UIAlertController(title: "Wylogowywanie", message: "Czy na pewno chcesz się wylogować?", preferredStyle: .actionSheet)
-            actionSheet.addAction(UIAlertAction(title: "Wyloguj się", style: .destructive, handler: { [weak self] _ in
-                guard let strongSelf = self else {
-                    return
-                }
-                do {
-                    try FirebaseAuth.Auth.auth().signOut()
-                    UserDefaults.standard.removeObject(forKey: "SavedServices")
-                    let vc = LoginViewController()
-                    let nav = UINavigationController(rootViewController: vc)
-                    nav.modalPresentationStyle = .fullScreen
-                    strongSelf.present(nav, animated: false)
-                } catch  {
-                    print ("Error signing out")
-                }
-            }))
-            
-            actionSheet.addAction(UIAlertAction(title: "Anuluj", style: .cancel, handler: nil))
-            
-            strongSelf.present(actionSheet, animated: true)
-        }))
-        
-        tableView.reloadData()
+        FirebaseService.shared.getUserOrders() { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-       
+        view.addSubview(tableView)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+
+        tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        
         title = "Profil"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
 
         if let customImage = UIImage(systemName: "gearshape") {
             let customButton = UIBarButtonItem(image: customImage, style: .plain, target: self, action: #selector(didTapSettings))
             navigationItem.rightBarButtonItem = customButton
             navigationItem.rightBarButtonItem?.tintColor = UIColor.label
         }
-        
-      
-        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
-        tableView.register(UITableViewCell.self,
-                           forCellReuseIdentifier: "cell")
-        tableView.delegate = self
-        tableView.dataSource = self
-
     }
-    
-    
     
     @objc func didTapSettings() {
         print("User tapped settings")
@@ -110,40 +79,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: false)
     }
-}
-
-
-class ProfileTableViewCell: UITableViewCell {
-    static let identifier = "ProfileTableViewCell"
     
-    public func setUp(with viewModel: ProfileViewModel) {
-        self.textLabel?.text = viewModel.title
-        
-        switch viewModel.viewModelType {
-            
-        case .info:
-            textLabel?.textAlignment = .left
-            textLabel?.textColor = .black
-            selectionStyle = .none
-            
-        case .logout:
-            textLabel?.textColor = .red
-            textLabel?.textAlignment = .center
-            
+    @objc private func refreshTable() {
+        FirebaseService.shared.getUserOrders() { [weak self] in
+            self?.tableView.reloadData()
         }
+        
+        self.tableView.refreshControl?.endRefreshing()
     }
+    
 }
-
-
-
-
-struct ProfileViewModel {
-    let viewModelType: ProfileViewModelType
-    let title: String
-    let handler: (() -> Void)?
-}
-
-enum ProfileViewModelType {
-    case info, logout
-}
-

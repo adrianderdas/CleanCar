@@ -125,9 +125,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let size = scrollView.width/3
         
         imageView.frame = CGRect(x: (scrollView.width-size)/2, y: 20, width: size, height: size)
-        emailField.frame = CGRect(x: 30, y: imageView.bottom + 10, width: scrollView.width-60, height: 52)
+        emailField.frame = CGRect(x: 30, y: imageView.bottom + 40, width: scrollView.width-60, height: 52)
         passwordFireld.frame = CGRect(x: 30, y: emailField.bottom + 10, width: scrollView.width-60, height: 52)
-        loginButton.frame = CGRect(x: 30, y: passwordFireld.bottom+10 , width: scrollView.width-60, height: 52)
+        loginButton.frame = CGRect(x: 30, y: passwordFireld.bottom+40 , width: scrollView.width-60, height: 52)
     }
     
     @objc private func loginButonTapped() {

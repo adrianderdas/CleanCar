@@ -5,13 +5,14 @@ class CleanCarViewController: UIViewController {
     weak var delegate: (CleanCarViewControllerDelegate)?
 
     let services = [
-        Service(name:"Mycie silnika", image: "auto", price: 5),
-        Service(name:"Mycie standardowe", image: "auto", price: 15),
-        Service(name:"Mycie podlogi", image: "auto", price: 55),
-        Service(name:"Mycie felg", image: "auto", price: 5551),
-        Service(name:"Mycie premiume", image: "auto", price: 15),
-        Service(name:"odkurzaniei", image: "auto", price: 55),
-        Service(name:"Mycie sufitki", image: "auto", price: 5551)
+        Service(name:"Mycie silnika", image: "engine", price: 149),
+        Service(name:"Mycie standardowe", image: "standard_wash", price: 99),
+        Service(name:"Mycie podlogi", image: "car_floor", price: 79),
+        Service(name:"Mycie felg", image: "wheel", price: 49),
+        Service(name:"Woskowanie", image: "wosk", price: 220),
+        Service(name:"Powłoka ceramiczna", image: "ceramic", price: 750),
+        Service(name:"Odkurzanie wnętrza", image: "vacuum", price: 49),
+        Service(name:"Mycie sufitki", image: "ceiling", price: 137)
     ]
     
     var selectedServices: Set<Service> = [] {
@@ -94,7 +95,8 @@ class CleanCarViewController: UIViewController {
         scrollView.frame = view.bounds
         let size = scrollView.width
         searchBar.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: size, height: 50)
-        tableView.frame = CGRect(x: 0, y: searchBar.bottom, width: size, height: view.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top)
+        tableView.frame = CGRect(x: 0, y: searchBar.bottom, width: size, height: view.height-searchBar.height - view.safeAreaInsets.top)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -230,8 +232,10 @@ class CustomCell: UITableViewCell {
         accessoryView = cartButton
         
         serviceImage.frame = CGRect(x: 10, y: serviceImage.frame.height/2, width: 100, height: 100)
-        serviceName.frame = CGRect(x: serviceImage.width+10, y: 10, width: 120, height: 30)
-        servicePrice.frame = CGRect(x: serviceImage.width+10, y: serviceName.height+20, width: 80, height: 30)
+        serviceImage.layer.cornerRadius = serviceImage.frame.width/2
+        serviceImage.layer.masksToBounds = true
+        serviceName.frame = CGRect(x: serviceImage.width+20, y: 10, width: 150, height: 30)
+        servicePrice.frame = CGRect(x: serviceImage.width+20, y: serviceName.height+20, width: 80, height: 30)
         cartButton.frame = CGRect(x: 200, y: 50, width: 50, height: 50)
         cartButton.addTarget(self, action: #selector(didTapShoppingBasket), for: .touchUpInside)
     }

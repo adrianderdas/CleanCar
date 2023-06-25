@@ -232,9 +232,9 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                     "orders": FieldValue.arrayUnion([orderID])
                 ]) { err in
                     if let err = err {
-                        //sda
+                        print("Error in adding order to userID: \(err)")
                     } else {
-                        //asddsads
+                        print("Succefully added order to userID")
                     }
                 }
                
@@ -250,7 +250,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                 
                 let alertController = UIAlertController(title: "Twoje zamówienie zostało przyjęte do realizacji", message: nil, preferredStyle: .alert)
                 
-                let okAction = UIAlertAction(title: "Wróc do strony głównej", style: .default) { (action:UIAlertAction!) in
+                let okAction = UIAlertAction(title: "Powrót do koszyka", style: .default) { (action:UIAlertAction!) in
                     self.navigationController?.popToRootViewController(animated: true)
                     //self.navigationController?.popToRootViewController(animated: true)
                     

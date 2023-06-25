@@ -20,7 +20,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     private let firstNameField: UITextField = {
        let field = UITextField()
         
-        field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .continue
         field.layer.cornerRadius = 12
@@ -37,7 +36,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     private let lastNameField: UITextField = {
        let field = UITextField()
         
-        field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .continue
         field.layer.cornerRadius = 12
@@ -61,6 +59,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Adres e-mail"
+        field.keyboardType = .emailAddress
         
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -89,8 +88,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     private let cityField: UITextField = {
        let field = UITextField()
         
-        field.autocapitalizationType = .none
-        field.autocorrectionType = .no
         field.returnKeyType = .continue
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
@@ -113,6 +110,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Kod pocztowy"
+        field.keyboardType = .numbersAndPunctuation
         
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -130,6 +128,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Numer domu"
+        field.keyboardType = .numberPad
         
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -147,6 +146,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Numer telefonu"
+        field.keyboardType = .phonePad
         
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -271,6 +271,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         scrollView.addSubview(registerButton)
         
         scrollView.isUserInteractionEnabled = true
+        
+        
         
     }
     

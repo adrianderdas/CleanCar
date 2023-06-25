@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Untitled design.png",
+      "filename" : "218936_213907957-crop-265c1983-4600-4011-b9c4-afc5530a571a-jpeg.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -17,8 +17,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }

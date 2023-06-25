@@ -25,9 +25,15 @@ class TabBarController: UITabBarController, CleanCarViewControllerDelegate, Orde
     func updateBadgeValue() {
         
         if let tabBarItems = tabBar.items {
-            let thirdBarItem = tabBarItems[2]
-            print("cartCount: \(cartValue)")
-            thirdBarItem.badgeValue = "\(cartValue)"
+            let thirdBarItem = tabBarItems[1]
+            //print("cartCount: \(cartValue)")
+            
+            if cartValue == 0{
+                thirdBarItem.badgeValue = nil
+            } else {
+                thirdBarItem.badgeValue = "\(cartValue)"
+
+            }
         }
     }
     
@@ -42,11 +48,10 @@ class TabBarController: UITabBarController, CleanCarViewControllerDelegate, Orde
         
         cartValue = cleanCarViewController.loadServices()?.count ?? 0
         updateBadgeValue()
-        selectedIndex = 1
+        selectedIndex = 0
         view.backgroundColor = .systemBackground
         
         FirebaseService.shared.getData()
-        
         
     }
 }
