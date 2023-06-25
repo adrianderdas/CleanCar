@@ -7,10 +7,13 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    private let spinner = JGProgressHUD(style: .dark)
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
@@ -136,6 +139,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        spinner.show(in: view)
+
         // Firebase Log in
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
             guard let strongSelf = self else {
@@ -150,6 +155,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let user = result.user
             print("user: \(user)")
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+            
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
+            }
  
              
         })

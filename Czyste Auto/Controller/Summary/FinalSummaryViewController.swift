@@ -123,6 +123,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         } else {
             // User delivery data
                 let imageView = UIImageView(image: UIImage(systemName: "person"))
+            
                 imageView.tintColor = .systemBlue
                 imageView.contentMode = .scaleAspectFit
                 header.addSubview(imageView)

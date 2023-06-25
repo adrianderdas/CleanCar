@@ -1,22 +1,47 @@
 import UIKit
 import FirebaseFirestore
 import JGProgressHUD
+import FirebaseAuth
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private let spinner = JGProgressHUD(style: .dark)
     
-    public var selectedServices: [Service] = []
     
-    var totalPrice: Int = 0
-
+    
+  
     var city: String = FirebaseService.shared.firebaseCity ?? "Brak danych"
     var postalCode: String = FirebaseService.shared.firebasePostalCode ?? "Brak danych"
     var houseNumber: String = FirebaseService.shared.firebaseHouseNumber ?? "Brak danych"
     var phone: String = FirebaseService.shared.firebasePhone ?? "Brak danych"
     
     var userID = FirebaseService.shared.getuserId()
-
+    
+    
+    private let logOutButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Wyloguj się", for: .normal)
+        button.backgroundColor = .red
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        return button
+    }()
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.clipsToBounds = true
+        return scrollView
+    }()
+    
+    private let contentContainerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    
   
     private var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -25,7 +50,33 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         return table
     }()
     
-  
+    @objc private func didTapLogOut() {
+       
+        
+        
+        let actionSheet = UIAlertController(title: "Wylogowywanie", message: "Czy na pewno chcesz się wylogować?", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Wyloguj się", style: .destructive, handler: { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+            do {
+                try FirebaseAuth.Auth.auth().signOut()
+                UserDefaults.standard.removeObject(forKey: "SavedServices")
+                let vc = LoginViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                strongSelf.present(nav, animated: false)
+            } catch  {
+                print ("Error signing out")
+            }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Anuluj", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true)
+
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,70 +85,80 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         title = "Ustawienia"
         
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.isTranslucent = false
+        
+        logOutButton.addTarget(self, action: #selector(didTapLogOut), for: .touchUpInside)
+        
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        
         let buttonHeight: CGFloat = 50
-        let summaryLabelHeight: CGFloat = 50
-        
-       
-        
-        tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height)
-       
-    }
     
+       
+        tableView.frame = CGRect(x: 10, y: 0, width: view.width-20, height: view.height)
+        
+        logOutButton.frame = CGRect(x: 0, y: tableView.bottom+buttonHeight+60, width: tableView.frame.width, height: buttonHeight)
+    }
+     
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+               
         view.addSubview(tableView)
         
-        //tableView.frame = view.bounds
         tableView.dataSource = self
-       
         tableView.rowHeight = 80
         tableView.delegate = self
+        tableView.tableFooterView = logOutButton
         
 
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: 100))
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: 60))
         
         
         if section  == 0 {
-            // User selectedServices section
+            let label = UILabel()
             let imageView = UIImageView(image: UIImage(systemName: "person"))
-            imageView.tintColor = .systemBlue
-            imageView.contentMode = .scaleAspectFit
+            imageView.tintColor = UIColor.label
             header.addSubview(imageView)
-            imageView.frame = CGRect(x: 5, y: 5, width: header.frame.size.height-10, height: header.frame.size.height-10)
-            let label = UILabel(frame: CGRect(x: 10+imageView.frame.size.width, y: 5,
-                                              width: header.frame.size.width - 15 - imageView.frame.size.width,
-                                              height: header.frame.size.height-10))
+            
+            
+            
+            imageView.frame = CGRect(x: 5, y: 5, width: 50, height: 50)
+            label.frame = CGRect(x: imageView.frame.width+10, y: 5, width: 200, height: 50)
             header.addSubview(label)
-            label.text = "Twoje dane osobowe"
+            label.text = "Dane osobowe"
             return header
             
             
         } else {
-            // User delivery data
-                let imageView = UIImageView(image: UIImage(systemName: "house"))
-                imageView.tintColor = .systemBlue
-                imageView.contentMode = .scaleAspectFit
-                header.addSubview(imageView)
-                imageView.frame = CGRect(x: 5, y: 5, width: header.frame.size.height-10, height: header.frame.size.height-10)
-                let label = UILabel(frame: CGRect(x: 10+imageView.frame.size.width, y: 5,
-                                                  width: header.frame.size.width - 15 - imageView.frame.size.width,
-                                                  height: header.frame.size.height-10))
-                header.addSubview(label)
-                label.text = "Domyślny adres odbioru"
-                return header
+            let imageView = UIImageView(image: UIImage(systemName: "house"))
+            imageView.tintColor = UIColor.label
+            imageView.contentMode = .scaleAspectFit
+            
+            //let imageEditView = UIImageView(image: UIImage(systemName: "square.and.pencil"))
+            
+            
+            let label = UILabel()
+            
+            header.addSubview(imageView)
+            
+            imageView.frame = CGRect(x: 5, y: 5, width: 50, height: 50)
+            label.frame = CGRect(x: imageView.frame.width+10, y: 5, width: 200, height: 50)
+           // imageEditView.frame = CGRect(x: view.width-60, y: 5, width: 50, height: 50)
+            
+            
+            header.addSubview(label)
+            label.text = "Adres odbioru pojazdu"
+            //header.addSubview(imageEditView)
+            return header
             
         }
 
@@ -105,7 +166,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+        return 60
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
