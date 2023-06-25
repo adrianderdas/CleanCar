@@ -10,7 +10,7 @@ import FirebaseAuth
 import JGProgressHUD
 
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
     
     private let spinner = JGProgressHUD(style: .dark)
 
@@ -73,15 +73,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return imageView
     }()
     
-    // Przechodzenie do kolejnego pola przez "dalej"
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailField {
-            passwordFireld.becomeFirstResponder()
-        } else if textField == passwordFireld {
-            textField.resignFirstResponder()
-        }
-        return true
-    }
+    
     
     @objc private func didTapRegister() {
         let vc = RegisterViewController()
@@ -103,8 +95,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         loginButton.addTarget(self, action: #selector(loginButonTapped), for: .touchUpInside)
         
-      //  navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Rejestracja", style: .done, target: self, action: #selector(didTapRegister))
-        
+     
         emailField.delegate = self
         passwordFireld.delegate = self
       
@@ -164,4 +155,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
     }
 
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailField {
+            passwordFireld.becomeFirstResponder()
+        } else if textField == passwordFireld {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }

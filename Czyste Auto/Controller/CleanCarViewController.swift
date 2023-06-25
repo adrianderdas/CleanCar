@@ -203,11 +203,6 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-struct Service: Hashable, Codable {
-    var name: String
-    var image: String
-    var price: Int
-}
 
 
 class CustomCell: UITableViewCell {

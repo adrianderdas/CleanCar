@@ -17,6 +17,7 @@
 		A21055132A40DFFD00B69BD9 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A21055122A40DFFD00B69BD9 /* FirebaseFirestoreSwift */; };
 		A21055162A40F73F00B69BD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055152A40F73F00B69BD9 /* LoginViewController.swift */; };
 		A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055172A40F75700B69BD9 /* RegisterViewController.swift */; };
+		A2A9F35E2A48EEAA00D210A6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A9F35D2A48EEAA00D210A6 /* Service.swift */; };
 		A2D7952A2A1AD5600013FA3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795292A1AD5600013FA3B /* AppDelegate.swift */; };
 		A2D7952C2A1AD5600013FA3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7952B2A1AD5600013FA3B /* SceneDelegate.swift */; };
 		A2D795312A1AD5600013FA3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D7952F2A1AD5600013FA3B /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		A210550B2A40DCA100B69BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A21055152A40F73F00B69BD9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A21055172A40F75700B69BD9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A2A9F35D2A48EEAA00D210A6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A2D795262A1AD5600013FA3B /* Czyste Auto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Czyste Auto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D795292A1AD5600013FA3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2D7952B2A1AD5600013FA3B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +88,6 @@
 				8C1A2F8F51CE3E39F9A14C11 /* Pods-Czyste Auto.debug.xcconfig */,
 				2A5FC58EF54F100BA98F989F /* Pods-Czyste Auto.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -111,6 +112,7 @@
 		A2431B7C2A201A0600FF807E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A2A9F35D2A48EEAA00D210A6 /* Service.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,6 +346,7 @@
 				A2D795422A1AF99D0013FA3B /* ClubViewController.swift in Sources */,
 				A2D7952A2A1AD5600013FA3B /* AppDelegate.swift in Sources */,
 				A2D795402A1AED650013FA3B /* SettingsViewController.swift in Sources */,
+				A2A9F35E2A48EEAA00D210A6 /* Service.swift in Sources */,
 				A2F88A162A1BF030008674AD /* Extensions.swift in Sources */,
 				A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */,
 				A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */,

@@ -7,9 +7,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private let spinner = JGProgressHUD(style: .dark)
     
-    
-    
-  
     var city: String = FirebaseService.shared.firebaseCity ?? "Brak danych"
     var postalCode: String = FirebaseService.shared.firebasePostalCode ?? "Brak danych"
     var houseNumber: String = FirebaseService.shared.firebaseHouseNumber ?? "Brak danych"
