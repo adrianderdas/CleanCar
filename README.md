@@ -1,6 +1,6 @@
-# Aplikacja Czyste Auto
+# Czyste Auto App
 
-Aplikacja w języku Swift do zamawiania różnych usług związanych z samochodem.
+An application in Swift for ordering various car-related services.
 
 ## Features
 - Log In with email and password
