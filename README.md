@@ -54,7 +54,7 @@ Aplikacja w języku Swift do zamawiania różnych usług związanych z samochode
 
 - Accepted to realisation!
 
-<img src="https://github.com/adrianderdas/CzysteAuto/blob/main/Screenshots/AlerRealised.png?raw=true" width="30%" height="30%">
+<img src="https://github.com/adrianderdas/CzysteAuto/blob/main/Screenshots/AlertRealised.png?raw=true" width="30%" height="30%">
 
 - LogOut Alert
 
