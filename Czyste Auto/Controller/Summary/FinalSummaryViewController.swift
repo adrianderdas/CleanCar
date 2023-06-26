@@ -100,14 +100,14 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: 100))
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: 60))
         
         
         
         
         if section  == 0 {
             // User selectedServices section
-            let imageView = UIImageView(image: UIImage(systemName: "house"))
+            let imageView = UIImageView(image: UIImage(systemName: "list.clipboard"))
             imageView.tintColor = .systemBlue
             imageView.contentMode = .scaleAspectFit
             header.addSubview(imageView)
@@ -143,7 +143,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+        return 60
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

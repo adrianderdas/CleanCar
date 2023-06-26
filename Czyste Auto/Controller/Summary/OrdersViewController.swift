@@ -192,11 +192,11 @@ class CustomCellForOrders: UITableViewCell {
         addSubview(serviceName)
         addSubview(servicePrice)
         
-        serviceImage.frame = CGRect(x: 10, y: serviceImage.frame.height/2, width: 100, height: 100)
+        serviceImage.frame = CGRect(x: 10, y: serviceImage.frame.height/2+10, width: 60, height: 60)
         serviceImage.layer.cornerRadius = serviceImage.frame.width/2
         serviceImage.layer.masksToBounds = true
-        serviceName.frame = CGRect(x: serviceImage.width+20, y: 40, width: 120, height: 30)
-        servicePrice.frame = CGRect(x: serviceImage.width+200, y: serviceName.height+20, width: 80, height: 30)
+        serviceName.frame = CGRect(x: serviceImage.frame.width+20, y: serviceImage.frame.height/2 - 10, width: 180, height: 30)
+        servicePrice.frame = CGRect(x: serviceImage.width+220, y: serviceName.height+20, width: 80, height: 30)
         
         serviceImage.contentMode = .scaleAspectFit
 

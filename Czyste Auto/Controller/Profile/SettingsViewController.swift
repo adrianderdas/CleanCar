@@ -117,6 +117,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self
         tableView.tableFooterView = logOutButton
         
+        
+        
 
     }
     

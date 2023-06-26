@@ -68,7 +68,6 @@ class FirebaseService {
                     if let orders = self.firebaseOrdersIds as? [String] {
                         let dispatchGroup = DispatchGroup()
 
-                        // Clear firebaseOrders before adding new ones
                         self.firebaseOrders = []
 
                         for orderId in orders {

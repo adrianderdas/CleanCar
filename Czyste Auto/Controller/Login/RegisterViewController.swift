@@ -77,6 +77,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Hasło"
+          
+          field.keyboardType = .default
         
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
