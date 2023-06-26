@@ -49,5 +49,5 @@ Aplikacja w języku Swift do zamawiania różnych usług związanych z samochode
 
 - Final Summary view with delivery data catch from Firebase (for current User Id) and selectedServices
 
-<img src="https://github.com/adrianderdas/CzysteAuto/blob/main/Screenshots/FinalSummaryView.png?raw=true" width="20%" height="20%">
+<img src="https://github.com/adrianderdas/CzysteAuto/blob/main/Screenshots/FinalSummarryView.png?raw=true" width="20%" height="20%">
 <img src="https://github.com/adrianderdas/CzysteAuto/blob/main/Screenshots/FinalSummaryView2.png?raw=true" width="20%" height="20%">
