@@ -31,6 +31,8 @@ class LoginViewController: UIViewController {
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Adres e-mail"
         
+        field.keyboardType = .emailAddress
+        
         
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -49,6 +51,7 @@ class LoginViewController: UIViewController {
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Hasło"
         
+                
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .secondarySystemBackground
@@ -64,6 +67,7 @@ class LoginViewController: UIViewController {
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        
         return button
     }()
     
@@ -141,6 +145,22 @@ class LoginViewController: UIViewController {
             
             guard let result = authResult, error == nil else {
                 print("Failed to log in user with email: \(email)")
+                DispatchQueue.main.async {
+                    strongSelf.spinner.dismiss()
+
+                }
+                
+                let alertController = UIAlertController(title: "Wprowadź poprawny e-mail lub hasło", message: nil, preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "Popraw", style: .default)
+
+                
+               alertController.addAction(okAction)
+
+                          DispatchQueue.main.async {
+                              strongSelf.present(alertController, animated: true, completion:nil)
+                          }
+                
                 return
             }
             
