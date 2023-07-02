@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class RegisterViewController: UIViewController, UITextFieldDelegate {
+class RegisterViewController: UIViewController {
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -36,6 +36,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     private let lastNameField: UITextField = {
        let field = UITextField()
         
+        field.autocapitalizationType = .none
+
         field.autocorrectionType = .no
         field.returnKeyType = .continue
         field.layer.cornerRadius = 12
@@ -72,7 +74,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
-        field.returnKeyType = .done
+        field.returnKeyType = .continue
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
@@ -130,7 +132,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Numer domu"
-        field.keyboardType = .numberPad
+        field.keyboardType = .numbersAndPunctuation
         
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -143,12 +145,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
-        field.returnKeyType = .continue
+        field.returnKeyType = .done
+        
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Numer telefonu"
-        field.keyboardType = .phonePad
+        field.keyboardType = .numbersAndPunctuation
         
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -255,8 +258,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
+        firstNameField.delegate = self
+        lastNameField.delegate = self
         emailField.delegate = self
         passwordField.delegate = self
+        cityField.delegate = self
+        postalCodeField.delegate = self
+        houseNumberField.delegate = self
+        phoneField.delegate = self
         
         // Add subviews
         view.addSubview(scrollView)
@@ -323,6 +332,48 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                    height: 52)
     }
     
-  
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField {
+        case firstNameField:
+            lastNameField.becomeFirstResponder()
+        case lastNameField:
+            emailField.becomeFirstResponder()
+        case emailField:
+            passwordField.becomeFirstResponder()
+        case passwordField:
+            cityField.becomeFirstResponder()
+        case cityField:
+            postalCodeField.becomeFirstResponder()
+        case postalCodeField:
+            houseNumberField.becomeFirstResponder()
+        case houseNumberField:
+            phoneField.becomeFirstResponder()
+        case phoneField:
+            textField.resignFirstResponder()
+            
+        default:
+            firstNameField.becomeFirstResponder()
+        }
+        
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let point = textField.convert(textField.bounds.origin, to: self.scrollView)
+        let scrollPoint = CGPoint(x: 0, y: -15 + point.y - textField.frame.size.height)
+        self.scrollView.setContentOffset(scrollPoint, animated: true)
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let navBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
+        let topOffset = CGPoint(x: 0, y: -(scrollView.contentInset.top + navBarHeight + 20))
+        scrollView.setContentOffset(topOffset, animated: true)
+    }
 
 }
+
+
