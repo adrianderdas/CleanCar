@@ -3,7 +3,5 @@ platform :ios, '16.2'
 
 target 'Czyste Auto' do
 	use_frameworks!
-#JGProgress
-pod 'JGProgressHUD'
 
 end

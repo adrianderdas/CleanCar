@@ -7,11 +7,11 @@
 
 import UIKit
 import FirebaseFirestore
-import JGProgressHUD
+//import JGProgressHUD
 
 class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private let spinner = JGProgressHUD(style: .dark)
+    //private let spinner = JGProgressHUD(style: .dark)
     
     public var selectedServices: [Service] = []
     
@@ -200,7 +200,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         
        
         
-        spinner.show(in: view)
+        //spinner.show(in: view)
         let servicesData = selectedServices.map {
             ["name": $0.name, "price": $0.price] // ... i inne właściwości, które chcesz zapisać
         }
@@ -240,7 +240,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                
                                 
                 DispatchQueue.main.async {
-                    self.spinner.dismiss()
+                    //self.spinner.dismiss()
 
                 }
                 
@@ -262,7 +262,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                 alertController.addAction(okAction)
                           
                           DispatchQueue.main.async {
-                              self.present(alertController, animated: true, completion:nil)
+                              //self.present(alertController, animated: true, completion:nil)
                           }
                 
                 

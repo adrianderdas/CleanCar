@@ -1,11 +1,11 @@
 import UIKit
 import FirebaseFirestore
-import JGProgressHUD
+//import JGProgressHUD
 import FirebaseAuth
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private let spinner = JGProgressHUD(style: .dark)
+ //   private let spinner = JGProgressHUD(style: .dark)
     
     var city: String = FirebaseService.shared.firebaseCity ?? "Brak danych"
     var postalCode: String = FirebaseService.shared.firebasePostalCode ?? "Brak danych"

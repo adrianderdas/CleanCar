@@ -7,12 +7,16 @@
 
 import UIKit
 import FirebaseAuth
-import JGProgressHUD
+//import JGProgressHUD
 
 
 class LoginViewController: UIViewController {
     
-    private let spinner = JGProgressHUD(style: .dark)
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        return indicator
+    }()
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -87,7 +91,6 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +113,13 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordFireld)
         scrollView.addSubview(loginButton)
+        
+
+        activityIndicator.center = view.center
+        view.addSubview(activityIndicator)
+              
+        
+        
     }
     
 
@@ -117,6 +127,7 @@ class LoginViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         scrollView.frame = view.bounds
+  
         
         let size = scrollView.width/3
         
@@ -135,7 +146,7 @@ class LoginViewController: UIViewController {
             return
         }
         
-        spinner.show(in: view)
+        activityIndicator.startAnimating()
 
         // Firebase Log in
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
@@ -146,7 +157,7 @@ class LoginViewController: UIViewController {
             guard let result = authResult, error == nil else {
                 print("Failed to log in user with email: \(email)")
                 DispatchQueue.main.async {
-                    strongSelf.spinner.dismiss()
+                        self?.self.activityIndicator.stopAnimating()
 
                 }
                 
@@ -169,7 +180,9 @@ class LoginViewController: UIViewController {
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             
             DispatchQueue.main.async {
-                strongSelf.spinner.dismiss()
+                //strongSelf.spinner.dismiss()
+                
+                self?.activityIndicator.stopAnimating()
             }
  
              
