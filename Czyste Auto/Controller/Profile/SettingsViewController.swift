@@ -75,6 +75,15 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }))
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
         actionSheet.addAction(UIAlertAction(title: "Anuluj", style: .cancel, handler: nil))
         
         self.present(actionSheet, animated: true)

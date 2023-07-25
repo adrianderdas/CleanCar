@@ -202,7 +202,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         
         //spinner.show(in: view)
         let servicesData = selectedServices.map {
-            ["name": $0.name, "price": $0.price] // ... i inne właściwości, które chcesz zapisać
+            ["name": $0.name, "price": $0.price]
         }
         
    
@@ -262,7 +262,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                 alertController.addAction(okAction)
                           
                           DispatchQueue.main.async {
-                              //self.present(alertController, animated: true, completion:nil)
+                              self.present(alertController, animated: true, completion:nil)
                           }
                 
                 

@@ -32,7 +32,6 @@ class ServicesViewController: UIViewController  {
         }
         
   
-        
         view.backgroundColor = .red
     }
     

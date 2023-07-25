@@ -26,10 +26,31 @@ class OrdersViewController: UIViewController {
             let totalPrice = selectedServices.reduce(0) { $0 + $1.price}
             
             summaryLabel.text = "Suma: \(totalPrice) PLN"
+            
+            if selectedServices.isEmpty {
+                noSelectedServices.isHidden = false
+                orderButton.isUserInteractionEnabled = false
+
+            } else {
+                noSelectedServices.isHidden = true
+                orderButton.isUserInteractionEnabled = true
+
+
+            }
         }
         
     }
     
+    private let noSelectedServices: UILabel = {
+        let label = UILabel()
+        label.text = "Twój koszyk jest pusty"
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.font = .systemFont(ofSize: 21, weight: .medium)
+       
+        return label
+    }()
+
     private var tableView: UITableView = {
         let table = UITableView()
         table.allowsSelection = false
@@ -51,7 +72,6 @@ class OrdersViewController: UIViewController {
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        
         return button
     }()
     
@@ -96,7 +116,7 @@ class OrdersViewController: UIViewController {
         summaryLabel.frame = CGRect(x: -10 + view.width*2/3, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
         orderButton.frame = CGRect(x: 0, y: view.height-buttonHeight, width: view.width, height: buttonHeight)
         tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height-summaryLabelHeight-buttonHeight)
-        
+        noSelectedServices.frame = CGRect(x: 10, y: (view.height/2), width: view.width-20, height: 100)
         
     }
     
@@ -119,6 +139,8 @@ class OrdersViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(summaryLabel)
         view.addSubview(orderButton)
+        view.addSubview(noSelectedServices)
+
         
         tableView.frame = view.bounds
         tableView.dataSource = self
@@ -199,6 +221,7 @@ class CustomCellForOrders: UITableViewCell {
         servicePrice.frame = CGRect(x: serviceImage.width+220, y: serviceName.height+20, width: 80, height: 30)
         
         serviceImage.contentMode = .scaleAspectFit
+        
 
     }
     
