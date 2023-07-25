@@ -67,6 +67,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                 let nav = UINavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
                 strongSelf.present(nav, animated: false)
+                self?.navigationController?.popToRootViewController(animated: false)
+
+                
             } catch  {
                 print ("Error signing out")
             }

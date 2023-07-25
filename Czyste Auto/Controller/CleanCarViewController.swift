@@ -116,7 +116,9 @@ extension CleanCarViewController: UISearchBarDelegate {
         searchBar.text = nil
         searchBar.resignFirstResponder()
         updateCancelButtonTitleAndColor()
+        isSearching = false
         tableView.reloadData()
+
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -128,7 +130,7 @@ extension CleanCarViewController: UISearchBarDelegate {
         searchBar.showsCancelButton = false
         updateCancelButtonTitleAndColor()
         tableView.reloadData()
-        isSearching = false
+        //isSearching = false
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
