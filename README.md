@@ -54,8 +54,8 @@ An application in Swift for ordering various car-related services.
 
 - Accepted to realisation!
 
-<img src="https://github.com/adrianderdas/CzysteAuto/blob/main/Screenshots/AlertRealised.png?raw=true" width="30%" height="30%">
+<img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/AlertRealised.png?raw=true" width="30%" height="30%">
 
 - LogOut Alert
 
-<img src="https://github.com/adrianderdas/CzysteAuto/blob/main/Screenshots/LogOutAlert.png?raw=true" width="30%" height="30%">
+<img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/LogOutAlert.png?raw=true" width="30%" height="30%">
