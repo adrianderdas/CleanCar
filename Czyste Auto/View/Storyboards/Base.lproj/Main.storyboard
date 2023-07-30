@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -94,6 +95,7 @@
         <scene sceneID="ZrZ-e1-juh">
             <objects>
                 <tabBarController id="Jyd-xM-PKA" customClass="TabBarController" customModule="Czyste_Auto" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="H45-bB-AHk"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="40c-bz-4L4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -103,6 +105,7 @@
                     <connections>
                         <segue destination="h2U-s3-CDI" kind="relationship" relationship="viewControllers" id="oFZ-vM-6eI"/>
                         <segue destination="hj3-IB-6Ag" kind="relationship" relationship="viewControllers" id="k2a-P0-AfU"/>
+                        <segue destination="oRy-2L-D8X" kind="relationship" relationship="viewControllers" id="9EZ-VQ-2fc"/>
                         <segue destination="BmE-fT-mij" kind="relationship" relationship="viewControllers" id="Y5a-ar-aGs"/>
                     </connections>
                 </tabBarController>
@@ -117,12 +120,12 @@
                     <tabBarItem key="tabBarItem" title="Klub" image="heart.text.square.fill" catalog="system" selectedImage="heart.text.square.fill" id="eqM-rk-emH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sm1-gA-JrK">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="dn0-60-KnB" kind="relationship" relationship="rootViewController" id="vKj-Ux-Hc7"/>
+                        <segue destination="dn0-60-KnB" kind="relationship" relationship="rootViewController" id="F91-68-xD3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c3T-L3-bDv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -136,7 +139,7 @@
                     <tabBarItem key="tabBarItem" title="Umyj auto" image="car" catalog="system" selectedImage="car.fill" id="KYk-9l-8GE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6GW-5d-bWP">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -155,7 +158,7 @@
                     <tabBarItem key="tabBarItem" title="Koszyk" image="bag" catalog="system" selectedImage="bag.fill" id="byZ-Gz-U2D"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vj7-DC-6bX">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -174,7 +177,7 @@
                     <tabBarItem key="tabBarItem" title="Twoje konto" image="person.circle" catalog="system" selectedImage="person.circle.fill" id="tF3-qq-TkQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Jg-fH-emo">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

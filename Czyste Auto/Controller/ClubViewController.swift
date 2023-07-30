@@ -28,7 +28,7 @@ class ClubViewController: UIViewController {
         view.addSubview(label2)
         title = "Klub"
         navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .red
         
         label.frame = CGRect(x: 0, y: 200, width: view.width, height: 20)
         label2.frame = CGRect(x: 20, y: label.bottom+100, width: view.width, height: 20)

@@ -18,7 +18,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let firstNameField: UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         
         field.autocorrectionType = .no
         field.returnKeyType = .continue
@@ -34,10 +34,10 @@ class RegisterViewController: UIViewController {
     }()
     
     private let lastNameField: UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         
         field.autocapitalizationType = .none
-
+        
         field.autocorrectionType = .no
         field.returnKeyType = .continue
         field.layer.cornerRadius = 12
@@ -52,7 +52,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let emailField: UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
@@ -69,8 +69,8 @@ class RegisterViewController: UIViewController {
         return field
     }()
     
-      private let passwordField: UITextField = {
-       let field = UITextField()
+    private let passwordField: UITextField = {
+        let field = UITextField()
         
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
@@ -79,8 +79,28 @@ class RegisterViewController: UIViewController {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Hasło"
-          
-          field.keyboardType = .default
+        
+        field.keyboardType = .default
+        
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        field.leftViewMode = .always
+        field.backgroundColor = .secondarySystemBackground
+        field.isSecureTextEntry = true
+        return field
+    }()
+    
+    private let repeatPasswordField: UITextField = {
+        let field = UITextField()
+        
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.returnKeyType = .continue
+        field.layer.cornerRadius = 12
+        field.layer.borderWidth = 1
+        field.layer.borderColor = UIColor.lightGray.cgColor
+        field.placeholder = "Powtórz Hasło"
+        
+        field.keyboardType = .default
         
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
@@ -90,7 +110,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let cityField: UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         
         field.returnKeyType = .continue
         field.layer.cornerRadius = 12
@@ -105,7 +125,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let postalCodeField: UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
@@ -123,7 +143,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let houseNumberField: UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
@@ -141,7 +161,7 @@ class RegisterViewController: UIViewController {
     }()
     
     private let phoneField: UITextField = {
-       let field = UITextField()
+        let field = UITextField()
         
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
@@ -158,7 +178,7 @@ class RegisterViewController: UIViewController {
         field.backgroundColor = .secondarySystemBackground
         return field
     }()
-         
+    
     
     private let registerButton: UIButton = {
         let button = UIButton()
@@ -182,6 +202,8 @@ class RegisterViewController: UIViewController {
         lastNameField.resignFirstResponder()
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
+        repeatPasswordField.resignFirstResponder()
+        
         cityField.resignFirstResponder()
         postalCodeField.resignFirstResponder()
         houseNumberField.resignFirstResponder()
@@ -191,12 +213,13 @@ class RegisterViewController: UIViewController {
               let lastName = lastNameField.text,
               let email = emailField.text,
               let password = passwordField.text,
+              let repeatPassword = repeatPasswordField.text,
               let city = cityField.text,
               let postalCode = postalCodeField.text,
               let houseNumber = houseNumberField.text,
               let phone = phoneField.text,
-
-              !email.isEmpty,
+              
+                !email.isEmpty,
               !password.isEmpty,
               !firstName.isEmpty,
               !city.isEmpty,
@@ -205,7 +228,9 @@ class RegisterViewController: UIViewController {
               !phone.isEmpty,
               phone.count == 9,
               password.count>6,
-              !lastName.isEmpty else {
+              !lastName.isEmpty,
+              password == repeatPassword
+        else {
             alertUserLoginError()
             return
         }
@@ -243,17 +268,17 @@ class RegisterViewController: UIViewController {
                     print("User added with ID: \(userID)")
                 }
             }
-
+            
             self.navigationController?.dismiss(animated: true, completion: nil)
         })
         
         
-            
+        
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
@@ -262,6 +287,8 @@ class RegisterViewController: UIViewController {
         lastNameField.delegate = self
         emailField.delegate = self
         passwordField.delegate = self
+        repeatPasswordField.delegate = self
+
         cityField.delegate = self
         postalCodeField.delegate = self
         houseNumberField.delegate = self
@@ -274,6 +301,8 @@ class RegisterViewController: UIViewController {
         scrollView.addSubview(lastNameField)
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
+        scrollView.addSubview(repeatPasswordField)
+
         scrollView.addSubview(cityField)
         scrollView.addSubview(postalCodeField)
         scrollView.addSubview(houseNumberField)
@@ -287,49 +316,53 @@ class RegisterViewController: UIViewController {
         
     }
     
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         scrollView.frame = view.bounds
-
+        
         firstNameField.frame = CGRect(x: 30,
-                                  y: 20,
-                                  width: scrollView.width-60,
-                                 height: 52)
+                                      y: 20,
+                                      width: scrollView.width-60,
+                                      height: 52)
         lastNameField.frame = CGRect(x: 30,
-                                  y: firstNameField.bottom + 10,
-                                  width: scrollView.width-60,
-                                 height: 52)
+                                     y: firstNameField.bottom + 10,
+                                     width: scrollView.width-60,
+                                     height: 52)
         emailField.frame = CGRect(x: 30,
                                   y: lastNameField.bottom + 10,
                                   width: scrollView.width-60,
-                                 height: 52)
+                                  height: 52)
         passwordField.frame = CGRect(x: 30,
-                                  y: emailField.bottom + 10,
-                                  width: scrollView.width-60,
-                                 height: 52)
+                                     y: emailField.bottom + 10,
+                                     width: scrollView.width-60,
+                                     height: 52)
+        repeatPasswordField.frame = CGRect(x: 30,
+                                     y: passwordField.bottom + 10,
+                                     width: scrollView.width-60,
+                                     height: 52)
         cityField.frame = CGRect(x: 30,
-                                  y: passwordField.bottom + 10,
-                                  width: scrollView.width-60,
+                                 y: repeatPasswordField.bottom + 10,
+                                 width: scrollView.width-60,
                                  height: 52)
         postalCodeField.frame = CGRect(x: 30,
-                                  y: cityField.bottom + 10,
-                                  width: scrollView.width-60,
-                                 height: 52)
+                                       y: cityField.bottom + 10,
+                                       width: scrollView.width-60,
+                                       height: 52)
         houseNumberField.frame = CGRect(x: 30,
-                                  y: postalCodeField.bottom + 10,
-                                  width: scrollView.width-60,
-                                 height: 52)
+                                        y: postalCodeField.bottom + 10,
+                                        width: scrollView.width-60,
+                                        height: 52)
         phoneField.frame = CGRect(x: 30,
                                   y: houseNumberField.bottom + 10,
                                   width: scrollView.width-60,
-                                 height: 52)
+                                  height: 52)
         
         registerButton.frame = CGRect(x: 30,
-                                   y: phoneField.bottom + 10,
-                                   width: scrollView.width-60,
-                                   height: 52)
+                                      y: phoneField.bottom + 10,
+                                      width: scrollView.width-60,
+                                      height: 52)
     }
     
 }
@@ -345,6 +378,8 @@ extension RegisterViewController: UITextFieldDelegate {
         case emailField:
             passwordField.becomeFirstResponder()
         case passwordField:
+            repeatPasswordField.becomeFirstResponder()
+        case repeatPasswordField:
             cityField.becomeFirstResponder()
         case cityField:
             postalCodeField.becomeFirstResponder()
@@ -364,16 +399,18 @@ extension RegisterViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let point = textField.convert(textField.bounds.origin, to: self.scrollView)
-        let scrollPoint = CGPoint(x: 0, y: -15 + point.y - textField.frame.size.height)
+        let scrollPoint = CGPoint(x: 0, y:  point.y - textField.frame.size.height*2)
         self.scrollView.setContentOffset(scrollPoint, animated: true)
     }
-
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        
         let navBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
-        let topOffset = CGPoint(x: 0, y: -(scrollView.contentInset.top + navBarHeight + 20))
+        let topOffset = CGPoint(x: 0, y: -navBarHeight*2)
         scrollView.setContentOffset(topOffset, animated: true)
     }
-
+    
 }
 
 
