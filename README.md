@@ -59,3 +59,10 @@ An application in Swift for ordering various car-related services.
 - LogOut Alert
 
 <img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/LogOutAlert.png?raw=true" width="30%" height="30%">
+
+## Firebase
+
+- Firebase Auth (email, password)
+
+- Firebase Firestore (orders, user data)
+<img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/Zrzut%20ekranu%202023-06-26%20o%2014.11.31.png" width="30%" height="30%">
