@@ -65,4 +65,4 @@ An application in Swift for ordering various car-related services.
 - Firebase Auth (email, password)
 
 - Firebase Firestore (orders, user data)
-<img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/Zrzut%20ekranu%202023-06-26%20o%2014.11.31.png" width="30%" height="30%">
+<img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/Zrzut%20ekranu%202023-06-26%20o%2014.11.31.png" width="100%" height="100%">
