@@ -199,14 +199,16 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
     func openServiceDescribtion(_ model: Service) {
         let vc = ServicesViewController(serviceName: model.name)
         //vc.title = model.name
-        print("openServiceDescribtion")
-        vc.modalPresentationStyle = .formSheet
-        self.present(vc, animated: true)
-        
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+        }
+        present(vc, animated: true, completion: nil)
     }
 }
-
-
 
 
 class CustomCell: UITableViewCell {
