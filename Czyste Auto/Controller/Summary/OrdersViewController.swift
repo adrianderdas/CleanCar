@@ -57,7 +57,7 @@ class OrdersViewController: UIViewController {
         return table
     }()
     
-    private let summaryLabel: UILabel = {
+    let summaryLabel: UILabel = {
         let label = UILabel()
 
         return label
