@@ -42,16 +42,12 @@ class FirebaseService {
     public var firebaseOrdersIds: Any? = []
     
     func getuserId() -> String? {
-        guard let userID = Auth.auth().currentUser?.uid else {
-            print("Failed to fetch userID from FirebaseAuth")
-            return nil
-        }
-        return userID
+        return Auth.auth().currentUser?.uid
     }
     
     func getUserOrders(completion: @escaping () -> Void) {
-        guard let userID = Auth.auth().currentUser?.uid else {
-            print("Failed to fetch userID from FirebaseAuth")
+                
+        guard let userID = getuserId() else {
             return
         }
 
