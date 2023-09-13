@@ -278,7 +278,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
         view.backgroundColor = .systemBackground
         
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
@@ -404,8 +404,6 @@ extension RegisterViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        
         let navBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
         let topOffset = CGPoint(x: 0, y: -navBarHeight*2)
         scrollView.setContentOffset(topOffset, animated: true)
@@ -413,4 +411,16 @@ extension RegisterViewController: UITextFieldDelegate {
     
 }
 
-
+extension RegisterViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
