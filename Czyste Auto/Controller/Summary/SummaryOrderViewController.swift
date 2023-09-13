@@ -14,7 +14,6 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
     public var selectedServices: [Service] = []
     
-  //  public var totalPrice: Int = 0
     
     private let orderButton: UIButton = {
         let button = UIButton()
@@ -179,7 +178,7 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
 
     }
     
-    //funka dzięki której klawiatura chowa się po naciśnięciu gotowe
+    /// Function used for hidden keyboards when user clicked "gotowe"
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             textField.resignFirstResponder()
             return true

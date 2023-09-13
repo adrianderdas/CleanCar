@@ -39,6 +39,17 @@
                ReferencedContainer = "container:Czyste Auto.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A2F7C8692AB2499C00BC7F3D"
+               BuildableName = "CzysteAutoUITests.xctest"
+               BlueprintName = "CzysteAutoUITests"
+               ReferencedContainer = "container:Czyste Auto.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
-// Class used to set data showing in Settings and in Summary VC,
+// Class used to set data showing in Settings and in Summary VC
 
 
 class FirebaseService {

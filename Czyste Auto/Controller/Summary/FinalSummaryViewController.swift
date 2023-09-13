@@ -56,8 +56,6 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //view.backgroundColor = .systemBackground
-        
         title = "Sprawdź dane"
         orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         print("selected Services in SummaryOrderViewController: \(selectedServices)")
@@ -70,8 +68,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         
         let buttonHeight: CGFloat = 50
         let summaryLabelHeight: CGFloat = 50
-        
-       
+               
         
         tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height-buttonHeight-summaryLabelHeight)
         orderButton.frame = CGRect(x: 10, y: view.height-buttonHeight-10, width: view.width-20, height: buttonHeight)
@@ -88,7 +85,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(orderButton)
         view.addSubview(summaryLabel)
         
-        //tableView.frame = view.bounds
+        
         tableView.dataSource = self
        
         tableView.rowHeight = 80
@@ -101,8 +98,6 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: 60))
-        
-        
         
         
         if section  == 0 {

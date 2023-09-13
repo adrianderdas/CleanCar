@@ -36,12 +36,21 @@
 		A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F22A46162000462A81 /* FirebaseService.swift */; };
 		A2F5B48D2AB0F9AE00E200BF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A2F5B48C2AB0F9AE00E200BF /* FirebaseFirestore */; };
 		A2F5B48F2AB0F9C500E200BF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A2F5B48E2AB0F9C500E200BF /* FirebaseAuth */; };
+		A2F7C86D2AB2499C00BC7F3D /* CzysteAutoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C86C2AB2499C00BC7F3D /* CzysteAutoUITests.swift */; };
+		A2F7C86F2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C86E2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift */; };
 		A2F88A142A1BC9A5008674AD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */; };
 		A2F88A162A1BF030008674AD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A152A1BF030008674AD /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		A217328F2A522025007209B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A2D7951E2A1AD5600013FA3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2D795252A1AD5600013FA3B;
+			remoteInfo = "Czyste Auto";
+		};
+		A2F7C8702AB2499C00BC7F3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A2D7951E2A1AD5600013FA3B /* Project object */;
 			proxyType = 1;
@@ -80,6 +89,9 @@
 		A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryViewController.swift; sourceTree = "<group>"; };
 		A2E050F02A46156100462A81 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A2E050F22A46162000462A81 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		A2F7C86A2AB2499C00BC7F3D /* CzysteAutoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CzysteAutoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2F7C86C2AB2499C00BC7F3D /* CzysteAutoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoUITests.swift; sourceTree = "<group>"; };
+		A2F7C86E2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A2F88A152A1BF030008674AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +114,13 @@
 				A21055112A40DFFD00B69BD9 /* FirebaseFirestore in Frameworks */,
 				A21055132A40DFFD00B69BD9 /* FirebaseFirestoreSwift in Frameworks */,
 				032F6076A87828FC3C6DBA17 /* Pods_Czyste_Auto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F7C8672AB2499C00BC7F3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +247,7 @@
 			children = (
 				A2D795282A1AD5600013FA3B /* Czyste Auto */,
 				A217328C2A522025007209B7 /* CzysteAutoTests */,
+				A2F7C86B2AB2499C00BC7F3D /* CzysteAutoUITests */,
 				A2D795272A1AD5600013FA3B /* Products */,
 				00BE9CA0A0BE7FEFE5EF562E /* Pods */,
 				AE5147E919C033A8B05B662A /* Frameworks */,
@@ -239,6 +259,7 @@
 			children = (
 				A2D795262A1AD5600013FA3B /* Czyste Auto.app */,
 				A217328B2A522025007209B7 /* CzysteAutoTests.xctest */,
+				A2F7C86A2AB2499C00BC7F3D /* CzysteAutoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,6 +276,15 @@
 				A2431B7C2A201A0600FF807E /* Model */,
 			);
 			path = "Czyste Auto";
+			sourceTree = "<group>";
+		};
+		A2F7C86B2AB2499C00BC7F3D /* CzysteAutoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A2F7C86C2AB2499C00BC7F3D /* CzysteAutoUITests.swift */,
+				A2F7C86E2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift */,
+			);
+			path = CzysteAutoUITests;
 			sourceTree = "<group>";
 		};
 		AE5147E919C033A8B05B662A /* Frameworks */ = {
@@ -313,6 +343,24 @@
 			productReference = A2D795262A1AD5600013FA3B /* Czyste Auto.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A2F7C8692AB2499C00BC7F3D /* CzysteAutoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2F7C8742AB2499C00BC7F3D /* Build configuration list for PBXNativeTarget "CzysteAutoUITests" */;
+			buildPhases = (
+				A2F7C8662AB2499C00BC7F3D /* Sources */,
+				A2F7C8672AB2499C00BC7F3D /* Frameworks */,
+				A2F7C8682AB2499C00BC7F3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2F7C8712AB2499C00BC7F3D /* PBXTargetDependency */,
+			);
+			name = CzysteAutoUITests;
+			productName = CzysteAutoUITests;
+			productReference = A2F7C86A2AB2499C00BC7F3D /* CzysteAutoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -320,7 +368,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					A217328A2A522025007209B7 = {
@@ -329,6 +377,10 @@
 					};
 					A2D795252A1AD5600013FA3B = {
 						CreatedOnToolsVersion = 13.4;
+					};
+					A2F7C8692AB2499C00BC7F3D = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = A2D795252A1AD5600013FA3B;
 					};
 				};
 			};
@@ -350,6 +402,7 @@
 			targets = (
 				A2D795252A1AD5600013FA3B /* Czyste Auto */,
 				A217328A2A522025007209B7 /* CzysteAutoTests */,
+				A2F7C8692AB2499C00BC7F3D /* CzysteAutoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -370,6 +423,13 @@
 				A210550C2A40DCA100B69BD9 /* GoogleService-Info.plist in Resources */,
 				A2D795332A1AD5630013FA3B /* Assets.xcassets in Resources */,
 				A2D795312A1AD5600013FA3B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F7C8682AB2499C00BC7F3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +496,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A2F7C8662AB2499C00BC7F3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2F7C86D2AB2499C00BC7F3D /* CzysteAutoUITests.swift in Sources */,
+				A2F7C86F2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -443,6 +512,11 @@
 			isa = PBXTargetDependency;
 			target = A2D795252A1AD5600013FA3B /* Czyste Auto */;
 			targetProxy = A217328F2A522025007209B7 /* PBXContainerItemProxy */;
+		};
+		A2F7C8712AB2499C00BC7F3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A2D795252A1AD5600013FA3B /* Czyste Auto */;
+			targetProxy = A2F7C8702AB2499C00BC7F3D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -682,6 +756,44 @@
 			};
 			name = Release;
 		};
+		A2F7C8722AB2499C00BC7F3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 323SMA9H24;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = adrianderdas.CzysteAutoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Czyste Auto";
+			};
+			name = Debug;
+		};
+		A2F7C8732AB2499C00BC7F3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 323SMA9H24;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = adrianderdas.CzysteAutoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Czyste Auto";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -708,6 +820,15 @@
 			buildConfigurations = (
 				A2D7953B2A1AD5630013FA3B /* Debug */,
 				A2D7953C2A1AD5630013FA3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2F7C8742AB2499C00BC7F3D /* Build configuration list for PBXNativeTarget "CzysteAutoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2F7C8722AB2499C00BC7F3D /* Debug */,
+				A2F7C8732AB2499C00BC7F3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

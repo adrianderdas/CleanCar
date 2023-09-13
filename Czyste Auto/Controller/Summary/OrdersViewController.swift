@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class OrdersViewController: UIViewController {
     
-    //let cleanCarViewController = CleanCarViewController()
+    
     
     static let shared = OrdersViewController()
     
@@ -104,7 +104,6 @@ class OrdersViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.titleView = titleLabel
         
-        //orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
@@ -180,14 +179,13 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            // Usuń element z danych źródłowych
+            // Delete element from datasource
             selectedServices.remove(at: indexPath.row)
             // Usuń wiersz z tabeli
             tableView.deleteRows(at: [indexPath], with: .fade)
-           // let serv = 55
-           // delegate?.didChangeServices(serv)
+         
 
-            // Zapisz nowy stan danych do UserDefaults
+            // Saving new elements to UserDefaults
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(selectedServices) {
                 let defaults = UserDefaults.standard

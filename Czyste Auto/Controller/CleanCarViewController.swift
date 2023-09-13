@@ -78,7 +78,6 @@ class CleanCarViewController: UIViewController {
         title = "Umyj Auto"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        // Bez tego nie działa reakcja na cancel
         searchBar.delegate = self
         
         view.addSubview(searchBar)
