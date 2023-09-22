@@ -12,12 +12,13 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    
+    private let viewModel = LoginViewModel()
+        
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         return indicator
     }()
-
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
@@ -34,13 +35,11 @@ class LoginViewController: UIViewController {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Adres e-mail"
-        
         field.keyboardType = .emailAddress
-        
-        
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .secondarySystemBackground
+        
         return field
     }()
     
@@ -54,12 +53,11 @@ class LoginViewController: UIViewController {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.placeholder = "Hasło"
-        
-                
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
         field.leftViewMode = .always
         field.backgroundColor = .secondarySystemBackground
         field.isSecureTextEntry = true
+        
         return field
     }()
     
@@ -91,10 +89,10 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .red
         title = "Logowanie"
         view.backgroundColor = .systemBackground
@@ -103,10 +101,10 @@ class LoginViewController: UIViewController {
         
         loginButton.addTarget(self, action: #selector(loginButonTapped), for: .touchUpInside)
         
-     
+        
         emailField.delegate = self
         passwordFireld.delegate = self
-      
+        
         
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
@@ -114,20 +112,17 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(passwordFireld)
         scrollView.addSubview(loginButton)
         
-
+        
         activityIndicator.center = view.center
         view.addSubview(activityIndicator)
-              
-        
         
     }
     
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         scrollView.frame = view.bounds
-  
         
         let size = scrollView.width/3
         
@@ -141,63 +136,42 @@ class LoginViewController: UIViewController {
         emailField.resignFirstResponder()
         passwordFireld.resignFirstResponder()
         
-        guard let email = emailField.text, let password = passwordFireld.text, !email.isEmpty, !password.isEmpty else {
-            //alertUserLoginError()
-            return
-        }
+        viewModel.email = emailField.text
+        viewModel.password = passwordFireld.text
         
         activityIndicator.startAnimating()
-
-        // Firebase Log in
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
-            guard let strongSelf = self else {
-                return
-            }
+        
+        
+        viewModel.login { [weak self] success, errorMessage in
             
-            guard let result = authResult, error == nil else {
-                print("Failed to log in user with email: \(email)")
-                DispatchQueue.main.async {
-                        self?.self.activityIndicator.stopAnimating()
-
-                }
-                
-                let alertController = UIAlertController(title: "Wprowadź poprawny e-mail lub hasło", message: nil, preferredStyle: .alert)
+            if success {
+                self?.navigationController?.dismiss(animated: true, completion: nil)
+            } else {
+                let alertController = UIAlertController(title: errorMessage, message: nil, preferredStyle: .alert)
                 
                 let okAction = UIAlertAction(title: "Popraw", style: .default)
-
-                
-               alertController.addAction(okAction)
-
-                          DispatchQueue.main.async {
-                              strongSelf.present(alertController, animated: true, completion:nil)
-                          }
-                
-                return
+                alertController.addAction(okAction)
+                self?.present(alertController, animated: true, completion: nil)
             }
-            
-            let user = result.user
-            print("user: \(user)")
-            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
             
             DispatchQueue.main.async {
-                //strongSelf.spinner.dismiss()
-                
                 self?.activityIndicator.stopAnimating()
+                
+                
             }
- 
-             
-        })
-    }
-
-}
-
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailField {
-            passwordFireld.becomeFirstResponder()
-        } else if textField == passwordFireld {
-            textField.resignFirstResponder()
         }
-        return true
     }
 }
+    
+    
+    extension LoginViewController: UITextFieldDelegate {
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            if textField == emailField {
+                passwordFireld.becomeFirstResponder()
+            } else if textField == passwordFireld {
+                textField.resignFirstResponder()
+            }
+            return true
+        }
+    }
+

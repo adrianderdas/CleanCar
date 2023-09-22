@@ -26,8 +26,33 @@ final class CzysteAutoUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
+        
+        
+        let tablesQuery = app.tables
+        
+        
+        let mycieSilnikaCellsQuery = tablesQuery/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"Mycie silnika")/*[[".cells.containing(.staticText, identifier:\"149 PLN\")",".cells.containing(.staticText, identifier:\"Mycie silnika\")"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        mycieSilnikaCellsQuery.buttons["shopping cart"].tap()
+        
+        let mycieStandardoweCellsQuery = tablesQuery/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"Mycie standardowe")/*[[".cells.containing(.staticText, identifier:\"99 PLN\")",".cells.containing(.staticText, identifier:\"Mycie standardowe\")"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        mycieStandardoweCellsQuery.buttons["shopping cart"].tap()
+        
+        let myciePodlogiCellsQuery = tablesQuery/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"Mycie podlogi")/*[[".cells.containing(.staticText, identifier:\"79 PLN\")",".cells.containing(.staticText, identifier:\"Mycie podlogi\")"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        myciePodlogiCellsQuery.buttons["shopping cart"].tap()
+        
+        app.tabBars["Tab Bar"].buttons["Koszyk"].tap()
+        
+        mycieSilnikaCellsQuery.children(matching: .other).element(boundBy: 1).tap()
+        
+        mycieStandardoweCellsQuery.children(matching: .other).element(boundBy: 0).tap()
+        
+        let element = myciePodlogiCellsQuery.children(matching: .other).element(boundBy: 0)
+        element.tap()
+        element.tap()
+                  
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+                // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
     func testLaunchPerformance() throws {
