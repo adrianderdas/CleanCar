@@ -35,6 +35,7 @@
 		A2E050F12A46156100462A81 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F02A46156100462A81 /* UserData.swift */; };
 		A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F22A46162000462A81 /* FirebaseService.swift */; };
 		A2E3CAB72ABB0A9900898A64 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E3CAB62ABB0A9900898A64 /* LoginViewModel.swift */; };
+		A2E3CABA2ABF2B7200898A64 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E3CAB92ABF2B7200898A64 /* RegisterViewModel.swift */; };
 		A2F5B48D2AB0F9AE00E200BF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A2F5B48C2AB0F9AE00E200BF /* FirebaseFirestore */; };
 		A2F5B48F2AB0F9C500E200BF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A2F5B48E2AB0F9C500E200BF /* FirebaseAuth */; };
 		A2F7C86D2AB2499C00BC7F3D /* CzysteAutoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C86C2AB2499C00BC7F3D /* CzysteAutoUITests.swift */; };
@@ -91,6 +92,7 @@
 		A2E050F02A46156100462A81 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A2E050F22A46162000462A81 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		A2E3CAB62ABB0A9900898A64 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		A2E3CAB92ABF2B7200898A64 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		A2F7C86A2AB2499C00BC7F3D /* CzysteAutoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CzysteAutoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F7C86C2AB2499C00BC7F3D /* CzysteAutoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoUITests.swift; sourceTree = "<group>"; };
 		A2F7C86E2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -276,9 +278,18 @@
 		A2E3CAB52ABAF9D400898A64 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A2E3CAB62ABB0A9900898A64 /* LoginViewModel.swift */,
+				A2E3CAB82ABF214400898A64 /* Login */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A2E3CAB82ABF214400898A64 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A2E3CAB62ABB0A9900898A64 /* LoginViewModel.swift */,
+				A2E3CAB92ABF2B7200898A64 /* RegisterViewModel.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		A2F7C86B2AB2499C00BC7F3D /* CzysteAutoUITests */ = {
@@ -491,6 +502,7 @@
 				A2F88A162A1BF030008674AD /* Extensions.swift in Sources */,
 				A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */,
 				A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */,
+				A2E3CABA2ABF2B7200898A64 /* RegisterViewModel.swift in Sources */,
 				A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */,
 				A2E050F12A46156100462A81 /* UserData.swift in Sources */,
 				A21055162A40F73F00B69BD9 /* LoginViewController.swift in Sources */,

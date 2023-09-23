@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-//import JGProgressHUD
-
 
 class LoginViewController: UIViewController {
     
@@ -85,7 +82,6 @@ class LoginViewController: UIViewController {
     @objc private func didTapRegister() {
         let vc = RegisterViewController()
         vc.title = "Utwórz konto"
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -143,7 +139,10 @@ class LoginViewController: UIViewController {
         
         
         viewModel.login { [weak self] success, errorMessage in
-            
+            DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
+                
+            }
             if success {
                 self?.navigationController?.dismiss(animated: true, completion: nil)
             } else {
@@ -154,11 +153,7 @@ class LoginViewController: UIViewController {
                 self?.present(alertController, animated: true, completion: nil)
             }
             
-            DispatchQueue.main.async {
-                self?.activityIndicator.stopAnimating()
-                
-                
-            }
+            
         }
     }
 }

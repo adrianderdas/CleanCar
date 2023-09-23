@@ -6,11 +6,13 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
+
 
 class RegisterViewController: UIViewController {
     
+    private let viewModel = RegisterViewModel()
+    
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.clipsToBounds = true
@@ -203,77 +205,35 @@ class RegisterViewController: UIViewController {
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
         repeatPasswordField.resignFirstResponder()
-        
         cityField.resignFirstResponder()
         postalCodeField.resignFirstResponder()
         houseNumberField.resignFirstResponder()
         phoneField.resignFirstResponder()
         
-        guard let firstName = firstNameField.text,
-              let lastName = lastNameField.text,
-              let email = emailField.text,
-              let password = passwordField.text,
-              let repeatPassword = repeatPasswordField.text,
-              let city = cityField.text,
-              let postalCode = postalCodeField.text,
-              let houseNumber = houseNumberField.text,
-              let phone = phoneField.text,
+        viewModel.firstName = firstNameField.text
+        viewModel.lastName = lastNameField.text
+        viewModel.email = emailField.text
+        viewModel.password = passwordField.text
+        viewModel.repeatPassword = repeatPasswordField.text
+        viewModel.city = cityField.text
+        viewModel.postalCode = postalCodeField.text
+        viewModel.houseNumber = houseNumberField.text
+        viewModel.phone = phoneField.text
               
-                !email.isEmpty,
-              !password.isEmpty,
-              !firstName.isEmpty,
-              !city.isEmpty,
-              !postalCode.isEmpty,
-              !houseNumber.isEmpty,
-              !phone.isEmpty,
-              phone.count == 9,
-              password.count>6,
-              !lastName.isEmpty,
-              password == repeatPassword
-        else {
-            alertUserLoginError()
-            return
+      
+        viewModel.register { [weak self] success, errorMessage in
+            
+           
+            if success {
+                self?.navigationController?.dismiss(animated: true, completion: nil)
+            }
+            else {
+                // Show alert with error info
+                let alert = UIAlertController(title: "Woops", message: errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Popraw", style: .cancel))
+                self?.present(alert, animated: true)
+            }
         }
-        
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
-            guard authResult != nil, error == nil else {
-                print("Error creating user")
-                return
-            }
-            
-            UserDefaults.standard.setValue(email, forKey: "email")
-            UserDefaults.standard.setValue("\(firstName) and \(lastName)", forKey: "name")
-            
-            let db = Firestore.firestore()
-            
-            guard let userID = Auth.auth().currentUser?.uid else {
-                print("User ID is not available")
-                return
-            }
-            
-            //var ref: DocumentReference? = nil
-            db.collection("users").document(userID).setData([
-                "firstName": firstName,
-                "lastName": lastName,
-                "email": email,
-                "city": city,
-                "postalCode": postalCode,
-                "houseNumber": houseNumber,
-                "phone": phone
-                
-            ]) { err in
-                if let err = err {
-                    print("Error adding user data: \(err)")
-                } else {
-                    print("User added with ID: \(userID)")
-                }
-            }
-            
-            self.navigationController?.dismiss(animated: true, completion: nil)
-        })
-        
-        
-        
     }
     
     override func viewDidLoad() {
@@ -311,9 +271,6 @@ class RegisterViewController: UIViewController {
         scrollView.addSubview(registerButton)
         
         scrollView.isUserInteractionEnabled = true
-        
-        
-        
     }
     
     
