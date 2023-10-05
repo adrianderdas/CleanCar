@@ -4,8 +4,6 @@ import UIKit
 
 class CleanCarViewController: UIViewController {
     
-    private let viewModel = CleanCarViewModel()
-    
     weak var delegate: (CleanCarViewControllerDelegate)?
 
     let services = [
@@ -19,10 +17,23 @@ class CleanCarViewController: UIViewController {
         Service(name:"Mycie sufitki", image: "ceiling", price: 137)
     ]
     
-
+    var selectedServices: Set<Service> = [] {
+        didSet {
+            saveServices(selectedServices)
+            print("salectedServices saved: \(selectedServices)")
+        }
+    }
     
     
-
+    /// Function using for save services choosen by user to UserDefaults
+    /// - parameter services: Set with choosen services
+    func saveServices(_ services: Set<Service>) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(Array(services)) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "SavedServices")
+        }
+    }
     
     /// Function using for load services from UserDefaults
     func loadServices() -> Set<Service>? {
@@ -59,7 +70,7 @@ class CleanCarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.selectedServices = loadServices() ?? []
+        selectedServices = loadServices() ?? []
         if let tabBarController = tabBarController as? TabBarController {
             delegate = tabBarController
         }
@@ -97,8 +108,7 @@ class CleanCarViewController: UIViewController {
         super.viewDidAppear(animated)
         
         updateCancelButtonTitleAndColor()
-        viewModel.selectedServices = loadServices() ?? []
-        
+        selectedServices = loadServices() ?? []
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showCancelButton))
         searchBar.addGestureRecognizer(tapGesture)
     }
@@ -238,12 +248,29 @@ class CustomCell: UITableViewCell {
     
     @objc private func didTapShoppingBasket() {
         guard let tableView = superview as? UITableView,
-              let indexPath = tableView.indexPath(for: self) else {
+              let indexPath = tableView.indexPath(for: self),
+              let viewController = tableView.delegate as? CleanCarViewController else {
             return
         }
-
-        viewModel.didTapShoppingBasket(at: indexPath)
         
+        // Dzieki temu podczas korzystania z searchBar nie jest gubiony indexPath
+        let selectedService = viewController.isSearching ? viewController.filteredServices[indexPath.row] : viewController.services[indexPath.row]
+        let service = viewController.services.first { $0.name == selectedService.name}
+        
+        guard let serviceToInsert = service else {return}
+        
+        let result = viewController.selectedServices.insert(serviceToInsert)
+        
+        if result.inserted == false {
+            let alert = UIAlertController(title: "Uuupss", message: "Nie możesz dwukrotnie dodać tego do koszyka", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Rozumiem", style: .default, handler: nil))
+            viewController.present(alert, animated: true)
+        } else {
+            viewController.delegate?.didChangeServices(viewController.selectedServices.count)
+        }
+        //viewController.selectedServices.insert(service)
+        
+        print("Selected services: \(viewController.selectedServices)")
     }
     
     
