@@ -43,6 +43,7 @@
 		A2F7C86F2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C86E2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift */; };
 		A2F88A142A1BC9A5008674AD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */; };
 		A2F88A162A1BF030008674AD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F88A152A1BF030008674AD /* Extensions.swift */; };
+		A2FE12A22AD17C8100134CF3 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE12A12AD17C8100134CF3 /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		A2F7C86E2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A2F88A152A1BF030008674AD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A2FE12A12AD17C8100134CF3 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,9 +182,9 @@
 		A2431B7D2A201A1000FF807E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2FE12A02AD17C6800134CF3 /* ServicesList */,
 				A21055142A40F72000B69BD9 /* Login */,
 				A2D795412A1AF99D0013FA3B /* ClubViewController.swift */,
-				A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */,
 				A2AFFD372A45B553009A0811 /* Summary */,
 				A2428DEE2A2A13E200E6D000 /* Profile */,
 				A20266A82A2BF84C00445C87 /* ServicesViewController.swift */,
@@ -310,6 +312,15 @@
 			children = (
 			);
 			path = Feature;
+			sourceTree = "<group>";
+		};
+		A2FE12A02AD17C6800134CF3 /* ServicesList */ = {
+			isa = PBXGroup;
+			children = (
+				A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */,
+				A2FE12A12AD17C8100134CF3 /* CustomCell.swift */,
+			);
+			path = ServicesList;
 			sourceTree = "<group>";
 		};
 		AE5147E919C033A8B05B662A /* Frameworks */ = {
@@ -520,6 +531,7 @@
 				A21055162A40F73F00B69BD9 /* LoginViewController.swift in Sources */,
 				A2E050ED2A45C46D00462A81 /* BaseCell.swift in Sources */,
 				A2D7952C2A1AD5600013FA3B /* SceneDelegate.swift in Sources */,
+				A2FE12A22AD17C8100134CF3 /* CustomCell.swift in Sources */,
 				A2E3CAB72ABB0A9900898A64 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

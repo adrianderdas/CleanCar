@@ -250,7 +250,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                     //self.navigationController?.popToRootViewController(animated: true)
                     
                     //kasowanie koszyka
-                    CleanCarViewController().selectedServices = []
+                    CleanCarViewModel().selectedServices = []
 
 
                 }

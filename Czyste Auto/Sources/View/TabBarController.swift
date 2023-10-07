@@ -8,6 +8,8 @@
 import UIKit
 
 class TabBarController: UITabBarController, CleanCarViewControllerDelegate, OrdersViewControllerDelegate {
+    
+    private let cleanCarViewModel = CleanCarViewModel()
 
     let defaults = UserDefaults.standard
     
@@ -46,7 +48,7 @@ class TabBarController: UITabBarController, CleanCarViewControllerDelegate, Orde
         super.viewWillAppear(animated)
         tabBar.isTranslucent = false
         
-        cartValue = cleanCarViewController.loadServices()?.count ?? 0
+        cartValue = cleanCarViewModel.loadServices()?.count ?? 0
         updateBadgeValue()
         selectedIndex = 0
         view.backgroundColor = .systemBackground

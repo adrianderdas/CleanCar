@@ -6,46 +6,9 @@ class CleanCarViewController: UIViewController {
     
     weak var delegate: (CleanCarViewControllerDelegate)?
 
-    let services = [
-        Service(name:"Mycie silnika", image: "engine", price: 149),
-        Service(name:"Mycie standardowe", image: "standard_wash", price: 99),
-        Service(name:"Mycie podlogi", image: "car_floor", price: 79),
-        Service(name:"Mycie felg", image: "wheel", price: 49),
-        Service(name:"Woskowanie", image: "wosk", price: 220),
-        Service(name:"Powłoka ceramiczna", image: "ceramic", price: 750),
-        Service(name:"Odkurzanie wnętrza", image: "vacuum", price: 49),
-        Service(name:"Mycie sufitki", image: "ceiling", price: 137)
-    ]
+    public let viewModel = CleanCarViewModel()
     
-    var selectedServices: Set<Service> = [] {
-        didSet {
-            saveServices(selectedServices)
-            print("salectedServices saved: \(selectedServices)")
-        }
-    }
-    
-    
-    /// Function using for save services choosen by user to UserDefaults
-    /// - parameter services: Set with choosen services
-    func saveServices(_ services: Set<Service>) {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(Array(services)) {
-            let defaults = UserDefaults.standard
-            defaults.set(encoded, forKey: "SavedServices")
-        }
-    }
-    
-    /// Function using for load services from UserDefaults
-    func loadServices() -> Set<Service>? {
-        let defaults = UserDefaults.standard
-        if let savedServices = defaults.object(forKey: "SavedServices") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedServices = try? decoder.decode(Array<Service>.self, from: savedServices) {
-                return Set(loadedServices)
-            }
-        }
-        return nil
-    }
+ 
     
     
     var searchServices = [String]()
@@ -70,7 +33,10 @@ class CleanCarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedServices = loadServices() ?? []
+        
+        
+        
+        viewModel.selectedServices = viewModel.loadServices() ?? []
         if let tabBarController = tabBarController as? TabBarController {
             delegate = tabBarController
         }
@@ -108,7 +74,7 @@ class CleanCarViewController: UIViewController {
         super.viewDidAppear(animated)
         
         updateCancelButtonTitleAndColor()
-        selectedServices = loadServices() ?? []
+        viewModel.selectedServices = viewModel.loadServices() ?? []
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showCancelButton))
         searchBar.addGestureRecognizer(tapGesture)
     }
@@ -146,7 +112,7 @@ extension CleanCarViewController: UISearchBarDelegate {
             tableView.reloadData()
         } else {
             isSearching = true
-            filteredServices = services.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+            filteredServices = viewModel.services.filter { $0.name.lowercased().contains(searchText.lowercased()) }
             
             //otherwise
 //            services.filter { serv in
@@ -177,13 +143,13 @@ extension CleanCarViewController: UISearchBarDelegate {
 
 extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? filteredServices.count : services.count
+        return isSearching ? filteredServices.count : viewModel.services.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
         
-        let service = isSearching ? filteredServices[indexPath.row] : services[indexPath.row]
+        let service = isSearching ? filteredServices[indexPath.row] : viewModel.services[indexPath.row]
         
         cell.serviceImage.image = UIImage(named: service.image)
         cell.serviceName.text = service.name
@@ -193,7 +159,7 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = isSearching ? filteredServices[indexPath.row] : services[indexPath.row]
+        let model = isSearching ? filteredServices[indexPath.row] : viewModel.services[indexPath.row]
         print("model: \(model)")
  
         openServiceDescribtion(model)
@@ -216,68 +182,7 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-class CustomCell: UITableViewCell {
-    let serviceImage = UIImageView()
-    let serviceName = UILabel()
-    let servicePrice = UILabel()
-    
-    let cartButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(systemName: "cart"), for: .normal)
-        return button
-    }()
 
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print("CustomCell initialised")
-        addSubview(serviceImage)
-        addSubview(serviceName)
-        addSubview(servicePrice)
-        addSubview(cartButton)
-        accessoryView = cartButton
-        
-        serviceImage.frame = CGRect(x: 10, y: serviceImage.frame.height/2, width: 100, height: 100)
-        serviceImage.layer.cornerRadius = serviceImage.frame.width/2
-        serviceImage.layer.masksToBounds = true
-        serviceName.frame = CGRect(x: serviceImage.width+20, y: 10, width: 150, height: 30)
-        servicePrice.frame = CGRect(x: serviceImage.width+20, y: serviceName.height+20, width: 80, height: 30)
-        cartButton.frame = CGRect(x: 200, y: 50, width: 50, height: 50)
-        cartButton.addTarget(self, action: #selector(didTapShoppingBasket), for: .touchUpInside)
-    }
-    
-    @objc private func didTapShoppingBasket() {
-        guard let tableView = superview as? UITableView,
-              let indexPath = tableView.indexPath(for: self),
-              let viewController = tableView.delegate as? CleanCarViewController else {
-            return
-        }
-        
-        // Dzieki temu podczas korzystania z searchBar nie jest gubiony indexPath
-        let selectedService = viewController.isSearching ? viewController.filteredServices[indexPath.row] : viewController.services[indexPath.row]
-        let service = viewController.services.first { $0.name == selectedService.name}
-        
-        guard let serviceToInsert = service else {return}
-        
-        let result = viewController.selectedServices.insert(serviceToInsert)
-        
-        if result.inserted == false {
-            let alert = UIAlertController(title: "Uuupss", message: "Nie możesz dwukrotnie dodać tego do koszyka", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Rozumiem", style: .default, handler: nil))
-            viewController.present(alert, animated: true)
-        } else {
-            viewController.delegate?.didChangeServices(viewController.selectedServices.count)
-        }
-        //viewController.selectedServices.insert(service)
-        
-        print("Selected services: \(viewController.selectedServices)")
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
 protocol CleanCarViewControllerDelegate: AnyObject {
     func didChangeServices(_ count: Int)
