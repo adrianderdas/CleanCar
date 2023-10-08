@@ -24,12 +24,14 @@ class OrdersViewController: UIViewController {
         noSelectedServices.isHidden = false
         orderButton.isUserInteractionEnabled = false
         orderButton.backgroundColor = .gray
+        tableView.isScrollEnabled = false
     }
     
     func setNoEmptyCart() {
         noSelectedServices.isHidden = true
         orderButton.isUserInteractionEnabled = true
         orderButton.backgroundColor = .link
+        tableView.isScrollEnabled = true
     }
     
     private var selectedServices: [Service] = [] {
@@ -62,6 +64,7 @@ class OrdersViewController: UIViewController {
     private var tableView: UITableView = {
         let table = UITableView()
         table.allowsSelection = false
+        
         return table
     }()
     
@@ -121,16 +124,7 @@ class OrdersViewController: UIViewController {
         
     }
     
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print("checking userfefaults")
-        
-        
-        
-        
+    func loadCartItemsFromUserDefaults() {
         if let data = UserDefaults.standard.data(forKey: "SavedServices") {
             print("Data retrieved from UserDefaults: \(data)")
             do {
@@ -140,13 +134,17 @@ class OrdersViewController: UIViewController {
                 print("error decoding selectedServices: \(error)")
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        print("orderscontroller: \(selectedServices)")
+        print("checking userfefaults")
+        
+        
+        loadCartItemsFromUserDefaults()
         
         view.addSubview(tableView)
-        
-        
-        
         view.addSubview(summaryLabel)
         view.addSubview(orderButton)
         view.addSubview(noSelectedServices)
