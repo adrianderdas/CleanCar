@@ -11,9 +11,7 @@ import UIKit
 
 class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
-    
     public var selectedServices: [Service] = []
-    
     
     private let orderButton: UIButton = {
         let button = UIButton()
@@ -33,8 +31,6 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         return scrollView
     }()
     
-
- 
     private let cityTextField: UILabel = {
         let label = UILabel()
         label.text = "Miejscowość"
@@ -144,7 +140,7 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         
         view.addSubview(scrollView)
         view.addSubview(orderButton)
-       // scrollView.addSubview(switchEditing)
+
         scrollView.addSubview(cityTextField)
         scrollView.addSubview(cityField)
         

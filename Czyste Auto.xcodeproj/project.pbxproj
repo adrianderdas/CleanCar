@@ -294,24 +294,8 @@
 				A2431B7C2A201A0600FF807E /* Model */,
 				A2431B7D2A201A1000FF807E /* View */,
 				A2E3CAB52ABAF9D400898A64 /* ViewModel */,
-				A2FE129F2ACF5D3C00134CF3 /* Feature */,
-				A2FE129E2ACF5D2A00134CF3 /* Groups */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		A2FE129E2ACF5D2A00134CF3 /* Groups */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Groups;
-			sourceTree = "<group>";
-		};
-		A2FE129F2ACF5D3C00134CF3 /* Feature */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Feature;
 			sourceTree = "<group>";
 		};
 		A2FE12A02AD17C6800134CF3 /* ServicesList */ = {

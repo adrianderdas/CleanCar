@@ -12,5 +12,3 @@ struct Service: Hashable, Codable {
     var image: String
     var price: Int
 }
-
-

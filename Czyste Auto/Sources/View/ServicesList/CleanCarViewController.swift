@@ -8,9 +8,6 @@ class CleanCarViewController: UIViewController {
 
     public let viewModel = CleanCarViewModel()
     
- 
-    
-    
     var searchServices = [String]()
     var isSearching = false
     var filteredServices: [Service] = []
@@ -28,14 +25,10 @@ class CleanCarViewController: UIViewController {
         scrollView.clipsToBounds = true
         return scrollView
     }()
-    
-   
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+
         viewModel.selectedServices = viewModel.loadServices() ?? []
         if let tabBarController = tabBarController as? TabBarController {
             delegate = tabBarController
@@ -55,8 +48,6 @@ class CleanCarViewController: UIViewController {
         tableView.delegate = self
         tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 120
-
-
     }
     
 
@@ -78,8 +69,6 @@ class CleanCarViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showCancelButton))
         searchBar.addGestureRecognizer(tapGesture)
     }
-    
-    
 }
 
 extension CleanCarViewController: UISearchBarDelegate {
@@ -180,9 +169,6 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
         present(vc, animated: true, completion: nil)
     }
 }
-
-
-
 
 protocol CleanCarViewControllerDelegate: AnyObject {
     func didChangeServices(_ count: Int)

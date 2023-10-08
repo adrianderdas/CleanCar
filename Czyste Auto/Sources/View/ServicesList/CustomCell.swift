@@ -9,7 +9,6 @@ import UIKit
 
 class CustomCell: UITableViewCell {
     
-
     let serviceImage = UIImageView()
     let serviceName = UILabel()
     let servicePrice = UILabel()
@@ -19,7 +18,7 @@ class CustomCell: UITableViewCell {
         button.setImage(UIImage(systemName: "cart"), for: .normal)
         return button
     }()
-
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,12 +42,12 @@ class CustomCell: UITableViewCell {
         guard let tableView = superview as? UITableView,
               let indexPath = tableView.indexPath(for: self),
               let cleanCarViewController = tableView.delegate as? CleanCarViewController
-               else {
+        else {
             return
-             }
+        }
         
         let viewModel = cleanCarViewController.viewModel
-
+        
         let selectedService = cleanCarViewController.isSearching ? cleanCarViewController.filteredServices[indexPath.row] : viewModel.services[indexPath.row]
         let service = viewModel.services.first { $0.name == selectedService.name}
         
@@ -64,10 +63,8 @@ class CustomCell: UITableViewCell {
             cleanCarViewController.delegate?.didChangeServices(viewModel.selectedServices.count)
         }
         
-        
         print("Selected services: \(viewModel.selectedServices)")
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

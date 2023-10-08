@@ -11,8 +11,6 @@ import FirebaseFirestore
 
 class OrdersViewController: UIViewController {
     
-    
-    
     static let shared = OrdersViewController()
     
     weak var delegate: OrdersViewControllerDelegate?
@@ -30,15 +28,12 @@ class OrdersViewController: UIViewController {
             if selectedServices.isEmpty {
                 noSelectedServices.isHidden = false
                 orderButton.isUserInteractionEnabled = false
-
+                
             } else {
                 noSelectedServices.isHidden = true
                 orderButton.isUserInteractionEnabled = true
-
-
             }
         }
-        
     }
     
     private let noSelectedServices: UILabel = {
@@ -78,17 +73,14 @@ class OrdersViewController: UIViewController {
     @objc private func orderButtonTapped() {
         let vc = SummaryOrderViewController()
         vc.hidesBottomBarWhenPushed = true
-        vc.selectedServices = self.selectedServices  //Przekazanie danych
-        
+        vc.selectedServices = self.selectedServices
         vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
         
-
+        navigationController?.pushViewController(vc, animated: true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         view.clipsToBounds = true
         view.backgroundColor = .systemBackground
         
@@ -149,9 +141,6 @@ class OrdersViewController: UIViewController {
         
         tableView.reloadData()
     }
-    
-
-    
 }
 
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
@@ -164,8 +153,6 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellForOrders
         
         let service = selectedServices[indexPath.row]
-        
-        print("services in let service: \(service)")
         
         cell.serviceImage.image = UIImage(named: service.image)
         cell.serviceName.text = service.name
@@ -193,10 +180,6 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
-    
-    
-
-        
 }
 
 class CustomCellForOrders: UITableViewCell {
@@ -219,8 +202,6 @@ class CustomCellForOrders: UITableViewCell {
         servicePrice.frame = CGRect(x: serviceImage.width+220, y: serviceName.height+20, width: 80, height: 30)
         
         serviceImage.contentMode = .scaleAspectFit
-        
-
     }
     
     required init?(coder: NSCoder) {

@@ -8,8 +8,7 @@
 import UIKit
 
 class ServicesViewController: UIViewController  {
-    
-    
+        
     var serviceName: String
     
     init(serviceName: String) {
