@@ -18,7 +18,6 @@ class TabBarController: UITabBarController, CleanCarViewControllerDelegate, Orde
     var cartValue: Int = 0
     
     func didChangeServices(_ count: Int) {
-        print("Func Did change services activated")
         cartValue = count
         updateBadgeValue()
         print("Func Did change services activated")

@@ -124,38 +124,23 @@ class OrdersViewController: UIViewController {
         
     }
     
-    func loadCartItemsFromUserDefaults() {
-        if let data = UserDefaults.standard.data(forKey: "SavedServices") {
-            print("Data retrieved from UserDefaults: \(data)")
-            do {
-                selectedServices = try JSONDecoder().decode([Service].self, from: data)
-                print("userdefaults import in orders: \(selectedServices)")
-            } catch {
-                print("error decoding selectedServices: \(error)")
-            }
-        }
-    }
+   
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        print("checking userfefaults")
-        
-        
-        loadCartItemsFromUserDefaults()
+             
+        selectedServices = viewModel.loadCartItemsFromUserDefaults() as! [Service]
         
         view.addSubview(tableView)
         view.addSubview(summaryLabel)
         view.addSubview(orderButton)
         view.addSubview(noSelectedServices)
-
         
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CustomCellForOrders.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 80
-        
         tableView.reloadData()
     }
     
@@ -184,30 +169,14 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
-            // Delete element from datasource
             selectedServices.remove(at: indexPath.row)
-            // Usuń wiersz z tabeli
             tableView.deleteRows(at: [indexPath], with: .fade)
-         
-
-            // Saving new elements to UserDefaults
-            let encoder = JSONEncoder()
-            if let encoded = try? encoder.encode(selectedServices) {
-                let defaults = UserDefaults.standard
-                defaults.set(encoded, forKey: "SavedServices")
-            }
+            viewModel.saveNewServices(selectedServices)
         }
     }
-    
-    
-
-        
 }
-
 
 protocol OrdersViewControllerDelegate: AnyObject {
     func didChangeServices(_ count: Int)
