@@ -130,10 +130,9 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Konieczne dla funkcji textFieldShouldReturn (zamkniecia klawiatury)
         phoneField.delegate = self
         view.backgroundColor = .systemBackground
-        
+        self.hideKeyboardWhenTappedAround()
         orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         
         title = "Adres odbioru"
@@ -158,8 +157,7 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     }
     @objc private func orderButtonTapped() {
         let vc = FinalSummaryViewController()
-        
-        //Przypisanie wartości z pól tekstowych
+
         vc.city = cityField.text ?? ""
         vc.postalCode = postalCodeField.text ?? ""
         vc.houseNumber = houseNumberField.text ?? ""
@@ -167,12 +165,10 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
                 
         
         vc.hidesBottomBarWhenPushed = true
-        vc.selectedServices = self.selectedServices  //Przekazanie danych
+        vc.selectedServices = self.selectedServices
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
-        
-
-    }
+   }
     
     /// Function used for hidden keyboards when user clicked "gotowe"
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -246,6 +242,17 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
 }
 
 
-
+extension SummaryOrderViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+        
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
 
 

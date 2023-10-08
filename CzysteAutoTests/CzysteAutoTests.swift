@@ -11,11 +11,13 @@ import XCTest
 
 final class CzysteAutoTests: XCTestCase {
     
-    var sut: OrdersViewController!
+    var sut: OrdersViewModel!
+    
+    var selectedServices: [Service] = []
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = OrdersViewController()
+        sut = OrdersViewModel()
     }
 
     override func tearDownWithError() throws {
@@ -31,10 +33,10 @@ final class CzysteAutoTests: XCTestCase {
 
 
         // when
-        sut.selectedServices = [testService1, testService2, testService3]
+        selectedServices = [testService1, testService2, testService3]
 
         // then
-        XCTAssertEqual(sut.summaryLabel.text, "Suma: 600 PLN")
+        XCTAssertEqual(sut.calculateTotalPrice(selectedServices), 600)
 
     }
 
