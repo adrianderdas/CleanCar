@@ -11,27 +11,41 @@ import FirebaseFirestore
 
 class OrdersViewController: UIViewController {
     
+    func setSummaryLabelPriceText(totalPrice: Int) {
+        summaryLabel.text = "Suma: \(totalPrice) PLN"
+    }
     static let shared = OrdersViewController()
     
+    private let viewModel = OrdersViewModel()
+
     weak var delegate: OrdersViewControllerDelegate?
     
-    public var selectedServices: [Service] = [] {
+    func setEmptyCart() {
+        noSelectedServices.isHidden = false
+        orderButton.isUserInteractionEnabled = false
+        orderButton.backgroundColor = .gray
+    }
+    
+    func setNoEmptyCart() {
+        noSelectedServices.isHidden = true
+        orderButton.isUserInteractionEnabled = true
+        orderButton.backgroundColor = .link
+    }
+    
+    private var selectedServices: [Service] = [] {
         didSet {
             print("selectedServices in OrdersViewController: \(selectedServices)")
             print("removed position")
             delegate?.didChangeServices(selectedServices.count)
             
-            let totalPrice = selectedServices.reduce(0) { $0 + $1.price}
+            let totalPrice = viewModel.calculateTotalPrice(selectedServices)
+             
+            setSummaryLabelPriceText(totalPrice: totalPrice)
             
-            summaryLabel.text = "Suma: \(totalPrice) PLN"
-            
-            if selectedServices.isEmpty {
-                noSelectedServices.isHidden = false
-                orderButton.isUserInteractionEnabled = false
-                
+            if viewModel.checkIsUserSelectedAnyoneService(selectedServices) {
+                setNoEmptyCart()
             } else {
-                noSelectedServices.isHidden = true
-                orderButton.isUserInteractionEnabled = true
+                setEmptyCart()
             }
         }
     }
@@ -42,7 +56,6 @@ class OrdersViewController: UIViewController {
         label.textAlignment = .center
         label.textColor = .gray
         label.font = .systemFont(ofSize: 21, weight: .medium)
-       
         return label
     }()
 
@@ -54,15 +67,12 @@ class OrdersViewController: UIViewController {
     
     let summaryLabel: UILabel = {
         let label = UILabel()
-
         return label
     }()
-
     
     private let orderButton: UIButton = {
         let button = UIButton()
         button.setTitle("Podsumowanie", for: .normal)
-        button.backgroundColor = .link
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
@@ -73,14 +83,14 @@ class OrdersViewController: UIViewController {
     @objc private func orderButtonTapped() {
         let vc = SummaryOrderViewController()
         vc.hidesBottomBarWhenPushed = true
-        vc.selectedServices = self.selectedServices
+        vc.selectedServices = self.selectedServices  //Delivery data
         vc.navigationItem.largeTitleDisplayMode = .never
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.clipsToBounds = true
         view.backgroundColor = .systemBackground
         
@@ -111,10 +121,16 @@ class OrdersViewController: UIViewController {
         
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         print("checking userfefaults")
+        
+        
+        
+        
         if let data = UserDefaults.standard.data(forKey: "SavedServices") {
             print("Data retrieved from UserDefaults: \(data)")
             do {
@@ -128,6 +144,9 @@ class OrdersViewController: UIViewController {
         print("orderscontroller: \(selectedServices)")
         
         view.addSubview(tableView)
+        
+        
+        
         view.addSubview(summaryLabel)
         view.addSubview(orderButton)
         view.addSubview(noSelectedServices)
@@ -141,6 +160,9 @@ class OrdersViewController: UIViewController {
         
         tableView.reloadData()
     }
+    
+
+    
 }
 
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
@@ -153,6 +175,8 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellForOrders
         
         let service = selectedServices[indexPath.row]
+        
+        print("services in let service: \(service)")
         
         cell.serviceImage.image = UIImage(named: service.image)
         cell.serviceName.text = service.name
@@ -180,35 +204,11 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
+    
+    
+
+        
 }
-
-class CustomCellForOrders: UITableViewCell {
-    let serviceImage = UIImageView()
-    let serviceName = UILabel()
-    let servicePrice = UILabel()
-
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print("CustomCellForOrders initialised")
-        addSubview(serviceImage)
-        addSubview(serviceName)
-        addSubview(servicePrice)
-        
-        serviceImage.frame = CGRect(x: 10, y: serviceImage.frame.height/2+10, width: 60, height: 60)
-        serviceImage.layer.cornerRadius = serviceImage.frame.width/2
-        serviceImage.layer.masksToBounds = true
-        serviceName.frame = CGRect(x: serviceImage.frame.width+20, y: serviceImage.frame.height/2 - 10, width: 180, height: 30)
-        servicePrice.frame = CGRect(x: serviceImage.width+220, y: serviceName.height+20, width: 80, height: 30)
-        
-        serviceImage.contentMode = .scaleAspectFit
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    }
 
 
 protocol OrdersViewControllerDelegate: AnyObject {

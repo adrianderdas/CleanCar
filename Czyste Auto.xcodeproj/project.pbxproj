@@ -19,6 +19,9 @@
 		A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055172A40F75700B69BD9 /* RegisterViewController.swift */; };
 		A217328E2A522025007209B7 /* CzysteAutoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217328D2A522025007209B7 /* CzysteAutoTests.swift */; };
 		A2A9F35E2A48EEAA00D210A6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A9F35D2A48EEAA00D210A6 /* Service.swift */; };
+		A2AD701E2AD2BE31008ADF02 /* ClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD701D2AD2BE31008ADF02 /* ClubViewModel.swift */; };
+		A2AD70212AD2BE91008ADF02 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD70202AD2BE91008ADF02 /* OrdersViewModel.swift */; };
+		A2AD70252AD2C044008ADF02 /* CustomCellForOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD70242AD2C044008ADF02 /* CustomCellForOrders.swift */; };
 		A2C990B12A72C42300514C75 /* CheckPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C990B02A72C42300514C75 /* CheckPhoneNumberViewController.swift */; };
 		A2D7952A2A1AD5600013FA3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795292A1AD5600013FA3B /* AppDelegate.swift */; };
 		A2D7952C2A1AD5600013FA3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7952B2A1AD5600013FA3B /* SceneDelegate.swift */; };
@@ -30,7 +33,6 @@
 		A2D795422A1AF99D0013FA3B /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795412A1AF99D0013FA3B /* ClubViewController.swift */; };
 		A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */; };
 		A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795492A1B01860013FA3B /* OrdersViewController.swift */; };
-		A2E050ED2A45C46D00462A81 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EC2A45C46D00462A81 /* BaseCell.swift */; };
 		A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */; };
 		A2E050F12A46156100462A81 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F02A46156100462A81 /* UserData.swift */; };
 		A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F22A46162000462A81 /* FirebaseService.swift */; };
@@ -76,6 +78,9 @@
 		A217328B2A522025007209B7 /* CzysteAutoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CzysteAutoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A217328D2A522025007209B7 /* CzysteAutoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoTests.swift; sourceTree = "<group>"; };
 		A2A9F35D2A48EEAA00D210A6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		A2AD701D2AD2BE31008ADF02 /* ClubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewModel.swift; sourceTree = "<group>"; };
+		A2AD70202AD2BE91008ADF02 /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
+		A2AD70242AD2C044008ADF02 /* CustomCellForOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellForOrders.swift; sourceTree = "<group>"; };
 		A2C990B02A72C42300514C75 /* CheckPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		A2D795262A1AD5600013FA3B /* Czyste Auto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Czyste Auto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2D795292A1AD5600013FA3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +94,6 @@
 		A2D795412A1AF99D0013FA3B /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
 		A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanCarViewController.swift; sourceTree = "<group>"; };
 		A2D795492A1B01860013FA3B /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
-		A2E050EC2A45C46D00462A81 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryViewController.swift; sourceTree = "<group>"; };
 		A2E050F02A46156100462A81 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A2E050F22A46162000462A81 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
@@ -182,13 +186,11 @@
 		A2431B7D2A201A1000FF807E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A2AD701B2AD2BDF1008ADF02 /* Club */,
 				A2FE12A02AD17C6800134CF3 /* ServicesList */,
 				A21055142A40F72000B69BD9 /* Login */,
-				A2D795412A1AF99D0013FA3B /* ClubViewController.swift */,
 				A2AFFD372A45B553009A0811 /* Summary */,
 				A2428DEE2A2A13E200E6D000 /* Profile */,
-				A20266A82A2BF84C00445C87 /* ServicesViewController.swift */,
-				A2E050EC2A45C46D00462A81 /* BaseCell.swift */,
 				A2D7953D2A1AD9220013FA3B /* TabBarController.swift */,
 				A21055092A40DC6500B69BD9 /* ZeroViewController.swift */,
 				A2431B802A201AA700FF807E /* Storyboards */,
@@ -218,12 +220,45 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		A2AD701A2AD2BD4E008ADF02 /* ServicesList */ = {
+			isa = PBXGroup;
+			children = (
+				A2E067CE2AC033FB0026544C /* CleanCarViewModel.swift */,
+			);
+			path = ServicesList;
+			sourceTree = "<group>";
+		};
+		A2AD701B2AD2BDF1008ADF02 /* Club */ = {
+			isa = PBXGroup;
+			children = (
+				A2D795412A1AF99D0013FA3B /* ClubViewController.swift */,
+			);
+			path = Club;
+			sourceTree = "<group>";
+		};
+		A2AD701C2AD2BE1D008ADF02 /* Club */ = {
+			isa = PBXGroup;
+			children = (
+				A2AD701D2AD2BE31008ADF02 /* ClubViewModel.swift */,
+			);
+			path = Club;
+			sourceTree = "<group>";
+		};
+		A2AD701F2AD2BE81008ADF02 /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				A2AD70202AD2BE91008ADF02 /* OrdersViewModel.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
 		A2AFFD372A45B553009A0811 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
 				A2D795492A1B01860013FA3B /* OrdersViewController.swift */,
 				A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */,
 				A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */,
+				A2AD70242AD2C044008ADF02 /* CustomCellForOrders.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -264,8 +299,10 @@
 		A2E3CAB52ABAF9D400898A64 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A2AD701F2AD2BE81008ADF02 /* Summary */,
+				A2AD701C2AD2BE1D008ADF02 /* Club */,
+				A2AD701A2AD2BD4E008ADF02 /* ServicesList */,
 				A2E3CAB82ABF214400898A64 /* Login */,
-				A2E067CE2AC033FB0026544C /* CleanCarViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -303,6 +340,7 @@
 			children = (
 				A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */,
 				A2FE12A12AD17C8100134CF3 /* CustomCell.swift */,
+				A20266A82A2BF84C00445C87 /* ServicesViewController.swift */,
 			);
 			path = ServicesList;
 			sourceTree = "<group>";
@@ -493,11 +531,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2AD701E2AD2BE31008ADF02 /* ClubViewModel.swift in Sources */,
 				A2F88A142A1BC9A5008674AD /* ProfileViewController.swift in Sources */,
 				A2D7953E2A1AD9220013FA3B /* TabBarController.swift in Sources */,
 				A2E067CF2AC033FB0026544C /* CleanCarViewModel.swift in Sources */,
+				A2AD70212AD2BE91008ADF02 /* OrdersViewModel.swift in Sources */,
 				A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */,
 				A2C990B12A72C42300514C75 /* CheckPhoneNumberViewController.swift in Sources */,
+				A2AD70252AD2C044008ADF02 /* CustomCellForOrders.swift in Sources */,
 				A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */,
 				A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */,
 				A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */,
@@ -513,7 +554,6 @@
 				A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */,
 				A2E050F12A46156100462A81 /* UserData.swift in Sources */,
 				A21055162A40F73F00B69BD9 /* LoginViewController.swift in Sources */,
-				A2E050ED2A45C46D00462A81 /* BaseCell.swift in Sources */,
 				A2D7952C2A1AD5600013FA3B /* SceneDelegate.swift in Sources */,
 				A2FE12A22AD17C8100134CF3 /* CustomCell.swift in Sources */,
 				A2E3CAB72ABB0A9900898A64 /* LoginViewModel.swift in Sources */,
