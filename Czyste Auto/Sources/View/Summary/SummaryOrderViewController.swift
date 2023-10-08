@@ -155,20 +155,27 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         scrollView.isUserInteractionEnabled = true
         
     }
+    
+    
     @objc private func orderButtonTapped() {
         let vc = FinalSummaryViewController()
-
+        passDataToFinalSummaryVC(vc: vc)
+        openFinalSummaryVC(vc: vc)
+   }
+    
+    func passDataToFinalSummaryVC(vc: FinalSummaryViewController) {
         vc.city = cityField.text ?? ""
         vc.postalCode = postalCodeField.text ?? ""
         vc.houseNumber = houseNumberField.text ?? ""
         vc.phone = phoneField.text ?? ""
-                
-        
-        vc.hidesBottomBarWhenPushed = true
         vc.selectedServices = self.selectedServices
+    }
+    
+    func openFinalSummaryVC(vc: FinalSummaryViewController) {
+        vc.hidesBottomBarWhenPushed = true
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
-   }
+    }
     
     /// Function used for hidden keyboards when user clicked "gotowe"
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

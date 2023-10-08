@@ -7,11 +7,14 @@
 
 import UIKit
 import FirebaseFirestore
-//import JGProgressHUD
 
 class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    //private let spinner = JGProgressHUD(style: .dark)
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        return indicator
+    }()
     
     public var selectedServices: [Service] = []
     
@@ -60,6 +63,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         print("selected Services in SummaryOrderViewController: \(selectedServices)")
         
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -84,7 +89,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(tableView)
         view.addSubview(orderButton)
         view.addSubview(summaryLabel)
-        
+        activityIndicator.center = view.center
+        view.addSubview(activityIndicator)
         
         tableView.dataSource = self
        
@@ -193,9 +199,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                 
         let db = Firestore.firestore()
         
-       
+        activityIndicator.startAnimating()
         
-        //spinner.show(in: view)
         let servicesData = selectedServices.map {
             ["name": $0.name, "price": $0.price]
         }
@@ -235,7 +240,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                
                                 
                 DispatchQueue.main.async {
-                    //self.spinner.dismiss()
+                    self.activityIndicator.stopAnimating()
 
                 }
                 
@@ -259,15 +264,9 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                           DispatchQueue.main.async {
                               self.present(alertController, animated: true, completion:nil)
                           }
-                
-                
             }
         }
-        
-        
-
     }
-    
 }
 
 
