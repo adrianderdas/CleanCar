@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import FirebaseFirestore
 
 class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    private let viewModel = FinalSummaryViewModel()
     
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
@@ -25,7 +25,6 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     var houseNumber: String = ""
     var phone: String = ""
     
-    var userID = FirebaseService.shared.getuserId()
 
     private let summaryLabel: UILabel = {
         let label = UILabel()
@@ -52,10 +51,6 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         return table
     }()
     
-  
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,7 +58,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         print("selected Services in SummaryOrderViewController: \(selectedServices)")
         
-        
+        viewModel.delegate = self
         
     }
     
@@ -80,8 +75,6 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         summaryLabel.frame = CGRect(x: view.width*2/3, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
         
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -120,7 +113,6 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
             label.text = "Zamówienia"
             return header
             
-            
         } else {
             // User delivery data
                 let imageView = UIImageView(image: UIImage(systemName: "person"))
@@ -135,12 +127,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
                 header.addSubview(label)
                 label.text = "Twoje dane"
                 return header
-            
-
         }
-
-      
-                
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -196,77 +183,42 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     
     @objc private func orderButtonTapped() {
         
-                
-        let db = Firestore.firestore()
-        
         activityIndicator.startAnimating()
         
-        let servicesData = selectedServices.map {
-            ["name": $0.name, "price": $0.price]
-        }
-        
-   
-        let adressData: [String: Any] = [
-            "city": city,
-            "postalCode": postalCode,
-            "houseNumber": houseNumber,
-            "phoneNumber": phone
-        ]
-        
-      
-        // Add a new document with a generated ID
-        var ref: DocumentReference? = nil
-        ref = db.collection("orders").addDocument(data: [
-            "user": userID,
-            "orders": servicesData,
-            "totalPrice": totalPrice,
-            "adress": adressData,
-            "is_realized": false
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                var orderID = ref!.documentID
-                
-                db.collection("users").document(self.userID ?? "123").updateData([
-                    "orders": FieldValue.arrayUnion([orderID])
-                ]) { err in
-                    if let err = err {
-                        print("Error in adding order to userID: \(err)")
-                    } else {
-                        print("Succefully added order to userID")
-                    }
-                }
-               
-                                
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-
-                }
-                
-                
-                
-                print("Document added with ID: \(ref!.documentID)")
-                
-                let alertController = UIAlertController(title: "Twoje zamówienie zostało przyjęte do realizacji", message: nil, preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "Powrót do koszyka", style: .default) { (action:UIAlertAction!) in
-                    self.navigationController?.popToRootViewController(animated: true)
-                    //self.navigationController?.popToRootViewController(animated: true)
-                    
-                    //kasowanie koszyka
-                    CleanCarViewModel().selectedServices = []
-
-
-                }
-                alertController.addAction(okAction)
-                          
-                          DispatchQueue.main.async {
-                              self.present(alertController, animated: true, completion:nil)
-                          }
-            }
-        }
+        viewModel.uploadOrderToFirebase(selectedServices: selectedServices, city: city, postalCode: postalCode, houseNumber: houseNumber, phone: phone, totalPrice: totalPrice)
     }
+}
+
+extension FinalSummaryViewController: FinalSummaryViewModelDelegate{
+    
+    func didUploadOrderSuccess() {
+        self.activityIndicator.stopAnimating()
+        
+        let alertController = UIAlertController(title: "Twoje zamówienie zostało przyjęte do realizacji", message: nil, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Powrót do koszyka", style: .default) { (action:UIAlertAction!) in
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
+        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+        
+    }
+    
+    func didFailInUploadOrder(_ error: Error) {
+        let alertController = UIAlertController(title: "Wystąpił błąd podczas przesyłania zamówienia. Jeżeli problem się powtarza skontaktuj się z administratorem", message: nil, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Powrót do koszyka", style: .default) { (action:UIAlertAction!) in
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        
+        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true, completion:nil)
+    }
+
+    
 }
 
 
