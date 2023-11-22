@@ -12,6 +12,7 @@ class CustomCell: UITableViewCell {
     let serviceImage = UIImageView()
     let serviceName = UILabel()
     let servicePrice = UILabel()
+    let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     
     let cartButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -38,6 +39,7 @@ class CustomCell: UITableViewCell {
     }
     
     @objc private func didTapShoppingBasket() {
+        feedbackGenerator.impactOccurred()
         guard let tableView = superview as? UITableView,
               let indexPath = tableView.indexPath(for: self),
               let cleanCarViewController = tableView.delegate as? CleanCarViewController

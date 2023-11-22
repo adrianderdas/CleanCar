@@ -44,6 +44,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         return button
     }()
     
+    let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    
     private var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.allowsSelection = false
@@ -53,7 +55,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "Sprawdź dane"
         orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         print("selected Services in SummaryOrderViewController: \(selectedServices)")
@@ -185,6 +187,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         
         activityIndicator.startAnimating()
         
+        //feedbackGenerator.impactOccurred()
+        
         viewModel.uploadOrderToFirebase(selectedServices: selectedServices, city: city, postalCode: postalCode, houseNumber: houseNumber, phone: phone, totalPrice: totalPrice)
     }
 }
@@ -213,12 +217,13 @@ extension FinalSummaryViewController: FinalSummaryViewModelDelegate{
             self.navigationController?.popToRootViewController(animated: true)
         }
         
+        
         alertController.addAction(okAction)
         
         self.present(alertController, animated: true, completion:nil)
     }
 
-    
+       
 }
 
 
