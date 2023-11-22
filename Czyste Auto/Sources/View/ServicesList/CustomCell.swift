@@ -12,7 +12,6 @@ class CustomCell: UITableViewCell {
     let serviceImage = UIImageView()
     let serviceName = UILabel()
     let servicePrice = UILabel()
-    let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     
     let cartButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -39,7 +38,6 @@ class CustomCell: UITableViewCell {
     }
     
     @objc private func didTapShoppingBasket() {
-        feedbackGenerator.impactOccurred()
         guard let tableView = superview as? UITableView,
               let indexPath = tableView.indexPath(for: self),
               let cleanCarViewController = tableView.delegate as? CleanCarViewController
@@ -57,10 +55,13 @@ class CustomCell: UITableViewCell {
         let result = viewModel.selectedServices.insert(serviceToInsert)
         
         if result.inserted == false {
+            VibrationManager.Vibration.error.vibrate()
             let alert = UIAlertController(title: "Uuupss", message: "Nie możesz dwukrotnie dodać tego do koszyka", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Rozumiem", style: .default, handler: nil))
             cleanCarViewController.present(alert, animated: true)
         } else {
+            VibrationManager.Vibration.light.vibrate()
+
             cleanCarViewController.delegate?.didChangeServices(viewModel.selectedServices.count)
         }
         
