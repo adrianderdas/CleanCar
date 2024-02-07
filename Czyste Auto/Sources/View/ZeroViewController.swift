@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class ZeroViewController: UIViewController {
+    private let viewModel = ZeroViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -20,17 +19,23 @@ class ZeroViewController: UIViewController {
     }
 
     func validateAuth() {
-        if FirebaseAuth.Auth.auth().currentUser == nil {
-            let vc = LoginViewController()
-            let nav = UINavigationController(rootViewController: vc)
-            nav.modalPresentationStyle = .fullScreen
-            present(nav, animated: false)
-            print("User no logged in")
-        }
-        else {
-            performSegue(withIdentifier: "run", sender: nil)
-            print("User logged in")
+        if viewModel.isUserLogIn() {
+            runDashboard()
+        } else {
+            runLoginVC()
         }
     }
-
+        
+    func runDashboard() {
+        performSegue(withIdentifier: "run", sender: nil)
+        print("User logged in")
+    }
+    
+    func runLoginVC() {
+        let vc = LoginViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: false)
+        print("User no logged in")
+    }
 }
