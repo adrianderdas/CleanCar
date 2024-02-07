@@ -1,1 +1,8 @@
 Pods/
+
+# OS X specific files
+.DS_Store
+
+# Xcode specific files
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
