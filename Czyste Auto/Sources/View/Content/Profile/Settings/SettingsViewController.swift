@@ -74,16 +74,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                 print ("Error signing out")
             }
         }))
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+                
         actionSheet.addAction(UIAlertAction(title: "Anuluj", style: .cancel, handler: nil))
         
         self.present(actionSheet, animated: true)
@@ -112,7 +103,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let buttonHeight: CGFloat = 50
     
        
-        tableView.frame = CGRect(x: 10, y: 0, width: view.width-20, height: view.height)
+        tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height)
         
         logOutButton.frame = CGRect(x: 0, y: tableView.bottom+buttonHeight+60, width: tableView.frame.width, height: buttonHeight)
     }

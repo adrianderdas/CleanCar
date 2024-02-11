@@ -19,7 +19,6 @@
 		A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055172A40F75700B69BD9 /* RegisterViewController.swift */; };
 		A217328E2A522025007209B7 /* CzysteAutoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217328D2A522025007209B7 /* CzysteAutoTests.swift */; };
 		A26C04072B0EA71600BDE2D0 /* VibrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26C04062B0EA71600BDE2D0 /* VibrationManager.swift */; };
-		A27143112AF2DB6100A5E049 /* SwiftUIClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27143102AF2DB6100A5E049 /* SwiftUIClubView.swift */; };
 		A2A9F35E2A48EEAA00D210A6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A9F35D2A48EEAA00D210A6 /* Service.swift */; };
 		A2AD701E2AD2BE31008ADF02 /* ClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD701D2AD2BE31008ADF02 /* ClubViewModel.swift */; };
 		A2AD70212AD2BE91008ADF02 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD70202AD2BE91008ADF02 /* OrdersViewModel.swift */; };
@@ -33,7 +32,6 @@
 		A2D795362A1AD5630013FA3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D795342A1AD5630013FA3B /* LaunchScreen.storyboard */; };
 		A2D7953E2A1AD9220013FA3B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7953D2A1AD9220013FA3B /* TabBarController.swift */; };
 		A2D795402A1AED650013FA3B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7953F2A1AED650013FA3B /* SettingsViewController.swift */; };
-		A2D795422A1AF99D0013FA3B /* SwiftUIClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795412A1AF99D0013FA3B /* SwiftUIClubViewController.swift */; };
 		A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */; };
 		A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795492A1B01860013FA3B /* OrdersViewController.swift */; };
 		A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */; };
@@ -43,6 +41,7 @@
 		A2E3CAB72ABB0A9900898A64 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E3CAB62ABB0A9900898A64 /* LoginViewModel.swift */; };
 		A2E3CABA2ABF2B7200898A64 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E3CAB92ABF2B7200898A64 /* RegisterViewModel.swift */; };
 		A2E58BAE2B74084400BD2D4F /* ZeroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E58BAD2B74084400BD2D4F /* ZeroViewModel.swift */; };
+		A2E58BB52B74106C00BD2D4F /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E58BB42B74106C00BD2D4F /* ClubViewController.swift */; };
 		A2F5B48D2AB0F9AE00E200BF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A2F5B48C2AB0F9AE00E200BF /* FirebaseFirestore */; };
 		A2F5B48F2AB0F9C500E200BF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A2F5B48E2AB0F9C500E200BF /* FirebaseAuth */; };
 		A2F7C86D2AB2499C00BC7F3D /* CzysteAutoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7C86C2AB2499C00BC7F3D /* CzysteAutoUITests.swift */; };
@@ -82,7 +81,6 @@
 		A217328B2A522025007209B7 /* CzysteAutoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CzysteAutoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A217328D2A522025007209B7 /* CzysteAutoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoTests.swift; sourceTree = "<group>"; };
 		A26C04062B0EA71600BDE2D0 /* VibrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationManager.swift; sourceTree = "<group>"; };
-		A27143102AF2DB6100A5E049 /* SwiftUIClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIClubView.swift; sourceTree = "<group>"; };
 		A2A9F35D2A48EEAA00D210A6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A2AD701D2AD2BE31008ADF02 /* ClubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewModel.swift; sourceTree = "<group>"; };
 		A2AD70202AD2BE91008ADF02 /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewModel.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 		A2D795372A1AD5630013FA3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2D7953D2A1AD9220013FA3B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A2D7953F2A1AED650013FA3B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		A2D795412A1AF99D0013FA3B /* SwiftUIClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIClubViewController.swift; sourceTree = "<group>"; };
 		A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanCarViewController.swift; sourceTree = "<group>"; };
 		A2D795492A1B01860013FA3B /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +105,7 @@
 		A2E3CAB62ABB0A9900898A64 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A2E3CAB92ABF2B7200898A64 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		A2E58BAD2B74084400BD2D4F /* ZeroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroViewModel.swift; sourceTree = "<group>"; };
+		A2E58BB42B74106C00BD2D4F /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
 		A2F7C86A2AB2499C00BC7F3D /* CzysteAutoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CzysteAutoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F7C86C2AB2499C00BC7F3D /* CzysteAutoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoUITests.swift; sourceTree = "<group>"; };
 		A2F7C86E2AB2499C00BC7F3D /* CzysteAutoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -178,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				A2F88A132A1BC9A5008674AD /* ProfileViewController.swift */,
-				A2D7953F2A1AED650013FA3B /* SettingsViewController.swift */,
+				A2E58BB32B740FF100BD2D4F /* Settings */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -194,14 +192,10 @@
 		A2431B7D2A201A1000FF807E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A2AD701B2AD2BDF1008ADF02 /* Club */,
-				A2FE12A02AD17C6800134CF3 /* ServicesList */,
-				A21055142A40F72000B69BD9 /* Login */,
-				A2AFFD372A45B553009A0811 /* Summary */,
-				A2428DEE2A2A13E200E6D000 /* Profile */,
-				A2D7953D2A1AD9220013FA3B /* TabBarController.swift */,
-				A21055092A40DC6500B69BD9 /* ZeroViewController.swift */,
 				A2431B802A201AA700FF807E /* Storyboards */,
+				A2E58BAF2B740EF700BD2D4F /* Zero */,
+				A21055142A40F72000B69BD9 /* Login */,
+				A2E58BB12B740F2B00BD2D4F /* Content */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -240,8 +234,7 @@
 		A2AD701B2AD2BDF1008ADF02 /* Club */ = {
 			isa = PBXGroup;
 			children = (
-				A2D795412A1AF99D0013FA3B /* SwiftUIClubViewController.swift */,
-				A27143102AF2DB6100A5E049 /* SwiftUIClubView.swift */,
+				A2E58BB42B74106C00BD2D4F /* ClubViewController.swift */,
 			);
 			path = Club;
 			sourceTree = "<group>";
@@ -254,16 +247,16 @@
 			path = Club;
 			sourceTree = "<group>";
 		};
-		A2AD701F2AD2BE81008ADF02 /* Summary */ = {
+		A2AD701F2AD2BE81008ADF02 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
 				A2AD70202AD2BE91008ADF02 /* OrdersViewModel.swift */,
 				A2AD70272AD30EAB008ADF02 /* FinalSummaryViewModel.swift */,
 			);
-			path = Summary;
+			path = Cart;
 			sourceTree = "<group>";
 		};
-		A2AFFD372A45B553009A0811 /* Summary */ = {
+		A2AFFD372A45B553009A0811 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
 				A2D795492A1B01860013FA3B /* OrdersViewController.swift */,
@@ -271,7 +264,7 @@
 				A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */,
 				A2AD70242AD2C044008ADF02 /* CustomCellForOrders.swift */,
 			);
-			path = Summary;
+			path = Cart;
 			sourceTree = "<group>";
 		};
 		A2D7951D2A1AD5600013FA3B = {
@@ -310,11 +303,9 @@
 		A2E3CAB52ABAF9D400898A64 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A2AD701C2AD2BE1D008ADF02 /* Club */,
-				A2AD701A2AD2BD4E008ADF02 /* ServicesList */,
+				A2E58BB02B740F0500BD2D4F /* Zero */,
 				A2E3CAB82ABF214400898A64 /* Login */,
-				A2AD701F2AD2BE81008ADF02 /* Summary */,
-				A2E4E1A82AF1896E009DD7F6 /* Profile */,
+				A2E58BB22B740F6300BD2D4F /* Content */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -331,9 +322,55 @@
 		A2E4E1A82AF1896E009DD7F6 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				A2E58BAD2B74084400BD2D4F /* ZeroViewModel.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		A2E58BAF2B740EF700BD2D4F /* Zero */ = {
+			isa = PBXGroup;
+			children = (
+				A21055092A40DC6500B69BD9 /* ZeroViewController.swift */,
+			);
+			path = Zero;
+			sourceTree = "<group>";
+		};
+		A2E58BB02B740F0500BD2D4F /* Zero */ = {
+			isa = PBXGroup;
+			children = (
+				A2E58BAD2B74084400BD2D4F /* ZeroViewModel.swift */,
+			);
+			path = Zero;
+			sourceTree = "<group>";
+		};
+		A2E58BB12B740F2B00BD2D4F /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				A2D7953D2A1AD9220013FA3B /* TabBarController.swift */,
+				A2FE12A02AD17C6800134CF3 /* ServicesList */,
+				A2AFFD372A45B553009A0811 /* Cart */,
+				A2AD701B2AD2BDF1008ADF02 /* Club */,
+				A2428DEE2A2A13E200E6D000 /* Profile */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		A2E58BB22B740F6300BD2D4F /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				A2AD701A2AD2BD4E008ADF02 /* ServicesList */,
+				A2AD701F2AD2BE81008ADF02 /* Cart */,
+				A2AD701C2AD2BE1D008ADF02 /* Club */,
+				A2E4E1A82AF1896E009DD7F6 /* Profile */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		A2E58BB32B740FF100BD2D4F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A2D7953F2A1AED650013FA3B /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A2F7C86B2AB2499C00BC7F3D /* CzysteAutoUITests */ = {
@@ -565,15 +602,14 @@
 				A26C04072B0EA71600BDE2D0 /* VibrationManager.swift in Sources */,
 				A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */,
 				A21055082A40D75D00B69BD9 /* SummaryOrderViewController.swift in Sources */,
-				A2D795422A1AF99D0013FA3B /* SwiftUIClubViewController.swift in Sources */,
 				A2D7952A2A1AD5600013FA3B /* AppDelegate.swift in Sources */,
 				A2E58BAE2B74084400BD2D4F /* ZeroViewModel.swift in Sources */,
+				A2E58BB52B74106C00BD2D4F /* ClubViewController.swift in Sources */,
 				A2D795402A1AED650013FA3B /* SettingsViewController.swift in Sources */,
 				A2A9F35E2A48EEAA00D210A6 /* Service.swift in Sources */,
 				A2F88A162A1BF030008674AD /* Extensions.swift in Sources */,
 				A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */,
 				A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */,
-				A27143112AF2DB6100A5E049 /* SwiftUIClubView.swift in Sources */,
 				A2E3CABA2ABF2B7200898A64 /* RegisterViewModel.swift in Sources */,
 				A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */,
 				A2E050F12A46156100462A81 /* UserData.swift in Sources */,

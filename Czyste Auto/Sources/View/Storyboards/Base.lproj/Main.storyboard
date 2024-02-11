@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="3883" y="1748"/>
         </scene>
-        <!--SwiftUI Club View Controller-->
+        <!--Club View Controller-->
         <scene sceneID="zB4-O0-c3F">
             <objects>
-                <viewController id="dn0-60-KnB" customClass="SwiftUIClubViewController" customModule="Czyste_Auto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dn0-60-KnB" customClass="ClubViewController" customModule="Czyste_Auto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D4H-Mw-uy1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
