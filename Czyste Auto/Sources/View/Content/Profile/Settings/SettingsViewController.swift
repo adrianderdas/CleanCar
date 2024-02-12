@@ -6,17 +6,20 @@ import FirebaseAuth
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
  //   private let spinner = JGProgressHUD(style: .dark)
-    
-    var city: String = FirebaseService.shared.firebaseCity ?? "Brak danych"
-    var postalCode: String = FirebaseService.shared.firebasePostalCode ?? "Brak danych"
-    var houseNumber: String = FirebaseService.shared.firebaseHouseNumber ?? "Brak danych"
-    
+    var userID = FirebaseService.shared.getuserId()
     
     var firstName: String = FirebaseService.shared.firebaseFirstName ?? "Brak danych"
     var lastName: String = FirebaseService.shared.firebaseLastName ?? "Brak danych"
     var phone: String = FirebaseService.shared.firebasePhone ?? "Brak danych"
+    var email: String = FirebaseService.shared.firebaseEmail ?? "Brak danych"
     
-    var userID = FirebaseService.shared.getuserId()
+   
+    
+    var city: String = FirebaseService.shared.firebaseCity ?? "Brak danych"
+    var postalCode: String = FirebaseService.shared.firebasePostalCode ?? "Brak danych"
+    var houseNumber: String = FirebaseService.shared.firebaseHouseNumber ?? "Brak danych"
+
+   
     
     
     private let logOutButton: UIButton = {
@@ -181,9 +184,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 3
-        } else {
             return 4
+        } else {
+            return 3
         }
     }
     
@@ -201,6 +204,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             case 2:
                 cell.textLabel?.text = "Numer telefonu"
                 cell.detailTextLabel?.text = phone
+            case 3:
+                cell.textLabel?.text = "E-mail"
+                cell.detailTextLabel?.text = email
         
             default:
                 break
@@ -221,9 +227,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             case 2:
                 cell.textLabel?.text = "Numer domu"
                 cell.detailTextLabel?.text = houseNumber
-            case 3:
-                cell.textLabel?.text = "Telefon"
-                cell.detailTextLabel?.text = phone
             default:
                 break
             }
