@@ -18,6 +18,7 @@
 		A21055162A40F73F00B69BD9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055152A40F73F00B69BD9 /* LoginViewController.swift */; };
 		A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055172A40F75700B69BD9 /* RegisterViewController.swift */; };
 		A217328E2A522025007209B7 /* CzysteAutoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A217328D2A522025007209B7 /* CzysteAutoTests.swift */; };
+		A25894062B790629004F89B7 /* FactoriesClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25894052B790629004F89B7 /* FactoriesClubViewController.swift */; };
 		A26C04072B0EA71600BDE2D0 /* VibrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26C04062B0EA71600BDE2D0 /* VibrationManager.swift */; };
 		A2A9F35E2A48EEAA00D210A6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A9F35D2A48EEAA00D210A6 /* Service.swift */; };
 		A2AD701E2AD2BE31008ADF02 /* ClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD701D2AD2BE31008ADF02 /* ClubViewModel.swift */; };
@@ -80,6 +81,7 @@
 		A21055172A40F75700B69BD9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		A217328B2A522025007209B7 /* CzysteAutoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CzysteAutoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A217328D2A522025007209B7 /* CzysteAutoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CzysteAutoTests.swift; sourceTree = "<group>"; };
+		A25894052B790629004F89B7 /* FactoriesClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoriesClubViewController.swift; sourceTree = "<group>"; };
 		A26C04062B0EA71600BDE2D0 /* VibrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationManager.swift; sourceTree = "<group>"; };
 		A2A9F35D2A48EEAA00D210A6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A2AD701D2AD2BE31008ADF02 /* ClubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewModel.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				A2E58BB42B74106C00BD2D4F /* ClubViewController.swift */,
+				A25894052B790629004F89B7 /* FactoriesClubViewController.swift */,
 			);
 			path = Club;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */,
 				A2C990B12A72C42300514C75 /* CheckPhoneNumberViewController.swift in Sources */,
 				A2AD70252AD2C044008ADF02 /* CustomCellForOrders.swift in Sources */,
+				A25894062B790629004F89B7 /* FactoriesClubViewController.swift in Sources */,
 				A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */,
 				A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */,
 				A26C04072B0EA71600BDE2D0 /* VibrationManager.swift in Sources */,
