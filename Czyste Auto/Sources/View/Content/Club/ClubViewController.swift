@@ -24,8 +24,6 @@ class ClubViewController: UIViewController {
     private let firstHalfPointsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-               
-
         view.layer.cornerRadius = 8
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.layer.masksToBounds = true
@@ -36,29 +34,13 @@ class ClubViewController: UIViewController {
     private let secondHalfPointsView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .brown
-
-        
-//        view.layer.borderWidth = 2
-//        view.layer.borderColor = UIColor.systemRed.cgColor
-        
-           view.layer.cornerRadius = 8
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 8
         view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
         return view
     }()
-    
-    private let pointsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Twoje punkty w klubie"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 12)
         
-        return label
-        
-    }()
-    
     private let pointsAmount: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -67,48 +49,56 @@ class ClubViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 32)
         
         return label
-        
     }()
     
     private let pointsLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
     
-        
         guard let systemImage = UIImage(systemName: "car.fill") else {
-            fatalError("Expected the car system image to be available")
+            fatalError("Expected the system image to be available")
         }
-        imageView.image = systemImage.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
         
+        imageView.image = systemImage.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
         imageView.contentMode = .scaleAspectFit
         
         return imageView
     }()
     
  
+    private let rightArrowInFirstHalfPointsView: UIImageView = {
+        let arrow = UIImageView()
+        arrow.translatesAutoresizingMaskIntoConstraints = false
+        
+        guard let systemImage = UIImage(systemName: "chevron.right") else {
+            fatalError("Expected the system image to be available")
+        }
+        
+        arrow.image = systemImage.withTintColor(UIColor.white, renderingMode: .alwaysOriginal)
+        arrow.contentMode = .scaleAspectFit
+        
+        return arrow
+    }()
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = .systemGreen
+        view.backgroundColor = UIColor(red: 244/255.0, green: 245/255.0, blue: 253/255.0, alpha: 1.0)
+
         title = "Twoje punkty"
         navigationController?.navigationBar.prefersLargeTitles = true
      
         setUpViews()
-     
-
     }
     
     private func setUpViews() {
         
-  
-        
-        
         let agreeLabel = Factory.makeLabel(withText: "Powiadomienia o promocjach", withFontSize: 17)
         
         let agreeSubLabel = Factory.makeSubLabel(withText: "Jeżeli zaznaczysz zgodę to na Twoje urządzenia przesyłane będą powiadomienia na temat nowych promocji, w których możesz wykorzystać zebrane punkty.")
+        
+        let leftLabelInFirstHalfPointsView = Factory.makeLabelInFirstHalfPointsView(withText: "Twoje punkty w klubie")
+        
+        let rightLabelInFirstHalfPointsView = Factory.makeLabelInFirstHalfPointsView(withText: "Mnożnik: x1")
         
         view.addSubview(agreeLabel)
         view.addSubview(agreeSwitch)
@@ -118,8 +108,13 @@ class ClubViewController: UIViewController {
         view.addSubview(secondHalfPointsView)
         
         view.addSubview(pointsLogo)
-        view.addSubview(pointsLabel)
+        view.addSubview(leftLabelInFirstHalfPointsView)
+        view.addSubview(rightLabelInFirstHalfPointsView)
+        view.addSubview(rightArrowInFirstHalfPointsView)
+
         view.addSubview(pointsAmount)
+        
+        
         
         NSLayoutConstraint.activate([
             agreeLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
@@ -148,12 +143,20 @@ class ClubViewController: UIViewController {
             pointsLogo.widthAnchor.constraint(equalToConstant: 20),
             pointsLogo.topAnchor.constraint(equalTo: firstHalfPointsView.topAnchor, constant: 15),
             
-            pointsLabel.leadingAnchor.constraint(equalTo: pointsLogo.trailingAnchor, constant: 10),
-            pointsLabel.trailingAnchor.constraint(equalTo: firstHalfPointsView.trailingAnchor, constant: -10),
-            pointsLabel.centerYAnchor.constraint(equalTo: pointsLogo.centerYAnchor),
+            leftLabelInFirstHalfPointsView.leadingAnchor.constraint(equalTo: pointsLogo.trailingAnchor, constant: 10),
+            leftLabelInFirstHalfPointsView.trailingAnchor.constraint(equalTo: firstHalfPointsView.trailingAnchor, constant: -10),
+            leftLabelInFirstHalfPointsView.centerYAnchor.constraint(equalTo: pointsLogo.centerYAnchor),
+            
+            rightLabelInFirstHalfPointsView.trailingAnchor.constraint(equalTo: firstHalfPointsView.trailingAnchor, constant: -15),
+            rightLabelInFirstHalfPointsView.centerYAnchor.constraint(equalTo: leftLabelInFirstHalfPointsView.centerYAnchor),
             
             pointsAmount.topAnchor.constraint(equalTo: pointsLogo.bottomAnchor, constant: 10),
             pointsAmount.leadingAnchor.constraint(equalTo: pointsLogo.leadingAnchor),
+            
+            rightArrowInFirstHalfPointsView.centerYAnchor.constraint(equalTo: pointsAmount.centerYAnchor),
+            rightArrowInFirstHalfPointsView.trailingAnchor.constraint(equalTo: rightLabelInFirstHalfPointsView.trailingAnchor, constant: -2),
+            rightArrowInFirstHalfPointsView.heightAnchor.constraint(equalToConstant: 15)
+           
             
         ])
         

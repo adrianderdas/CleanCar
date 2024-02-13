@@ -29,6 +29,15 @@ class FactoriesClubViewController {
         return label
     }
     
+    func makeLabelInFirstHalfPointsView(withText text: String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 1
+        label.text = text
+        label.textColor = .white
+        return label
+    }
     
     
 }
