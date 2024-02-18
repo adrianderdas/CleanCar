@@ -5,6 +5,8 @@
 //  Created by Adrian Derdaś on 27/07/2023.
 //
 
+// Will be in future
+
 import UIKit
 
 class CheckPhoneNumberViewController: UIViewController {
