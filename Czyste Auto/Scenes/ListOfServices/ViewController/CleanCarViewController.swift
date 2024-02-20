@@ -8,24 +8,21 @@ class CleanCarViewController: UIViewController {
 
     public let viewModel = CleanCarViewModel()
     
-    var searchServices = [String]()
     var isSearching = false
     var filteredServices: [Service] = []
     let tableView = UITableView()
-    
-    private let searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "Wyszukaj usługę"
-        searchBar.showsScopeBar = true
-        return searchBar
-    }()
-    
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.clipsToBounds = true
-        return scrollView
-    }()
 
+    private lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchResultsUpdater = self
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.searchBar.placeholder = "Wyszukaj usługę"
+        controller.definesPresentationContext = true
+        controller.searchBar.setValue("Anuluj", forKey: "cancelButtonText")
+        
+        return controller
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,100 +30,51 @@ class CleanCarViewController: UIViewController {
         if let tabBarController = tabBarController as? TabBarController {
             delegate = tabBarController
         }
-
-        view.backgroundColor = .systemBackground
+        
         title = "Umyj Auto"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchController
         
-        searchBar.delegate = self
-        
-        view.addSubview(searchBar)
         view.addSubview(tableView)
-        scrollView.isUserInteractionEnabled = false
-        
+        setupTableView()
+  
+    }
+
+    
+    func setupTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 120
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
     }
-    
 
-    override func viewDidLayoutSubviews() {
-        print("viewDidLayoutSubviews")
-        super.viewDidLayoutSubviews()
-        scrollView.frame = view.bounds
-        let size = scrollView.width
-        searchBar.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: size, height: 50)
-        tableView.frame = CGRect(x: 0, y: searchBar.bottom, width: size, height: view.height-searchBar.height - view.safeAreaInsets.top)
-
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        updateCancelButtonTitleAndColor()
         viewModel.selectedServices = viewModel.loadServices() ?? []
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showCancelButton))
-        searchBar.addGestureRecognizer(tapGesture)
     }
 }
 
-extension CleanCarViewController: UISearchBarDelegate {
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = nil
-        searchBar.resignFirstResponder()
-        updateCancelButtonTitleAndColor()
-        
-        isSearching = false
-        tableView.reloadData()
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
-        updateCancelButtonTitleAndColor()
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        updateCancelButtonTitleAndColor()
-        tableView.reloadData()
-        //isSearching = false
-        tableView.reloadData()
-
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
+extension CleanCarViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
             isSearching = false
             tableView.reloadData()
-        } else {
-            isSearching = true
-            filteredServices = viewModel.services.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-            
-            //otherwise
-//            services.filter { serv in
-//                return serv.name.lowercased().contains(searchText.lowercased())
-//            }
-
-            tableView.reloadData()
+            return
         }
-    }
-    
-
-    @objc private func showCancelButton() {
-        searchBar.becomeFirstResponder()
-    }
-    
-    private func updateCancelButtonTitleAndColor() {
-        if let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.setTitle("Anuluj", for: .normal)
-            cancelButton.tintColor = .label
-        }
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("\(String(describing: searchBar.text))")
-        searchBar.resignFirstResponder()
+        
+        isSearching = true
+        filteredServices = viewModel.services.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        tableView.reloadData()
     }
 }
 
@@ -168,8 +116,6 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
         }
         present(vc, animated: true, completion: nil)
     }
-    
- 
 }
 
 protocol CleanCarViewControllerDelegate: AnyObject {
