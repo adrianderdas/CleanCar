@@ -45,7 +45,7 @@ class CleanCarViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CellInListOfServices.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 120
         
         NSLayoutConstraint.activate([
@@ -84,7 +84,7 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellInListOfServices
         
         let service = isSearching ? filteredServices[indexPath.row] : viewModel.services[indexPath.row]
         

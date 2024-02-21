@@ -139,7 +139,7 @@ class OrdersViewController: UIViewController {
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(CustomCellForOrders.self, forCellReuseIdentifier: "cell")
+        tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 80
         tableView.reloadData()
     }
@@ -155,7 +155,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellForOrders
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
         
         let service = selectedServices[indexPath.row]
         
