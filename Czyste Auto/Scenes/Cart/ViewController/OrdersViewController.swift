@@ -17,7 +17,7 @@ class OrdersViewController: UIViewController {
     static let shared = OrdersViewController()
     
     private let viewModel = OrdersViewModel()
-
+    
     weak var delegate: OrdersViewControllerDelegate?
     
     func setEmptyCart() {
@@ -41,7 +41,7 @@ class OrdersViewController: UIViewController {
             delegate?.didChangeServices(selectedServices.count)
             
             let totalPrice = viewModel.calculateTotalPrice(selectedServices)
-             
+            
             setSummaryLabelPriceText(totalPrice: totalPrice)
             
             if viewModel.checkIsUserSelectedAnyoneService(selectedServices) {
@@ -54,15 +54,18 @@ class OrdersViewController: UIViewController {
     
     private let noSelectedServices: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Twój koszyk jest pusty"
         label.textAlignment = .center
         label.textColor = .gray
         label.font = .systemFont(ofSize: 21, weight: .medium)
+        
         return label
     }()
-
+    
     private var tableView: UITableView = {
         let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
         table.allowsSelection = false
         
         return table
@@ -70,16 +73,20 @@ class OrdersViewController: UIViewController {
     
     let summaryLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
     private let orderButton: UIButton = {
         let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Podsumowanie", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        
         return button
     }()
     
@@ -109,42 +116,51 @@ class OrdersViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.topItem?.titleView = titleLabel
         
+        setupConstraints()
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let buttonHeight: CGFloat = 50
-        let summaryLabelHeight: CGFloat = 50
-        
-        summaryLabel.frame = CGRect(x: -10 + view.width*2/3, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
-        orderButton.frame = CGRect(x: 0, y: view.height-buttonHeight, width: view.width, height: buttonHeight)
-        tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height-summaryLabelHeight-buttonHeight)
-        noSelectedServices.frame = CGRect(x: 10, y: (view.height/2), width: view.width-20, height: 100)
-        
     }
     
-   
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-             
-        selectedServices = viewModel.loadCartItemsFromUserDefaults() as! [Service]
+    func setupConstraints() {
         
-        view.addSubview(tableView)
-        view.addSubview(summaryLabel)
         view.addSubview(orderButton)
-        view.addSubview(noSelectedServices)
+        view.addSubview(summaryLabel)
+        view.addSubview(tableView)
         
-        tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = 80
+        tableView.rowHeight = 120
         tableView.reloadData()
+        
+        NSLayoutConstraint.activate([
+            orderButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            orderButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            orderButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            orderButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            summaryLabel.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: -20),
+            summaryLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            
+            tableView.bottomAnchor.constraint(equalTo: summaryLabel.topAnchor, constant: -20),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        selectedServices = viewModel.loadCartItemsFromUserDefaults() as! [Service]
+        
+    }
+    
+    
     
 }
 
@@ -164,7 +180,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
         cell.serviceImage.image = UIImage(named: service.image)
         cell.serviceName.text = service.name
         cell.servicePrice.text = "\(service.price) PLN"
-       
+        
         return cell
     }
     
