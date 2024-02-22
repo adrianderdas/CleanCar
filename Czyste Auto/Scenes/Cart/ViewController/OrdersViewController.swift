@@ -112,10 +112,6 @@ class OrdersViewController: UIViewController {
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-    }
     
     func setupConstraints() {
         
@@ -149,11 +145,9 @@ class OrdersViewController: UIViewController {
         super.viewWillAppear(animated)
         
         selectedServices = viewModel.loadCartItemsFromUserDefaults() as! [Service]
-        
+        tableView.reloadData()
+
     }
-    
-    
-    
 }
 
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
