@@ -79,15 +79,7 @@ class OrdersViewController: UIViewController {
     }()
     
     private let orderButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Podsumowanie", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        
-        return button
+        return FactoriesCartViewController.makeButton(withText: "Podsumowanie")
     }()
     
     @objc private func orderButtonTapped() {
