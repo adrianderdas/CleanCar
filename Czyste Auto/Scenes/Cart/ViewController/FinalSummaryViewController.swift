@@ -28,68 +28,70 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
 
     private let summaryLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
     private let orderButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Zamów z obowiązkiem zapłaty", for: .normal)
-        button.backgroundColor = .link
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        
-        return button
+        return FactoriesCartViewController.makeButton(withText: "Zamów z obowiązkiem zapłaty")
     }()
     
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     
     private var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
+        table.translatesAutoresizingMaskIntoConstraints = false
         table.allowsSelection = false
-        table.register(CustomCellForOrders.self, forCellReuseIdentifier: "cell")
+        table.register(CustomCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         
         title = "Sprawdź dane"
         orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         print("selected Services in SummaryOrderViewController: \(selectedServices)")
         
         viewModel.delegate = self
-        
+        setConstraints()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        
-        let buttonHeight: CGFloat = 50
-        let summaryLabelHeight: CGFloat = 50
-               
-        
-        tableView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height-buttonHeight-summaryLabelHeight)
-        orderButton.frame = CGRect(x: 10, y: view.height-buttonHeight-10, width: view.width-20, height: buttonHeight)
-        summaryLabel.frame = CGRect(x: view.width*2/3, y: view.height-buttonHeight-summaryLabelHeight, width: view.width, height: summaryLabelHeight)
-        
+
+    func setConstraints() {
+        view.addSubview(tableView)
+        view.addSubview(summaryLabel)
+        view.addSubview(orderButton)
+        NSLayoutConstraint.activate([
+       
+            
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: summaryLabel.topAnchor),
+            
+            summaryLabel.bottomAnchor.constraint(equalTo: orderButton.topAnchor, constant: -20),
+            summaryLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            
+            orderButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            orderButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            orderButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            orderButton.heightAnchor.constraint(equalToConstant: 50),
+        ])
     }
     
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        view.addSubview(tableView)
-        view.addSubview(orderButton)
-        view.addSubview(summaryLabel)
+       
         activityIndicator.center = view.center
         view.addSubview(activityIndicator)
         
         tableView.dataSource = self
        
-        tableView.rowHeight = 80
         tableView.delegate = self
         
         totalPrice = selectedServices.reduce(0) { $0 + $1.price }
@@ -140,6 +142,14 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         return 2
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 110
+        } else {
+            return 50
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return selectedServices.count
@@ -150,7 +160,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCellForOrders
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
             
             let service = selectedServices[indexPath.row]
             
@@ -160,6 +170,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
             
             return cell
         } else {
+            
+        
             let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
             
             switch indexPath.row {
@@ -186,9 +198,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
     @objc private func orderButtonTapped() {
         
         activityIndicator.startAnimating()
-        
-        //feedbackGenerator.impactOccurred()
-        
+                
         viewModel.uploadOrderToFirebase(selectedServices: selectedServices, city: city, postalCode: postalCode, houseNumber: houseNumber, phone: phone, totalPrice: totalPrice)
     }
 }
