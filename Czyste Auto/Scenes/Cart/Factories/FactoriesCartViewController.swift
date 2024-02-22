@@ -12,6 +12,7 @@ class FactoriesCartViewController {
     static func makeButton(withText text: String) -> UIButton {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .link
         button.setTitle(text, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12

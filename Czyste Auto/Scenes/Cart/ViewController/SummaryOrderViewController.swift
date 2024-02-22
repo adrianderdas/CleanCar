@@ -14,32 +14,20 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     public var selectedServices: [Service] = []
     
     private let orderButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Podsumowanie", for: .normal)
-        button.backgroundColor = .link
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 12
-        button.layer.masksToBounds = true
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        
-        return button
-    }()
-    
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.clipsToBounds = true
-        return scrollView
+        return FactoriesCartViewController.makeButton(withText: "Potwierdzam adres odbioru")
+
     }()
     
     private let cityTextField: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Miejscowość"
         return label
     }()
 
     private let cityField: UITextField = {
        let field = UITextField()
-        
+        field.translatesAutoresizingMaskIntoConstraints = false
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .continue
@@ -59,13 +47,16 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
     private let postalCodeTextField: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+
         label.text = "Kod pocztowy"
         return label
     }()
 
     private let postalCodeField: UITextField = {
        let field = UITextField()
-        
+        field.translatesAutoresizingMaskIntoConstraints = false
+
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .continue
@@ -83,13 +74,16 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
     private let houseNumberTextField: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+
         label.text = "Numer domu"
         return label
     }()
     
     private let houseNumberField: UITextField = {
        let field = UITextField()
-        
+        field.translatesAutoresizingMaskIntoConstraints = false
+
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .continue
@@ -105,14 +99,18 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     }()
     
     private let phoneTextField: UILabel = {
+
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+
         label.text = "Numer telefonu"
         return label
     }()
     
     private let phoneField: UITextField = {
        let field = UITextField()
-        
+        field.translatesAutoresizingMaskIntoConstraints = false
+
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.returnKeyType = .done
@@ -137,25 +135,68 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         
         title = "Adres odbioru"
         
-        view.addSubview(scrollView)
-        view.addSubview(orderButton)
-
-        scrollView.addSubview(cityTextField)
-        scrollView.addSubview(cityField)
-        
-        scrollView.addSubview(postalCodeTextField)
-        scrollView.addSubview(postalCodeField)
-        
-        scrollView.addSubview(houseNumberTextField)
-        scrollView.addSubview(houseNumberField)
-        
-        scrollView.addSubview(phoneTextField)
-        scrollView.addSubview(phoneField)
-        
-        scrollView.isUserInteractionEnabled = true
+        setContraints()
         
     }
     
+    func setContraints() {
+        view.addSubview(cityTextField)
+        view.addSubview(cityField)
+        view.addSubview(postalCodeTextField)
+        view.addSubview(postalCodeField)
+        view.addSubview(houseNumberTextField)
+        view.addSubview(houseNumberField)
+        view.addSubview(phoneTextField)
+        view.addSubview(phoneField)
+        view.addSubview(orderButton)
+
+        NSLayoutConstraint.activate([
+            // City
+            cityTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            cityTextField.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20),
+            
+            cityField.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 5),
+            cityField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            cityField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            cityField.heightAnchor.constraint(equalToConstant: 40),
+            
+            // Postal code
+            postalCodeTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            postalCodeTextField.topAnchor.constraint(equalTo: cityField.bottomAnchor, constant: 40),
+            
+            postalCodeField.topAnchor.constraint(equalTo: postalCodeTextField.bottomAnchor, constant: 5),
+            postalCodeField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            postalCodeField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            postalCodeField.heightAnchor.constraint(equalToConstant: 40),
+            
+            // House number
+            houseNumberTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            houseNumberTextField.topAnchor.constraint(equalTo: postalCodeField.bottomAnchor, constant: 40),
+            
+            houseNumberField.topAnchor.constraint(equalTo: houseNumberTextField.bottomAnchor, constant: 5),
+            houseNumberField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            houseNumberField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            houseNumberField.heightAnchor.constraint(equalToConstant: 40),
+            
+            // Phone
+            phoneTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            phoneTextField.topAnchor.constraint(equalTo: houseNumberField.bottomAnchor, constant: 40),
+            
+            phoneField.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 5),
+            phoneField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            phoneField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            phoneField.heightAnchor.constraint(equalToConstant: 40),
+            
+            // Order Button
+            orderButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            orderButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            orderButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            orderButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            
+            
+        ])
+    }
     
     @objc private func orderButtonTapped() {
         let vc = FinalSummaryViewController()
@@ -186,53 +227,6 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let buttonHeight: CGFloat = 50
-        let labelHeight: CGFloat = 20
-
-        scrollView.frame = view.bounds
-
-        
-        cityTextField.frame = CGRect(x: 30, y: 20, width: scrollView.width-60, height: labelHeight)
-        
-        cityField.frame = CGRect(x: 30,
-                                 y: cityTextField.bottom+5,
-                                  width: scrollView.width-60,
-                                 height: 52)
-        
-        
-        postalCodeTextField.frame = CGRect(x: 30,
-                                  y: cityField.bottom + 10,
-                                  width: scrollView.width-60,
-                                 height: labelHeight)
-        
-        postalCodeField.frame = CGRect(x: 30,
-                                  y: postalCodeTextField.bottom + 5,
-                                  width: scrollView.width-60,
-                                 height: 52)
-        
-        houseNumberTextField.frame = CGRect(x: 30,
-                                        y: postalCodeField.bottom + 10,
-                                  width: scrollView.width-60,
-                                 height: labelHeight)
-        
-        houseNumberField.frame = CGRect(x: 30,
-                                        y: houseNumberTextField.bottom + 5,
-                                  width: scrollView.width-60,
-                                 height: 52)
-        
-        
-        phoneTextField.frame = CGRect(x: 30,
-                                  y: houseNumberField.bottom + 10,
-                                  width: scrollView.width-60,
-                                 height: labelHeight)
-        
-        phoneField.frame = CGRect(x: 30,
-                                  y: phoneTextField.bottom + 5,
-                                  width: scrollView.width-60,
-                                 height: 52)
-        
-        orderButton.frame = CGRect(x: 10, y: view.height-buttonHeight-10, width: view.width-20, height: buttonHeight)
-
         
         self.cityField.text = FirebaseService.shared.firebaseCity
         self.postalCodeField.text = FirebaseService.shared.firebasePostalCode
