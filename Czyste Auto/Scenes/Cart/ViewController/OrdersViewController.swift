@@ -118,6 +118,7 @@ class OrdersViewController: UIViewController {
         view.addSubview(orderButton)
         view.addSubview(summaryLabel)
         view.addSubview(tableView)
+        view.addSubview(noSelectedServices)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -137,9 +138,15 @@ class OrdersViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: summaryLabel.topAnchor, constant: -20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.topAnchor)
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            
+            noSelectedServices.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            noSelectedServices.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
+    
+
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
