@@ -36,7 +36,7 @@
 		A2D7953E2A1AD9220013FA3B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7953D2A1AD9220013FA3B /* TabBarController.swift */; };
 		A2D795402A1AED650013FA3B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7953F2A1AED650013FA3B /* SettingsViewController.swift */; };
 		A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */; };
-		A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795492A1B01860013FA3B /* OrdersViewController.swift */; };
+		A2D7954A2A1B01860013FA3B /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795492A1B01860013FA3B /* CartViewController.swift */; };
 		A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */; };
 		A2E050F12A46156100462A81 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F02A46156100462A81 /* UserData.swift */; };
 		A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F22A46162000462A81 /* FirebaseService.swift */; };
@@ -103,7 +103,7 @@
 		A2D7953D2A1AD9220013FA3B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A2D7953F2A1AED650013FA3B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanCarViewController.swift; sourceTree = "<group>"; };
-		A2D795492A1B01860013FA3B /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		A2D795492A1B01860013FA3B /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryViewController.swift; sourceTree = "<group>"; };
 		A2E050F02A46156100462A81 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A2E050F22A46162000462A81 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
@@ -211,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				A2FE12A12AD17C8100134CF3 /* CustomCell.swift */,
+				A24BA7982B869E7D000625CA /* CellInListOfServices.swift */,
 				A20266A82A2BF84C00445C87 /* ServicesViewController.swift */,
 				A26C55032B8288EF00FAD78C /* ViewController */,
 				A26C55022B8288E500FAD78C /* ViewModel */,
@@ -281,7 +282,6 @@
 			isa = PBXGroup;
 			children = (
 				A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */,
-				A24BA7982B869E7D000625CA /* CellInListOfServices.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 		A26C55052B82896200FAD78C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A2D795492A1B01860013FA3B /* OrdersViewController.swift */,
+				A2D795492A1B01860013FA3B /* CartViewController.swift */,
 				A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */,
 				A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */,
 				A2AD70242AD2C044008ADF02 /* CustomCellForOrders.swift */,
@@ -672,7 +672,7 @@
 				A24BA7992B869E7D000625CA /* CellInListOfServices.swift in Sources */,
 				A2AD70252AD2C044008ADF02 /* CustomCellForOrders.swift in Sources */,
 				A25894062B790629004F89B7 /* FactoriesClubViewController.swift in Sources */,
-				A2D7954A2A1B01860013FA3B /* OrdersViewController.swift in Sources */,
+				A2D7954A2A1B01860013FA3B /* CartViewController.swift in Sources */,
 				A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */,
 				A26C04072B0EA71600BDE2D0 /* VibrationManager.swift in Sources */,
 				A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */,
