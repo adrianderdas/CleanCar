@@ -22,6 +22,9 @@ class CartViewController: UIViewController {
     
     func setEmptyCart() {
         noSelectedServices.isHidden = false
+        emptyCartIcon.isHidden = false
+        
+        
         orderButton.isUserInteractionEnabled = false
         orderButton.backgroundColor = .gray
         tableView.isScrollEnabled = false
@@ -29,6 +32,8 @@ class CartViewController: UIViewController {
     
     func setNoEmptyCart() {
         noSelectedServices.isHidden = true
+        emptyCartIcon.isHidden = true
+        
         orderButton.isUserInteractionEnabled = true
         orderButton.backgroundColor = .link
         tableView.isScrollEnabled = true
@@ -62,6 +67,19 @@ class CartViewController: UIViewController {
         
         return label
     }()
+    
+  
+    
+    let emptyCartIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.image = UIImage(systemName: "cart.circle.fill")
+        icon.contentMode = .scaleAspectFill
+        icon.tintColor = .gray
+       
+        return icon
+    }()
+                      
     
     private var tableView: UITableView = {
         let table = UITableView()
@@ -119,6 +137,7 @@ class CartViewController: UIViewController {
         view.addSubview(summaryLabel)
         view.addSubview(tableView)
         view.addSubview(noSelectedServices)
+        view.addSubview(emptyCartIcon)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -142,6 +161,10 @@ class CartViewController: UIViewController {
             
             noSelectedServices.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             noSelectedServices.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            emptyCartIcon.topAnchor.constraint(equalTo: noSelectedServices.bottomAnchor, constant: 20),
+            emptyCartIcon.centerXAnchor.constraint(equalTo: noSelectedServices.centerXAnchor),
+            emptyCartIcon.heightAnchor.constraint(equalToConstant: 100),
         ])
     }
     
