@@ -1,5 +1,5 @@
 //
-//  OrdersViewController.swift
+//  CartViewController.swift
 //  Czyste Auto
 //
 //  Created by Adrian Derdaś on 22/05/2023.
@@ -9,16 +9,16 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 
-class OrdersViewController: UIViewController {
+class CartViewController: UIViewController {
     
     func setSummaryLabelPriceText(totalPrice: Int) {
         summaryLabel.text = "Suma: \(totalPrice) PLN"
     }
-    static let shared = OrdersViewController()
+    static let shared = CartViewController()
     
-    private let viewModel = OrdersViewModel()
+    private let viewModel = CartViewModel()
     
-    weak var delegate: OrdersViewControllerDelegate?
+    weak var delegate: CartViewControllerDelegate?
     
     func setEmptyCart() {
         noSelectedServices.isHidden = false
@@ -36,7 +36,7 @@ class OrdersViewController: UIViewController {
     
     private var selectedServices: [Service] = [] {
         didSet {
-            print("selectedServices in OrdersViewController: \(selectedServices)")
+            print("selectedServices in CartViewController: \(selectedServices)")
             print("removed position")
             delegate?.didChangeServices(selectedServices.count)
             
@@ -157,7 +157,7 @@ class OrdersViewController: UIViewController {
     }
 }
 
-extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
+extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedServices.count
     }
@@ -187,7 +187,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-protocol OrdersViewControllerDelegate: AnyObject {
+protocol CartViewControllerDelegate: AnyObject {
     func didChangeServices(_ count: Int)
 }
 

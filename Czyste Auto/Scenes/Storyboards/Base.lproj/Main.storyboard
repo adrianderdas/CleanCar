@@ -75,10 +75,10 @@
             </objects>
             <point key="canvasLocation" x="3883" y="-686"/>
         </scene>
-        <!--Orders View Controller-->
+        <!--Cart View Controller-->
         <scene sceneID="hYD-6j-aMV">
             <objects>
-                <viewController id="GIf-Dk-tZg" customClass="OrdersViewController" customModule="Czyste_Auto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GIf-Dk-tZg" customClass="CartViewController" customModule="Czyste_Auto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hhn-in-FM1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

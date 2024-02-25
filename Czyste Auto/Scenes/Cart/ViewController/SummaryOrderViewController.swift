@@ -149,6 +149,9 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(phoneTextField)
         view.addSubview(phoneField)
         view.addSubview(orderButton)
+        
+        let spacing: CGFloat = 20
+        let fieldHeight: CGFloat = 40
 
         NSLayoutConstraint.activate([
             // City
@@ -158,34 +161,34 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
             cityField.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 5),
             cityField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             cityField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            cityField.heightAnchor.constraint(equalToConstant: 40),
+            cityField.heightAnchor.constraint(equalToConstant: fieldHeight),
             
             // Postal code
             postalCodeTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            postalCodeTextField.topAnchor.constraint(equalTo: cityField.bottomAnchor, constant: 40),
+            postalCodeTextField.topAnchor.constraint(equalTo: cityField.bottomAnchor, constant: spacing),
             
             postalCodeField.topAnchor.constraint(equalTo: postalCodeTextField.bottomAnchor, constant: 5),
             postalCodeField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             postalCodeField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            postalCodeField.heightAnchor.constraint(equalToConstant: 40),
+            postalCodeField.heightAnchor.constraint(equalToConstant: fieldHeight),
             
             // House number
             houseNumberTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            houseNumberTextField.topAnchor.constraint(equalTo: postalCodeField.bottomAnchor, constant: 40),
+            houseNumberTextField.topAnchor.constraint(equalTo: postalCodeField.bottomAnchor, constant: spacing),
             
             houseNumberField.topAnchor.constraint(equalTo: houseNumberTextField.bottomAnchor, constant: 5),
             houseNumberField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             houseNumberField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            houseNumberField.heightAnchor.constraint(equalToConstant: 40),
+            houseNumberField.heightAnchor.constraint(equalToConstant: fieldHeight),
             
             // Phone
             phoneTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            phoneTextField.topAnchor.constraint(equalTo: houseNumberField.bottomAnchor, constant: 40),
+            phoneTextField.topAnchor.constraint(equalTo: houseNumberField.bottomAnchor, constant: spacing),
             
             phoneField.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 5),
             phoneField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             phoneField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            phoneField.heightAnchor.constraint(equalToConstant: 40),
+            phoneField.heightAnchor.constraint(equalToConstant: fieldHeight),
             
             // Order Button
             orderButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController, CleanCarViewControllerDelegate, OrdersViewControllerDelegate {
+class TabBarController: UITabBarController, CleanCarViewControllerDelegate, CartViewControllerDelegate {
     
     private let cleanCarViewModel = CleanCarViewModel()
 

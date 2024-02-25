@@ -7,9 +7,9 @@
 
 import Foundation
 
-class OrdersViewModel {
+class CartViewModel {
     
-    weak var delegate: OrdersViewModelDelegate?
+    weak var delegate: CartViewModelDelegate?
     
     func calculateTotalPrice(_ selectedServices: [Service]) -> Int {
         let totalPrice = selectedServices.reduce(0) { $0 + $1.price}
@@ -53,6 +53,6 @@ class OrdersViewModel {
 
 }
 
-protocol OrdersViewModelDelegate: AnyObject {
+protocol CartViewModelDelegate: AnyObject {
     func didChangeServices(_ count: Int)
 }
