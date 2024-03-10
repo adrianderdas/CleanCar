@@ -21,6 +21,7 @@
 		A24BA7A12B87BCF9000625CA /* FactoriesCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24BA7A02B87BCF9000625CA /* FactoriesCartViewController.swift */; };
 		A25894062B790629004F89B7 /* FactoriesClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25894052B790629004F89B7 /* FactoriesClubViewController.swift */; };
 		A26C04072B0EA71600BDE2D0 /* VibrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26C04062B0EA71600BDE2D0 /* VibrationManager.swift */; };
+		A2784DB72B97B8DC00C4B4E6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A2784DB62B97B8DC00C4B4E6 /* Alamofire */; };
 		A2A9F35E2A48EEAA00D210A6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A9F35D2A48EEAA00D210A6 /* Service.swift */; };
 		A2AD701E2AD2BE31008ADF02 /* ClubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD701D2AD2BE31008ADF02 /* ClubViewModel.swift */; };
 		A2AD70212AD2BE91008ADF02 /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AD70202AD2BE91008ADF02 /* OrdersViewModel.swift */; };
@@ -131,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A210550F2A40DFFD00B69BD9 /* FirebaseAuth in Frameworks */,
+				A2784DB72B97B8DC00C4B4E6 /* Alamofire in Frameworks */,
 				A21055112A40DFFD00B69BD9 /* FirebaseFirestore in Frameworks */,
 				A21055132A40DFFD00B69BD9 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -165,6 +167,7 @@
 		A2431B7F2A201A9500FF807E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A2784DB82B97B90D00C4B4E6 /* Network */,
 				A2D7952B2A1AD5600013FA3B /* SceneDelegate.swift */,
 				A2D795292A1AD5600013FA3B /* AppDelegate.swift */,
 				A2D795322A1AD5630013FA3B /* Assets.xcassets */,
@@ -382,6 +385,13 @@
 			path = Factories;
 			sourceTree = "<group>";
 		};
+		A2784DB82B97B90D00C4B4E6 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		A2AD701B2AD2BDF1008ADF02 /* Club */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,6 +511,7 @@
 				A210550E2A40DFFD00B69BD9 /* FirebaseAuth */,
 				A21055102A40DFFD00B69BD9 /* FirebaseFirestore */,
 				A21055122A40DFFD00B69BD9 /* FirebaseFirestoreSwift */,
+				A2784DB62B97B8DC00C4B4E6 /* Alamofire */,
 			);
 			productName = "Czyste Auto";
 			productReference = A2D795262A1AD5600013FA3B /* Czyste Auto.app */;
@@ -558,6 +569,7 @@
 			mainGroup = A2D7951D2A1AD5600013FA3B;
 			packageReferences = (
 				A210550D2A40DFFC00B69BD9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A2784DB52B97B8DC00C4B4E6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = A2D795272A1AD5600013FA3B /* Products */;
 			projectDirPath = "";
@@ -997,6 +1009,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		A2784DB52B97B8DC00C4B4E6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1014,6 +1034,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A210550D2A40DFFC00B69BD9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		A2784DB62B97B8DC00C4B4E6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A2784DB52B97B8DC00C4B4E6 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		A2F5B48C2AB0F9AE00E200BF /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
