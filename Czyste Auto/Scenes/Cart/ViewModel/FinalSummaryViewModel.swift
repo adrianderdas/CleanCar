@@ -14,7 +14,7 @@ class FinalSummaryViewModel {
     
     var userID = FirebaseService.shared.getuserId()
     
-    func uploadOrderToFirebase(selectedServices: [Service], city: String, postalCode: String, houseNumber: String, phone: String, totalPrice: Int) {
+    func uploadOrderToFirebase(selectedServices: [DownloadedService], city: String, postalCode: String, houseNumber: String, phone: String, totalPrice: Int) {
         
         let servicesData = mapServicesFromCollectionToDictionaryType(selectedServices: selectedServices)
       
@@ -51,9 +51,9 @@ class FinalSummaryViewModel {
         }
     }
     
-    func mapServicesFromCollectionToDictionaryType(selectedServices: [Service]) -> [[String: Any]] {
+    func mapServicesFromCollectionToDictionaryType(selectedServices: [DownloadedService]) -> [[String: Any]] {
         let servicesData = selectedServices.map {
-            ["name": $0.name, "price": $0.price] as [String : Any]
+            ["name": $0.serviceTitleLabelText, "price": $0.servicePriceText] as [String : Any]
         }
         return servicesData
     }

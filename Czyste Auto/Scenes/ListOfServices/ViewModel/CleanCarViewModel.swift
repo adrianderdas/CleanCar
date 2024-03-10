@@ -6,30 +6,22 @@
 //
 
 import UIKit
+import Alamofire
 
 class CleanCarViewModel {
     
-    var filteredServices: [Service] = []
+
+    var items: [DownloadedService] = []
+
     
-    let services = [
-        Service(name:"Mycie silnika", image: "engine", price: 149),
-        Service(name:"Mycie standardowe", image: "standard_wash", price: 99),
-        Service(name:"Mycie podlogi", image: "car_floor", price: 79),
-        Service(name:"Mycie felg", image: "wheel", price: 49),
-        Service(name:"Woskowanie", image: "wosk", price: 220),
-        Service(name:"Powłoka ceramiczna", image: "ceramic", price: 750),
-        Service(name:"Odkurzanie wnętrza", image: "vacuum", price: 49),
-        Service(name:"Mycie sufitki", image: "ceiling", price: 137)
-    ]
-    
-    var selectedServices: Set<Service> = [] {
+    var selectedServices: Set<DownloadedService> = [] {
         didSet {
             saveServices(selectedServices)
             print("salectedServices saved: \(selectedServices)")
         }
     }
     
-    func saveServices(_ services: Set<Service>) {
+    func saveServices(_ services: Set<DownloadedService>) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(Array(services)) {
             let defaults = UserDefaults.standard
@@ -37,16 +29,33 @@ class CleanCarViewModel {
         }
     }
     
-    func loadServices() -> Set<Service>? {
+    func loadServices() -> Set<DownloadedService>? {
         let defaults = UserDefaults.standard
         if let savedServices = defaults.object(forKey: "SavedServices") as? Data {
             let decoder = JSONDecoder()
-            if let loadedServices = try? decoder.decode(Array<Service>.self, from: savedServices) {
+            if let loadedServices = try? decoder.decode(Array<DownloadedService>.self, from: savedServices) {
                 return Set(loadedServices)
             }
         }
         return nil
     }
 
+    var onServicesFetchedCallback: (() -> Void)?
 
+    func fetchServices() {
+        AF.request("http://192.168.1.103:3000/services")
+            .validate()
+            .responseDecodable(of: ServicesResponse.self) { [weak self] response in
+                
+                switch response.result {
+                case .success(let services):
+                    self?.items = services.all
+                    
+                    self?.onServicesFetchedCallback?()
+                    
+                case .failure(let error):
+                    print("Wystąpił błąd: \(error)")
+                }
+            }
+    }
 }

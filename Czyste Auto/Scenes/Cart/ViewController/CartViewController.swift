@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class CartViewController: UIViewController {
     
-    func setSummaryLabelPriceText(totalPrice: Int) {
+    func setSummaryLabelPriceText(totalPrice: Float) {
         summaryLabel.text = "Suma: \(totalPrice) PLN"
     }
     static let shared = CartViewController()
@@ -39,7 +39,7 @@ class CartViewController: UIViewController {
         tableView.isScrollEnabled = true
     }
     
-    private var selectedServices: [Service] = [] {
+    private var selectedServices: [DownloadedService] = [] {
         didSet {
             print("selectedServices in CartViewController: \(selectedServices)")
             print("removed position")
@@ -174,7 +174,7 @@ class CartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        selectedServices = viewModel.loadCartItemsFromUserDefaults() as! [Service]
+        selectedServices = viewModel.loadCartItemsFromUserDefaults() as! [DownloadedService]
         tableView.reloadData()
 
     }
@@ -193,8 +193,8 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         
         print("services in let service: \(service)")
         
-        cell.serviceImage.image = UIImage(named: service.image)
-        cell.serviceName.text = service.name
+      //  cell.serviceImage.image = UIImage(named: service.image)
+        cell.serviceName.text = service.serviceTitleLabelText
         cell.servicePrice.text = "\(service.price) PLN"
         
         return cell

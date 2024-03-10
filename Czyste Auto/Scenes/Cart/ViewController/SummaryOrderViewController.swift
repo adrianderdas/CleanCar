@@ -11,7 +11,7 @@ import UIKit
 
 class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
-    public var selectedServices: [Service] = []
+    public var selectedServices: [DownloadedService] = []
     
     private let orderButton: UIButton = {
         return FactoriesCartViewController.makeButton(withText: "Potwierdzam adres odbioru")

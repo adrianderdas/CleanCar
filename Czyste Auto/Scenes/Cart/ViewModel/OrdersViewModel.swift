@@ -11,12 +11,12 @@ class CartViewModel {
     
     weak var delegate: CartViewModelDelegate?
     
-    func calculateTotalPrice(_ selectedServices: [Service]) -> Int {
+    func calculateTotalPrice(_ selectedServices: [DownloadedService]) -> Float {
         let totalPrice = selectedServices.reduce(0) { $0 + $1.price}
         return totalPrice
     }
     
-    func checkIsUserSelectedAnyoneService(_ selectedServices: [Service]) -> Bool {
+    func checkIsUserSelectedAnyoneService(_ selectedServices: [DownloadedService]) -> Bool {
         if selectedServices.isEmpty {
             return false
         } else {
@@ -31,7 +31,7 @@ class CartViewModel {
         }
 
         do {let savedServices: Any
-            savedServices = try JSONDecoder().decode([Service].self, from: data)
+            savedServices = try JSONDecoder().decode([DownloadedService].self, from: data)
             
             print("userdefaults import in orders: \(savedServices)")
             return savedServices
@@ -41,7 +41,7 @@ class CartViewModel {
         }
     }
     
-    func saveNewServices(_ selectedServices: [Service]) {
+    func saveNewServices(_ selectedServices: [DownloadedService]) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(selectedServices) {
             let defaults = UserDefaults.standard

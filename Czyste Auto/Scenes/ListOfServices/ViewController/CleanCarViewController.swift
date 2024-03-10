@@ -1,5 +1,5 @@
 import UIKit
-
+import Alamofire
 
 
 class CleanCarViewController: UIViewController {
@@ -9,7 +9,7 @@ class CleanCarViewController: UIViewController {
     public let viewModel = CleanCarViewModel()
     
     var isSearching = false
-    var filteredServices: [Service] = []
+    var filteredServices: [DownloadedService] = []
     let tableView = UITableView()
 
     private lazy var searchController: UISearchController = {
@@ -35,13 +35,21 @@ class CleanCarViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         
-        view.addSubview(tableView)
         setupTableView()
-  
+        
+        downloadServicesAndReloadTableViewIfFetched()
     }
-
+    
+    func downloadServicesAndReloadTableViewIfFetched() {
+        viewModel.fetchServices()
+        
+        viewModel.onServicesFetchedCallback = { [weak self] in
+                 self?.tableView.reloadData()
+             }
+    }
     
     func setupTableView() {
+        view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -57,7 +65,6 @@ class CleanCarViewController: UIViewController {
         
     }
 
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.selectedServices = viewModel.loadServices() ?? []
@@ -73,30 +80,32 @@ extension CleanCarViewController: UISearchResultsUpdating {
         }
         
         isSearching = true
-        filteredServices = viewModel.services.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        filteredServices = viewModel.items.filter { $0.serviceTitleLabelText.lowercased().contains(searchText.lowercased()) }
         tableView.reloadData()
     }
 }
 
 extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? filteredServices.count : viewModel.services.count
+        return isSearching ? filteredServices.count : viewModel.items.count
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellInListOfServices
         
-        let service = isSearching ? filteredServices[indexPath.row] : viewModel.services[indexPath.row]
+      
+        let item = isSearching ? filteredServices[indexPath.row] : viewModel.items[indexPath.row]
         
-        cell.serviceImage.image = UIImage(named: service.image)
-        cell.serviceName.text = service.name
-        cell.servicePrice.text = "\(service.price) PLN"
+        
+        cell.serviceName.text = item.serviceTitleLabelText
+        cell.servicePrice.text = "\(item.servicePriceText) PLN"
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = isSearching ? filteredServices[indexPath.row] : viewModel.services[indexPath.row]
+        let model = isSearching ? filteredServices[indexPath.row] : viewModel.items[indexPath.row]
         print("model: \(model)")
  
         openServiceDescribtion(model)
@@ -104,8 +113,8 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func openServiceDescribtion(_ model: Service) {
-        let vc = ServicesViewController(serviceName: model.name)
+    func openServiceDescribtion(_ model: DownloadedService) {
+        let vc = ServicesViewController(serviceName: model.serviceTitleLabelText)
         //vc.title = model.name
         if let sheet = vc.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
@@ -122,4 +131,6 @@ protocol CleanCarViewControllerDelegate: AnyObject {
     func didChangeServices(_ count: Int)
 }
 
-
+extension CleanCarViewController {
+    
+}

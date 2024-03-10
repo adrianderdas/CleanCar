@@ -34,8 +34,8 @@ class CellInListOfServices: CustomCell {
         
         let viewModel = cleanCarViewController.viewModel
         
-        let selectedService = cleanCarViewController.isSearching ? cleanCarViewController.filteredServices[indexPath.row] : viewModel.services[indexPath.row]
-        let service = viewModel.services.first { $0.name == selectedService.name}
+        let selectedService = cleanCarViewController.isSearching ? cleanCarViewController.filteredServices[indexPath.row] : viewModel.items[indexPath.row]
+        let service = viewModel.items.first { $0.serviceTitleLabelText == selectedService.serviceTitleLabelText}
         
         guard let serviceToInsert = service else {return}
         

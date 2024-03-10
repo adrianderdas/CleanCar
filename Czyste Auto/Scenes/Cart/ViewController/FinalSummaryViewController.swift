@@ -16,7 +16,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
         return indicator
     }()
     
-    public var selectedServices: [Service] = []
+    public var selectedServices: [DownloadedService] = []
     
     var totalPrice: Int = 0
 
@@ -94,7 +94,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
        
         tableView.delegate = self
         
-        totalPrice = selectedServices.reduce(0) { $0 + $1.price }
+        totalPrice = Int(selectedServices.reduce(0) { $0 + $1.price })
            summaryLabel.text = "Suma: \(totalPrice) PLN"
 
     }
@@ -164,8 +164,8 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
             
             let service = selectedServices[indexPath.row]
             
-            cell.serviceImage.image = UIImage(named: service.image)
-            cell.serviceName.text = service.name
+          //  cell.serviceImage.image = UIImage(named: service.image)
+            cell.serviceName.text = service.serviceTitleLabelText
             cell.servicePrice.text = "\(service.price) PLN"
             
             return cell
