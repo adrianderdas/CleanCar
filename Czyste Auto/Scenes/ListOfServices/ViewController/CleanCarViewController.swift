@@ -1,6 +1,6 @@
 import UIKit
 import Alamofire
-
+import AlamofireImage
 
 class CleanCarViewController: UIViewController {
     
@@ -100,6 +100,10 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.serviceName.text = item.serviceTitleLabelText
         cell.servicePrice.text = "\(item.servicePriceText) PLN"
+        
+        cell.serviceImage.af.setImage(withURL: item.imageURL)
+        
+        
         return cell
     }
     

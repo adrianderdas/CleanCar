@@ -48,8 +48,8 @@ class CleanCarViewModel {
             .responseDecodable(of: ServicesResponse.self) { [weak self] response in
                 
                 switch response.result {
-                case .success(let services):
-                    self?.items = services.all
+                case .success(let serviceResponse):
+                    self?.items = serviceResponse.all
                     
                     self?.onServicesFetchedCallback?()
                     
