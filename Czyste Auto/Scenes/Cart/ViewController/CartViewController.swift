@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseCore
 import FirebaseFirestore
+import AlamofireImage
 
 class CartViewController: UIViewController {
     
@@ -193,10 +194,10 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         
         print("services in let service: \(service)")
         
-      //  cell.serviceImage.image = UIImage(named: service.image)
         cell.serviceName.text = service.serviceTitleLabelText
         cell.servicePrice.text = "\(service.price) PLN"
-        
+        cell.serviceImage.af.setImage(withURL: service.imageURL)
+
         return cell
     }
     
