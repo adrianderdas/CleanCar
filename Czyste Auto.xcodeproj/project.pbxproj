@@ -37,6 +37,7 @@
 		A2D795402A1AED650013FA3B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7953F2A1AED650013FA3B /* SettingsViewController.swift */; };
 		A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */; };
 		A2D7954A2A1B01860013FA3B /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795492A1B01860013FA3B /* CartViewController.swift */; };
+		A2DD6D6B2B9F89ED00BE5A8C /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = A2DD6D6A2B9F89ED00BE5A8C /* AlamofireImage */; };
 		A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */; };
 		A2E050F12A46156100462A81 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F02A46156100462A81 /* UserData.swift */; };
 		A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F22A46162000462A81 /* FirebaseService.swift */; };
@@ -133,6 +134,7 @@
 			files = (
 				A210550F2A40DFFD00B69BD9 /* FirebaseAuth in Frameworks */,
 				A2784DB72B97B8DC00C4B4E6 /* Alamofire in Frameworks */,
+				A2DD6D6B2B9F89ED00BE5A8C /* AlamofireImage in Frameworks */,
 				A21055112A40DFFD00B69BD9 /* FirebaseFirestore in Frameworks */,
 				A21055132A40DFFD00B69BD9 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -512,6 +514,7 @@
 				A21055102A40DFFD00B69BD9 /* FirebaseFirestore */,
 				A21055122A40DFFD00B69BD9 /* FirebaseFirestoreSwift */,
 				A2784DB62B97B8DC00C4B4E6 /* Alamofire */,
+				A2DD6D6A2B9F89ED00BE5A8C /* AlamofireImage */,
 			);
 			productName = "Czyste Auto";
 			productReference = A2D795262A1AD5600013FA3B /* Czyste Auto.app */;
@@ -570,6 +573,7 @@
 			packageReferences = (
 				A210550D2A40DFFC00B69BD9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A2784DB52B97B8DC00C4B4E6 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A2DD6D692B9F89ED00BE5A8C /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = A2D795272A1AD5600013FA3B /* Products */;
 			projectDirPath = "";
@@ -1017,6 +1021,14 @@
 				minimumVersion = 5.9.0;
 			};
 		};
+		A2DD6D692B9F89ED00BE5A8C /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1039,6 +1051,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A2784DB52B97B8DC00C4B4E6 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		A2DD6D6A2B9F89ED00BE5A8C /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A2DD6D692B9F89ED00BE5A8C /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
 		};
 		A2F5B48C2AB0F9AE00E200BF /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
