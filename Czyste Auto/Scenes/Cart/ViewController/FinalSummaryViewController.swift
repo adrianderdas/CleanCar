@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -164,7 +165,7 @@ class FinalSummaryViewController: UIViewController, UITableViewDataSource, UITab
             
             let service = selectedServices[indexPath.row]
             
-          //  cell.serviceImage.image = UIImage(named: service.image)
+            cell.serviceImage.af.setImage(withURL: service.imageURL)
             cell.serviceName.text = service.serviceTitleLabelText
             cell.servicePrice.text = "\(service.price) PLN"
             
