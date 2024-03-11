@@ -9,7 +9,7 @@ import UIKit
 
 
 
-class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
+class SummaryOrderViewController: UIViewController {
     
     public var selectedServices: [DownloadedService] = []
     
@@ -128,15 +128,31 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        phoneField.delegate = self
-        view.backgroundColor = .systemBackground
-        self.hideKeyboardWhenTappedAround()
-        orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
         
+        setView()
+        setContraints()
+        setTextFields()
+    }
+    
+    func setView() {
+        view.backgroundColor = .systemBackground
         title = "Adres odbioru"
         
-        setContraints()
+        orderButton.addTarget(self, action: #selector(orderButtonTapped), for: .touchUpInside)
+    }
+    
+    func setTextFields() {
+        cityField.delegate = self
+        postalCodeField.delegate = self
+        houseNumberField.delegate = self
+        phoneField.delegate = self
         
+        self.hideKeyboardWhenTappedAround()
+        
+        self.cityField.text = FirebaseService.shared.firebaseCity
+        self.postalCodeField.text = FirebaseService.shared.firebasePostalCode
+        self.houseNumberField.text = FirebaseService.shared.firebaseHouseNumber
+        self.phoneField.text = FirebaseService.shared.firebasePhone
     }
     
     func setContraints() {
@@ -150,15 +166,16 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(phoneField)
         view.addSubview(orderButton)
         
+        let lowSpacing: CGFloat = 5
         let spacing: CGFloat = 20
         let fieldHeight: CGFloat = 40
 
         NSLayoutConstraint.activate([
             // City
             cityTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            cityTextField.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20),
+            cityTextField.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: spacing),
             
-            cityField.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 5),
+            cityField.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: lowSpacing),
             cityField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             cityField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             cityField.heightAnchor.constraint(equalToConstant: fieldHeight),
@@ -167,7 +184,7 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
             postalCodeTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             postalCodeTextField.topAnchor.constraint(equalTo: cityField.bottomAnchor, constant: spacing),
             
-            postalCodeField.topAnchor.constraint(equalTo: postalCodeTextField.bottomAnchor, constant: 5),
+            postalCodeField.topAnchor.constraint(equalTo: postalCodeTextField.bottomAnchor, constant: lowSpacing),
             postalCodeField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             postalCodeField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             postalCodeField.heightAnchor.constraint(equalToConstant: fieldHeight),
@@ -176,7 +193,7 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
             houseNumberTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             houseNumberTextField.topAnchor.constraint(equalTo: postalCodeField.bottomAnchor, constant: spacing),
             
-            houseNumberField.topAnchor.constraint(equalTo: houseNumberTextField.bottomAnchor, constant: 5),
+            houseNumberField.topAnchor.constraint(equalTo: houseNumberTextField.bottomAnchor, constant: lowSpacing),
             houseNumberField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             houseNumberField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             houseNumberField.heightAnchor.constraint(equalToConstant: fieldHeight),
@@ -185,7 +202,7 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
             phoneTextField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             phoneTextField.topAnchor.constraint(equalTo: houseNumberField.bottomAnchor, constant: spacing),
             
-            phoneField.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 5),
+            phoneField.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: lowSpacing),
             phoneField.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             phoneField.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             phoneField.heightAnchor.constraint(equalToConstant: fieldHeight),
@@ -194,10 +211,7 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
             orderButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
             orderButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             orderButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            orderButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            
-            
+            orderButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -220,33 +234,31 @@ class SummaryOrderViewController: UIViewController, UITextFieldDelegate {
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    /// Function used for hidden keyboards when user clicked "gotowe"
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-            return true
-        }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        
-        self.cityField.text = FirebaseService.shared.firebaseCity
-        self.postalCodeField.text = FirebaseService.shared.firebasePostalCode
-        self.houseNumberField.text = FirebaseService.shared.firebaseHouseNumber
-        self.phoneField.text = FirebaseService.shared.firebasePhone
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
+
     
 }
 
-
-extension SummaryOrderViewController {
+extension SummaryOrderViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField {
+        case cityField:
+            postalCodeField.becomeFirstResponder()
+        case postalCodeField:
+            houseNumberField.becomeFirstResponder()
+        case houseNumberField:
+            phoneField.becomeFirstResponder()
+        case phoneField:
+            textField.resignFirstResponder()
+            
+        default:
+            cityField.becomeFirstResponder()
+        }
+        
+        return true
+    }
+    
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -258,5 +270,3 @@ extension SummaryOrderViewController {
         view.endEditing(true)
     }
 }
-
-
