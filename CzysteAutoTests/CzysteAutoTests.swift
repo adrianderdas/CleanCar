@@ -11,13 +11,13 @@ import XCTest
 
 final class CzysteAutoTests: XCTestCase {
     
-    var sut: OrdersViewModel!
+    var sut: CartViewModel!
     
-    var selectedServices: [Service] = []
+    var selectedServices: [DownloadedService] = []
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = OrdersViewModel()
+        sut = CartViewModel()
     }
 
     override func tearDownWithError() throws {
@@ -26,17 +26,17 @@ final class CzysteAutoTests: XCTestCase {
     }
 
     func testTotalPriceForSelectedServices() {
+        let placeholderURL = URL(string: "https://example.com/image.jpg")!
         // given
-        let testService1 = Service(name: "Test1", image: "test_image1", price: 100)
-        let testService2 = Service(name: "Test2", image: "test_image2", price: 200)
-        let testService3 = Service(name: "Test3", image: "test_image3", price: 300)
-
+        let testService1 = DownloadedService(id: 1, title: "Test1", price: 61.12, description: "opis1", imageURL: placeholderURL)
+        let testService2 = DownloadedService(id: 1, title: "Test1", price: 100.88, description: "opis2", imageURL: placeholderURL)
+        let testService3 = DownloadedService(id: 3, title: "Test3", price: 133.51, description: "opis3", imageURL: placeholderURL)
 
         // when
         selectedServices = [testService1, testService2, testService3]
 
         // then
-        XCTAssertEqual(sut.calculateTotalPrice(selectedServices), 600)
+        XCTAssertEqual(sut.calculateTotalPrice(selectedServices), 295.51)
 
     }
 
