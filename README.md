@@ -23,7 +23,11 @@ An application in Swift for ordering various car-related services.
 
 <img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/OrdersView.png?raw=true" width="30%" height="30%">
 
-- Deleting postition from Orders cart
+- Info when cart is empty
+
+<img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/EmptyCart.png?raw=true" width="30%" height="30%">
+
+- Deleting postition from cart view
 
 <img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/DeletingPosition.png?raw=true" width="30%" height="30%">
 
@@ -50,7 +54,6 @@ An application in Swift for ordering various car-related services.
 - Final Summary view with delivery data catch from Firebase (for current User Id) and selectedServices
 
 <img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/FinalSummarryView.png?raw=true" width="30%" height="30%">
-<img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/FinalSummaryView2.png?raw=true" width="30%" height="30%">
 
 - Accepted to realisation!
 
