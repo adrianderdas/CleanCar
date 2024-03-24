@@ -9,10 +9,9 @@ import UIKit
 
 class ServicesViewController: UIViewController  {
         
-    var serviceName: String
+    var data: Displayable?
     
     init(serviceName: String) {
-        self.serviceName = serviceName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,6 +24,8 @@ class ServicesViewController: UIViewController  {
         
         super.viewDidLoad()
 
+        title = data?.serviceDescriptionText
+       
         if let sheetPresentationController = self.presentationController as? UISheetPresentationController {
             sheetPresentationController.detents = [.medium(), .large()]
             sheetPresentationController.prefersGrabberVisible = true

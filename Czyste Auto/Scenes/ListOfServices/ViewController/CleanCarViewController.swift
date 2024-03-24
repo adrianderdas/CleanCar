@@ -5,12 +5,11 @@ import AlamofireImage
 class CleanCarViewController: UIViewController {
     
     weak var delegate: (CleanCarViewControllerDelegate)?
-
     public let viewModel = CleanCarViewModel()
-    
     var isSearching = false
     var filteredServices: [DownloadedService] = []
     let tableView = UITableView()
+    var selectedItem: Displayable?
 
     private lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
@@ -115,8 +114,14 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
         openServiceDescribtion(model)
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedItem = viewModel.items[indexPath.row]
+        return indexPath
+    }
     func openServiceDescribtion(_ model: DownloadedService) {
         let vc = ServicesViewController(serviceName: model.serviceTitleLabelText)
         //vc.title = model.name
@@ -127,6 +132,7 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
             sheet.prefersEdgeAttachedInCompactHeight = true
             sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
         }
+        vc.data = selectedItem
         present(vc, animated: true, completion: nil)
     }
 }
