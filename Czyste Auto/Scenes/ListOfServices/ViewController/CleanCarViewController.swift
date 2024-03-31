@@ -124,14 +124,6 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func openServiceDescribtion(_ model: DownloadedService) {
         let vc = ServicesViewController(serviceName: model.serviceTitleLabelText)
-        //vc.title = model.name
-        if let sheet = vc.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.largestUndimmedDetentIdentifier = .medium
-            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-            sheet.prefersEdgeAttachedInCompactHeight = true
-            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-        }
         vc.data = selectedItem
         present(vc, animated: true, completion: nil)
     }
