@@ -25,16 +25,16 @@ class CellInListOfServices: CustomCell {
         
         guard let tableView = superview as? UITableView,
               let indexPath = tableView.indexPath(for: self),
-              let cleanCarViewController = tableView.delegate as? CleanCarViewController
+              let listOfServicesViewController = tableView.delegate as? ListOfServicesViewController
         else {
             return
         }
         
 
         
-        let viewModel = cleanCarViewController.viewModel
+        let viewModel = listOfServicesViewController.viewModel
         
-        let selectedService = cleanCarViewController.isSearching ? cleanCarViewController.filteredServices[indexPath.row] : viewModel.items[indexPath.row]
+        let selectedService = listOfServicesViewController.isSearching ? listOfServicesViewController.filteredServices[indexPath.row] : viewModel.items[indexPath.row]
         let service = viewModel.items.first { $0.serviceTitleLabelText == selectedService.serviceTitleLabelText}
         
         guard let serviceToInsert = service else {return}
@@ -45,11 +45,11 @@ class CellInListOfServices: CustomCell {
             VibrationManager.Vibration.error.vibrate()
             let alert = UIAlertController(title: "Uuupss", message: "Nie możesz dwukrotnie dodać tego do koszyka", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Rozumiem", style: .default, handler: nil))
-            cleanCarViewController.present(alert, animated: true)
+            listOfServicesViewController.present(alert, animated: true)
         } else {
             VibrationManager.Vibration.light.vibrate()
 
-            cleanCarViewController.delegate?.didChangeServices(viewModel.selectedServices.count)
+            listOfServicesViewController.delegate?.didChangeServices(viewModel.selectedServices.count)
         }
         
         print("Selected services: \(viewModel.selectedServices)")

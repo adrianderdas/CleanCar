@@ -2,10 +2,10 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-class CleanCarViewController: UIViewController {
+class ListOfServicesViewController: UIViewController {
     
-    weak var delegate: (CleanCarViewControllerDelegate)?
-    public let viewModel = CleanCarViewModel()
+    weak var delegate: (ListOfServicesViewControllerDelegate)?
+    public let viewModel = ListOfServicesViewModel()
     var isSearching = false
     var filteredServices: [DownloadedService] = []
     let tableView = UITableView()
@@ -70,7 +70,7 @@ class CleanCarViewController: UIViewController {
     }
 }
 
-extension CleanCarViewController: UISearchResultsUpdating {
+extension ListOfServicesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
             isSearching = false
@@ -84,7 +84,7 @@ extension CleanCarViewController: UISearchResultsUpdating {
     }
 }
 
-extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
+extension ListOfServicesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearching ? filteredServices.count : viewModel.items.count
 
@@ -123,16 +123,16 @@ extension CleanCarViewController: UITableViewDelegate, UITableViewDataSource {
         return indexPath
     }
     func openServiceDescribtion(_ model: DownloadedService) {
-        let vc = ServicesViewController(serviceName: model.serviceTitleLabelText)
+        let vc = ServiceViewController(serviceName: model.serviceTitleLabelText)
         vc.data = selectedItem
         present(vc, animated: true, completion: nil)
     }
 }
 
-protocol CleanCarViewControllerDelegate: AnyObject {
+protocol ListOfServicesViewControllerDelegate: AnyObject {
     func didChangeServices(_ count: Int)
 }
 
-extension CleanCarViewController {
+extension ListOfServicesViewController {
     
 }

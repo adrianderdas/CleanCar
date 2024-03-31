@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20266A82A2BF84C00445C87 /* ServicesViewController.swift */; };
+		A20266A92A2BF84C00445C87 /* ServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20266A82A2BF84C00445C87 /* ServiceViewController.swift */; };
 		A21055082A40D75D00B69BD9 /* SummaryOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */; };
 		A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21055092A40DC6500B69BD9 /* ZeroViewController.swift */; };
 		A210550C2A40DCA100B69BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A210550B2A40DCA100B69BD9 /* GoogleService-Info.plist */; };
@@ -35,13 +35,13 @@
 		A2D795362A1AD5630013FA3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2D795342A1AD5630013FA3B /* LaunchScreen.storyboard */; };
 		A2D7953E2A1AD9220013FA3B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7953D2A1AD9220013FA3B /* TabBarController.swift */; };
 		A2D795402A1AED650013FA3B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D7953F2A1AED650013FA3B /* SettingsViewController.swift */; };
-		A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */; };
+		A2D795442A1AF9AD0013FA3B /* ListOfServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795432A1AF9AD0013FA3B /* ListOfServicesViewController.swift */; };
 		A2D7954A2A1B01860013FA3B /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D795492A1B01860013FA3B /* CartViewController.swift */; };
 		A2DD6D6B2B9F89ED00BE5A8C /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = A2DD6D6A2B9F89ED00BE5A8C /* AlamofireImage */; };
 		A2E050EF2A45FA3A00462A81 /* FinalSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */; };
 		A2E050F12A46156100462A81 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F02A46156100462A81 /* UserData.swift */; };
 		A2E050F32A46162000462A81 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E050F22A46162000462A81 /* FirebaseService.swift */; };
-		A2E067CF2AC033FB0026544C /* CleanCarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E067CE2AC033FB0026544C /* CleanCarViewModel.swift */; };
+		A2E067CF2AC033FB0026544C /* ListOfServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E067CE2AC033FB0026544C /* ListOfServicesViewModel.swift */; };
 		A2E3CAB72ABB0A9900898A64 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E3CAB62ABB0A9900898A64 /* LoginViewModel.swift */; };
 		A2E3CABA2ABF2B7200898A64 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E3CAB92ABF2B7200898A64 /* RegisterViewModel.swift */; };
 		A2E58BAE2B74084400BD2D4F /* ZeroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E58BAD2B74084400BD2D4F /* ZeroViewModel.swift */; };
@@ -73,7 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A20266A82A2BF84C00445C87 /* ServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		A20266A82A2BF84C00445C87 /* ServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViewController.swift; sourceTree = "<group>"; };
 		A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOrderViewController.swift; sourceTree = "<group>"; };
 		A21055092A40DC6500B69BD9 /* ZeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroViewController.swift; sourceTree = "<group>"; };
 		A210550B2A40DCA100B69BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -100,12 +100,12 @@
 		A2D795372A1AD5630013FA3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2D7953D2A1AD9220013FA3B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A2D7953F2A1AED650013FA3B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanCarViewController.swift; sourceTree = "<group>"; };
+		A2D795432A1AF9AD0013FA3B /* ListOfServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfServicesViewController.swift; sourceTree = "<group>"; };
 		A2D795492A1B01860013FA3B /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalSummaryViewController.swift; sourceTree = "<group>"; };
 		A2E050F02A46156100462A81 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A2E050F22A46162000462A81 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
-		A2E067CE2AC033FB0026544C /* CleanCarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanCarViewModel.swift; sourceTree = "<group>"; };
+		A2E067CE2AC033FB0026544C /* ListOfServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfServicesViewModel.swift; sourceTree = "<group>"; };
 		A2E3CAB62ABB0A9900898A64 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A2E3CAB92ABF2B7200898A64 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		A2E58BAD2B74084400BD2D4F /* ZeroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroViewModel.swift; sourceTree = "<group>"; };
@@ -190,24 +190,15 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		A24BA79F2B87BC83000625CA /* Factories */ = {
+		A26C54FB2B8287CA00FAD78C /* Tab1_ListOfServices */ = {
 			isa = PBXGroup;
 			children = (
-				A24BA7A02B87BCF9000625CA /* FactoriesCartViewController.swift */,
-			);
-			path = Factories;
-			sourceTree = "<group>";
-		};
-		A26C54FB2B8287CA00FAD78C /* ListOfServices */ = {
-			isa = PBXGroup;
-			children = (
-				A2FE12A12AD17C8100134CF3 /* CustomCell.swift */,
-				A24BA7982B869E7D000625CA /* CellInListOfServices.swift */,
-				A20266A82A2BF84C00445C87 /* ServicesViewController.swift */,
 				A26C55032B8288EF00FAD78C /* ViewController */,
 				A26C55022B8288E500FAD78C /* ViewModel */,
+				A2F651572BB9A608003DA78B /* UniversalControls */,
+				A2F651562BB9A5BE003DA78B /* Children */,
 			);
-			path = ListOfServices;
+			path = Tab1_ListOfServices;
 			sourceTree = "<group>";
 		};
 		A26C54FC2B82881A00FAD78C /* Login */ = {
@@ -264,7 +255,7 @@
 		A26C55022B8288E500FAD78C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A2E067CE2AC033FB0026544C /* CleanCarViewModel.swift */,
+				A2E067CE2AC033FB0026544C /* ListOfServicesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -272,28 +263,27 @@
 		A26C55032B8288EF00FAD78C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A2D795432A1AF9AD0013FA3B /* CleanCarViewController.swift */,
+				A24BA7982B869E7D000625CA /* CellInListOfServices.swift */,
+				A2D795432A1AF9AD0013FA3B /* ListOfServicesViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		A26C55042B82894800FAD78C /* Cart */ = {
+		A26C55042B82894800FAD78C /* Tab2_Cart */ = {
 			isa = PBXGroup;
 			children = (
-				A24BA79F2B87BC83000625CA /* Factories */,
+				A2F651592BB9A85B003DA78B /* UniversalControlsAndFactories */,
 				A26C55062B82896900FAD78C /* ViewModel */,
 				A26C55052B82896200FAD78C /* ViewController */,
+				A2F651582BB9A81C003DA78B /* Children */,
 			);
-			path = Cart;
+			path = Tab2_Cart;
 			sourceTree = "<group>";
 		};
 		A26C55052B82896200FAD78C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				A2D795492A1B01860013FA3B /* CartViewController.swift */,
-				A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */,
-				A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */,
-				A2AD70242AD2C044008ADF02 /* CustomCellForOrders.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -302,7 +292,6 @@
 			isa = PBXGroup;
 			children = (
 				A2AD70202AD2BE91008ADF02 /* OrdersViewModel.swift */,
-				A2AD70272AD30EAB008ADF02 /* FinalSummaryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -315,13 +304,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		A26C55082B8289F700FAD78C /* Profile */ = {
+		A26C55082B8289F700FAD78C /* Tab4_Profile */ = {
 			isa = PBXGroup;
 			children = (
 				A26C550A2B828A0400FAD78C /* ProfileViewModel */,
 				A26C55092B8289FE00FAD78C /* ProfileViewController */,
+				A2F6515E2BB9A8DF003DA78B /* Children */,
 			);
-			path = Profile;
+			path = Tab4_Profile;
 			sourceTree = "<group>";
 		};
 		A26C55092B8289FE00FAD78C /* ProfileViewController */ = {
@@ -394,14 +384,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		A2AD701B2AD2BDF1008ADF02 /* Club */ = {
+		A2AD701B2AD2BDF1008ADF02 /* Tab3_Club */ = {
 			isa = PBXGroup;
 			children = (
 				A26C55102B828A8300FAD78C /* Factories */,
 				A26C550F2B828A7000FAD78C /* ViewModel */,
 				A26C55072B8289D800FAD78C /* ViewController */,
 			);
-			path = Club;
+			path = Tab3_Club;
 			sourceTree = "<group>";
 		};
 		A2D7951D2A1AD5600013FA3B = {
@@ -445,6 +435,81 @@
 			path = Zero;
 			sourceTree = "<group>";
 		};
+		A2F651562BB9A5BE003DA78B /* Children */ = {
+			isa = PBXGroup;
+			children = (
+				A20266A82A2BF84C00445C87 /* ServiceViewController.swift */,
+			);
+			path = Children;
+			sourceTree = "<group>";
+		};
+		A2F651572BB9A608003DA78B /* UniversalControls */ = {
+			isa = PBXGroup;
+			children = (
+				A2FE12A12AD17C8100134CF3 /* CustomCell.swift */,
+			);
+			path = UniversalControls;
+			sourceTree = "<group>";
+		};
+		A2F651582BB9A81C003DA78B /* Children */ = {
+			isa = PBXGroup;
+			children = (
+				A2F6515D2BB9A8AE003DA78B /* Summary */,
+				A2F6515A2BB9A888003DA78B /* FinalSummary */,
+			);
+			path = Children;
+			sourceTree = "<group>";
+		};
+		A2F651592BB9A85B003DA78B /* UniversalControlsAndFactories */ = {
+			isa = PBXGroup;
+			children = (
+				A24BA7A02B87BCF9000625CA /* FactoriesCartViewController.swift */,
+				A2AD70242AD2C044008ADF02 /* CustomCellForOrders.swift */,
+			);
+			path = UniversalControlsAndFactories;
+			sourceTree = "<group>";
+		};
+		A2F6515A2BB9A888003DA78B /* FinalSummary */ = {
+			isa = PBXGroup;
+			children = (
+				A2F6515C2BB9A8A1003DA78B /* viewController */,
+				A2F6515B2BB9A89A003DA78B /* viewModel */,
+			);
+			path = FinalSummary;
+			sourceTree = "<group>";
+		};
+		A2F6515B2BB9A89A003DA78B /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A2AD70272AD30EAB008ADF02 /* FinalSummaryViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		A2F6515C2BB9A8A1003DA78B /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				A2E050EE2A45FA3A00462A81 /* FinalSummaryViewController.swift */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		A2F6515D2BB9A8AE003DA78B /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				A21055072A40D75D00B69BD9 /* SummaryOrderViewController.swift */,
+			);
+			path = Summary;
+			sourceTree = "<group>";
+		};
+		A2F6515E2BB9A8DF003DA78B /* Children */ = {
+			isa = PBXGroup;
+			children = (
+				A26C550B2B828A2A00FAD78C /* Settings */,
+			);
+			path = Children;
+			sourceTree = "<group>";
+		};
 		A2F7C86B2AB2499C00BC7F3D /* CzysteAutoUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,14 +524,13 @@
 			children = (
 				A2431B802A201AA700FF807E /* Storyboards */,
 				A2E58BAF2B740EF700BD2D4F /* Zero */,
-				A2D7953D2A1AD9220013FA3B /* TabBarController.swift */,
 				A26C54FF2B82884700FAD78C /* Register */,
 				A26C54FC2B82881A00FAD78C /* Login */,
-				A26C54FB2B8287CA00FAD78C /* ListOfServices */,
-				A26C55042B82894800FAD78C /* Cart */,
-				A2AD701B2AD2BDF1008ADF02 /* Club */,
-				A26C55082B8289F700FAD78C /* Profile */,
-				A26C550B2B828A2A00FAD78C /* Settings */,
+				A2D7953D2A1AD9220013FA3B /* TabBarController.swift */,
+				A26C54FB2B8287CA00FAD78C /* Tab1_ListOfServices */,
+				A26C55042B82894800FAD78C /* Tab2_Cart */,
+				A2AD701B2AD2BDF1008ADF02 /* Tab3_Club */,
+				A26C55082B8289F700FAD78C /* Tab4_Profile */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -631,9 +695,9 @@
 				A2F88A142A1BC9A5008674AD /* ProfileViewController.swift in Sources */,
 				A2AD70282AD30EAB008ADF02 /* FinalSummaryViewModel.swift in Sources */,
 				A2D7953E2A1AD9220013FA3B /* TabBarController.swift in Sources */,
-				A2E067CF2AC033FB0026544C /* CleanCarViewModel.swift in Sources */,
+				A2E067CF2AC033FB0026544C /* ListOfServicesViewModel.swift in Sources */,
 				A2AD70212AD2BE91008ADF02 /* OrdersViewModel.swift in Sources */,
-				A2D795442A1AF9AD0013FA3B /* CleanCarViewController.swift in Sources */,
+				A2D795442A1AF9AD0013FA3B /* ListOfServicesViewController.swift in Sources */,
 				A2C990B12A72C42300514C75 /* CheckPhoneNumberViewController.swift in Sources */,
 				A24BA7992B869E7D000625CA /* CellInListOfServices.swift in Sources */,
 				A2AD70252AD2C044008ADF02 /* CustomCellForOrders.swift in Sources */,
@@ -651,7 +715,7 @@
 				A2A9F35E2A48EEAA00D210A6 /* Service.swift in Sources */,
 				A2F88A162A1BF030008674AD /* Extensions.swift in Sources */,
 				A21055182A40F75700B69BD9 /* RegisterViewController.swift in Sources */,
-				A20266A92A2BF84C00445C87 /* ServicesViewController.swift in Sources */,
+				A20266A92A2BF84C00445C87 /* ServiceViewController.swift in Sources */,
 				A2E3CABA2ABF2B7200898A64 /* RegisterViewModel.swift in Sources */,
 				A210550A2A40DC6500B69BD9 /* ZeroViewController.swift in Sources */,
 				A2E050F12A46156100462A81 /* UserData.swift in Sources */,

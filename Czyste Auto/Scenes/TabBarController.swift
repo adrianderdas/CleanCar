@@ -7,13 +7,13 @@
 
 import UIKit
 
-class TabBarController: UITabBarController, CleanCarViewControllerDelegate, CartViewControllerDelegate {
+class TabBarController: UITabBarController, ListOfServicesViewControllerDelegate, CartViewControllerDelegate {
     
-    private let cleanCarViewModel = CleanCarViewModel()
+    private let listOfServicesViewModel = ListOfServicesViewModel()
 
     let defaults = UserDefaults.standard
     
-    let cleanCarViewController = CleanCarViewController()
+    let listOfServicesViewController = ListOfServicesViewController()
 
     var cartValue: Int = 0
     
@@ -47,7 +47,7 @@ class TabBarController: UITabBarController, CleanCarViewControllerDelegate, Cart
         super.viewWillAppear(animated)
         tabBar.isTranslucent = false
         
-        cartValue = cleanCarViewModel.loadServices()?.count ?? 0
+        cartValue = listOfServicesViewModel.loadServices()?.count ?? 0
         updateBadgeValue()
         selectedIndex = 0
         view.backgroundColor = .systemBackground

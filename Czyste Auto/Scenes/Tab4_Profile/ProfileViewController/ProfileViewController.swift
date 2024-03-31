@@ -42,34 +42,52 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         FirebaseService.shared.getUserOrders() { [weak self] in
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
     }
-    
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        setView()
+        setTableView()
+        setConstraints()
+        setSettingsBarButtonItem()
+    }
+    
+    func setView() {
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
-
-        tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        
         title = "Profil"
         navigationController?.navigationBar.prefersLargeTitles = false
-
+    }
+    
+    func setSettingsBarButtonItem() {
         if let customImage = UIImage(systemName: "gearshape") {
             let customButton = UIBarButtonItem(image: customImage, style: .plain, target: self, action: #selector(didTapSettings))
             navigationItem.rightBarButtonItem = customButton
             navigationItem.rightBarButtonItem?.tintColor = UIColor.label
         }
+    }
+    
+    func setTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "OrderCell")
+        tableView.rowHeight = 50
+    }
+    
+    func setConstraints() {
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
     
     @objc func didTapSettings() {
@@ -81,10 +99,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @objc private func refreshTable() {
         FirebaseService.shared.getUserOrders() { [weak self] in
-            self?.tableView.reloadData()
+            DispatchQueue.main.async() {
+                self?.tableView.reloadData()
+                self?.tableView.refreshControl?.endRefreshing()
+            }
         }
-        
-        self.tableView.refreshControl?.endRefreshing()
     }
-    
 }

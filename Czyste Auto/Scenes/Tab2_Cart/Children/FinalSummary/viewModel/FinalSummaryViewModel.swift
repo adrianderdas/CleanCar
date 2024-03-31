@@ -59,7 +59,7 @@ class FinalSummaryViewModel {
     }
 
     func clearCart() {
-        CleanCarViewModel().selectedServices = []
+        ListOfServicesViewModel().selectedServices = []
     }
     
     func uploadCollectionOrdersToUsersGroupInFirebase(userID: String, orderID: String) {

@@ -93,7 +93,7 @@ class FirebaseService {
                                             print("Order document data is nil.")
                                         }
 
-                                        print("Firebase orders are:::: \(self.firebaseOrders)")
+                                      //  print("Firebase orders are: \(self.firebaseOrders)")
                                     } else {
                                         print("Order document does not exist.")
                                     }

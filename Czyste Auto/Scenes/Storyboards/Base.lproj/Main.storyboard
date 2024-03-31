@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="19" y="94"/>
         </scene>
-        <!--Clean Car View Controller-->
+        <!--List Of Services View Controller-->
         <scene sceneID="JwT-fB-tSS">
             <objects>
-                <viewController id="ccM-Ki-2Mk" customClass="CleanCarViewController" customModule="Czyste_Auto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ccM-Ki-2Mk" customClass="ListOfServicesViewController" customModule="Czyste_Auto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DPD-Gx-Fyo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

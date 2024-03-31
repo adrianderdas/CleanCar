@@ -1,5 +1,5 @@
 //
-//  CleanCarViewModel.swift
+//  ListOfServicesViewModel.swift
 //  Czyste Auto
 //
 //  Created by Adrian Derdaś on 24/09/2023.
@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class CleanCarViewModel {
+class ListOfServicesViewModel {
     
 
     var items: [DownloadedService] = []
@@ -43,7 +43,7 @@ class CleanCarViewModel {
     var onServicesFetchedCallback: (() -> Void)?
 
     func fetchServices() {
-        AF.request("http://192.168.1.103:3000/services")
+        AF.request("http://192.168.1.100:3000/services")
             .validate()
             .responseDecodable(of: ServicesResponse.self) { [weak self] response in
                 

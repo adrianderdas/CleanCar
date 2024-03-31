@@ -1,5 +1,5 @@
 //
-//  ServicesViewController.swift
+//  ServiceViewController.swift
 //  Czyste Auto
 //
 //  Created by Adrian Derdaś on 04/06/2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ServicesViewController: UIViewController  {
+class ServiceViewController: UIViewController  {
         
     var data: Displayable?
     
@@ -19,22 +19,44 @@ class ServicesViewController: UIViewController  {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private let label: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+ 
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
 
-        title = data?.serviceDescriptionText
-       
+      
         if let sheetPresentationController = self.presentationController as? UISheetPresentationController {
             sheetPresentationController.detents = [.medium(), .large()]
             sheetPresentationController.prefersGrabberVisible = true
         }
         
+    
+        view.addSubview(label)
   
         view.backgroundColor = .red
     }
     
 
+    func setConstraints() {
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            
+
+        ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        title = data?.serviceDescriptionText
+        label.text = self.data?.serviceDescriptionText
+    }
 
 }
