@@ -2,36 +2,35 @@ import UIKit
 import FirebaseAuth
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
- 
+    
     private var tableView: UITableView = {
         let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
         table.clipsToBounds = true
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "OrderCell")
-
+        
         return table
     }()
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return FirebaseService.shared.firebaseOrders.count
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FirebaseService.shared.firebaseOrders[section].orders.count
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let order = FirebaseService.shared.firebaseOrders[section]
-            
-            if order.isRealized {
-                return "Zrealizowane"
-            } else {
-                return "Niezrealizowane"
-            }
+        
+        if order.isRealized {
+            return "Zrealizowane"
+        } else {
+            return "Niezrealizowane"
+        }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderCell", for: indexPath)
-        
         let order = FirebaseService.shared.firebaseOrders[indexPath.section]
         let service = order.orders[indexPath.row]
         
