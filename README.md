@@ -2,6 +2,9 @@
 
 An application in Swift for ordering various car-related services.
 
+## Application Network Diagram
+<img src="https://github.com/adrianderdas/CleanCar/blob/main/Screenshots/NETWORK_DIAGRAM.png?raw=true" width="80%" height="80%">
+
 ## Features
 - Log In with email and password
 
